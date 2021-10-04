@@ -1,0 +1,32 @@
+<div class="login" *ngIf="!viewLogin">
+    <form [formGroup]="loginData" (ngSubmit)="logIn()">
+        <div class="input-group mb-3">
+            <span class="pi pi-user input-group-text"></span>
+            <input
+            type="text"
+            class="form-control"
+            placeholder="UID"
+            aria-label="UID"
+            formControlName="uid">  
+            <span class="pi pi-key input-group-text"></span>
+            <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            aria-label="Password"
+            formControlName="pss">
+            &nbsp;
+            <button pButton class="p-button-success" label="Log In"></button>
+        </div>
+      
+        <!-- <div class="p-col-12 p-md-4 login">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                <input type="text" pInputText placeholder="Username">
+                <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                <input type="text" pInputText placeholder="Password">
+                <button pButton class="p-button-success" label="Log In"></button>
+            </div>
+        </div> -->
+    </form>
+</div>

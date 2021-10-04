@@ -1,0 +1,15 @@
+<header>
+    <div class="content">
+        <h3>Logo Conti</h3>
+        <h2>Retención de documentos</h2>
+
+        <div class="login">
+            <app-login *ngIf="viewLogin"></app-login>
+        </div>
+        
+        <button pButton
+        label="Sing In"
+        (click)="viewLogin = true; showSingin = true"
+        [ngClass]="(isLogged || showSingin) ? 'not-visible' : ''"></button>
+    </div>
+</header>

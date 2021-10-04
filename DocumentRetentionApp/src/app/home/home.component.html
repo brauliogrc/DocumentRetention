@@ -1,0 +1,22 @@
+<div class="content">
+    <!-- Header -->
+    <div class="header">
+        <app-header-bar></app-header-bar>
+    </div>
+
+    <h2>Este es el La pagina de home</h2>
+    
+    <p-sidebar [(visible)]="sidebar01">
+        <h2>Welcome to Document Retention {{ showName() }}</h2>
+    </p-sidebar>
+    
+    <button pButton
+    (click)="sidebar01 = true"
+    icon="pi pi-plus"
+    [ngClass]=" !isLogged ? 'not-visible' : ''">
+    </button>
+
+    <router-outlet></router-outlet>
+</div>
+
+<!-- [ngClass]="!isLogged ? 'not-visible' : ''" -->

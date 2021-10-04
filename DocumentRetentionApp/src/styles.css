@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~animate.css/animate.min";
+
+* {
+  font-family: "typo-grotesk-rounded", "arial", sans-serif;
+}
+
+.not-visible {
+  display: none;
+}
+
+html,
+body {
+  background-color: var(--gray-700);
+}
+
+@font-face {
+  font-family: Stick_No_Bills;
+  src: url(assets/fonts/Stick_No_Bills/StickNoBills-VariableFont_wght.ttf)
+    format("opentype");
+}
+
+@font-face {
+  font-family: Ormont-light;
+  src: url("./assets/fonts/ormont-light/Ormont_Light.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: typo-grotesk-rounded;
+  src: url("./assets/fonts/typo-grotesk-rounded/TypoGroteskRoundedLightDemo.otf")
+    format("opentype");
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,14 @@
+<p>docs-viewer works!</p>
+<div class="p-grid p-fluid">
+    <div class="p-col-12 p-md-4">
+        <div class="p-inputgroup">
+            <button type="button" pButton pRipple label="Search"></button>
+            <!-- <input type="text" pInputText placeholder="ID del documento"> -->
+            <p-inputNumber inputId="withoutgrouping" placeholder="ID del documento"></p-inputNumber>
+            <p-dropdown class="fields" [options]="menuItems" [(ngModel)]="selectItem" placeholder="Seleccione proyecto"></p-dropdown>
+            <p-dropdown class="fields" [options]="menuItems" [(ngModel)]="selectItem" placeholder="Seleccione proceso"></p-dropdown>
+            <p-calendar class="fields" [(ngModel)]="value" placeholder="Seleccione fecha de inicio"></p-calendar>
+            <p-calendar class="fields" [(ngModel)]="value" placeholder="Seleccione fecha de fin"></p-calendar>
+        </div>
+    </div>
+</div>
