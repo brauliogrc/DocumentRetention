@@ -13,33 +13,33 @@ namespace DocumentRetentionAPI.Models
 
         [Required]
         [MaxLength(80)]
-        public string Name { get; set; }
+        public string DocumentName { get; set; }
 
         [Required]
-        [MaxLength(20)]
-        public string Path { get; set; }
+        [MaxLength(280)]
+        public string DocumentPath { get; set; }
 
-        public DateTime? StartDate { get; set; }
+        public DateTime? DocumentStartDate { get; set; }
 
-        public DateTime? DueDate { get; set; }
-
-        [Required]
-        public DateTime UpdateAt { get; set; }
+        public DateTime? DocumentDueDate { get; set; }
 
         [Required]
-        public DateTime CreationAt { get; set; }
+        public DateTime DocumentUpdateAt { get; set; }
 
         [Required]
-        public bool Status { get; set; }
+        public DateTime DocumentCreationAt { get; set; }
+
+        [Required]
+        public bool DocumentStatus { get; set; }
 
 
         // Relación 1:N con tabla "Processes"
-        public int IDProcesses { get; set; }
+        public int IDProcess { get; set; }
         public Processes process { get; set; }
 
 
         // Relación 1:N con tabala "Projects"
-        public int IDProjects { get; set; }
+        public int IDProject { get; set; }
         public Projects project { get; set; }
 
 

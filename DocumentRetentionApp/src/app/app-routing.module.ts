@@ -11,7 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 // import { LoginComponent } from './auth/login/login.component';
 // import { DocsCreationComponent } from './capturist/docs-creation/docs-creation.component';
 // import { DocsViewerComponent } from './first-view/docs-viewer/docs-viewer.component';
-import { Page404Component } from './shared/page404/page404.component';
+import { Page404Component } from './shared/components/page404/page404.component';
 
 
 

@@ -9,16 +9,16 @@ namespace DocumentRetentionAPI.Models
     public class Processes
     {
         [Key]
-        public int IDProcesses { get; set; }
+        public int IDProcess { get; set; }
 
         [Required][MaxLength(80)]
-        public string Name { get; set; }
+        public string ProcessName { get; set; }
 
         [Required]
-        public DateTime UpdaeAt { get; set; }
+        public DateTime ProcessUpdaeAt { get; set; }
 
         [Required]
-        public DateTime CreationAt { get; set; }
+        public DateTime ProcessCreationAt { get; set; }
 
         [Required]
         public long IDOwner { get; set; }
@@ -27,7 +27,7 @@ namespace DocumentRetentionAPI.Models
         public string NameOwner { get; set; }
 
         [Required]
-        public bool Status { get; set; }
+        public bool ProcessStatus { get; set; }
 
 
         // Relación 1:N con tabla "Documents"

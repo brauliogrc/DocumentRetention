@@ -12,13 +12,13 @@ namespace DocumentRetentionAPI.Models
         public int IDClient { get; set; }
 
         [Required][MaxLength(80)]
-        public string Name { get; set; }
+        public string ClientName { get; set; }
 
         [Required]
-        public DateTime UpdateAt { get; set; }
+        public DateTime ClientUpdateAt { get; set; }
 
         [Required]
-        public DateTime CreationAt { get; set; }
+        public DateTime ClientCreationAt { get; set; }
 
 
         // Relación 1:N con tabla "Projects"

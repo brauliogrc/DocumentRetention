@@ -1,14 +1,83 @@
 <p>docs-viewer works!</p>
 <div class="p-grid p-fluid">
     <div class="p-col-12 p-md-4">
-        <div class="p-inputgroup">
-            <button type="button" pButton pRipple label="Search"></button>
-            <!-- <input type="text" pInputText placeholder="ID del documento"> -->
-            <p-inputNumber inputId="withoutgrouping" placeholder="ID del documento"></p-inputNumber>
-            <p-dropdown class="fields" [options]="menuItems" [(ngModel)]="selectItem" placeholder="Seleccione proyecto"></p-dropdown>
-            <p-dropdown class="fields" [options]="menuItems" [(ngModel)]="selectItem" placeholder="Seleccione proceso"></p-dropdown>
-            <p-calendar class="fields" [(ngModel)]="value" placeholder="Seleccione fecha de inicio"></p-calendar>
-            <p-calendar class="fields" [(ngModel)]="value" placeholder="Seleccione fecha de fin"></p-calendar>
-        </div>
+
+        <form (ngSubmit)="metodos()">
+            <div class="grupo">
+                    <button 
+                        class="searchButton" 
+                        type="submit" 
+                        pButton pRipple 
+                        icon="pi pi-search" 
+                        iconPos="left"
+                        >
+                    </button>
+                    <!-- <input type="text" pInputText placeholder="ID del documento"> -->
+                    <p-inputNumber 
+                        class="fieldsNumber" 
+                        inputId="withoutgrouping" 
+                        placeholder="ID del documento"
+                        [(ngModel)]="docID"
+                        [ngModelOptions]="{standalone: true}">
+                    </p-inputNumber>
+                    <p-dropdown 
+                        name="project"
+                        class="fields" 
+                        [options]="projectsMenu" 
+                        [(ngModel)]="selectedProject" 
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Seleccione proyecto" 
+                        optionLabel="projectName"
+                        optionValue="idProject"
+                        [filter]="true"
+                        filterBy="projectName"
+                        [showClear]="true"
+                        >
+                    </p-dropdown>
+                    <p-dropdown 
+                        name="process"
+                        class="fields" 
+                        [options]="processesMenu" 
+                        [(ngModel)]="selectedProcess" 
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Seleccione proceso" 
+                        optionLabel="processName"
+                        optionValue="idProcess"
+                        [filter]="true"
+                        filterBy="processName"
+                        [showClear]="true"
+                        >
+                    </p-dropdown>
+                    <p-dropdown
+                        name="docType"
+                        class="fields"
+                        [options]="docTypeMenu"
+                        [(ngModel)]="selectedDocType"
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Seleccione un tipo de documento"
+                        optionLabel="dtName"
+                        optionValue="iddt"
+                        [filter]="true"
+                        filterBy="dtName"
+                        [showClear]="true"
+                    ></p-dropdown>
+                    <p-calendar 
+                        class="fields"
+                        [(ngModel)]="startDate" 
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Seleccione fecha de inicio">
+                    </p-calendar>
+                    <p-calendar 
+                        class="fields" 
+                        [(ngModel)]="dueDate" 
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Seleccione fecha de fin">
+                    </p-calendar>
+            </div>
+        </form>
     </div>
+
+    <!-- El filterData dentro de [] pertenece al componente show results -->
+    <!-- El filterData dentro de "" pertenece al componente docs viewer -->
+    <app-show-results [filterData]="filterData"></app-show-results>
 </div>

@@ -1,0 +1,31 @@
+<p>show-results works!</p>
+<div class="results">
+    <p-table [value]="docsList" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID doc</th>
+                <th>Nombre dec</th>
+                <th>Due date</th>
+                <th>Start date</th>
+                <th>Proceso</th>
+                <th>Projecto</th>
+                <th>Usuario creación</th>
+                <th>UID usuario</th>
+                <th>Tipo doc</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-docsList>
+            <tr>
+                <td>{{ docsList.idDocument }}</td>
+                <td>{{ docsList.documentName }}</td>
+                <td>{{ docsList.documentDueDate | date: shortDate }}</td>
+                <td>{{ docsList.documentStartDate | date: shortDate }}</td>
+                <td>{{ docsList.processName }}</td>
+                <td>{{ docsList.projectName }}</td>
+                <td>{{ docsList.userName }}</td>
+                <td>{{ docsList.uid }}</td>
+                <td>{{ docsList.dtName }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

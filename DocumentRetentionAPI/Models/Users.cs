@@ -18,20 +18,20 @@ namespace DocumentRetentionAPI.Models
 
         [Required]
         [MaxLength(120)]
-        public string Name { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [MaxLength(120)]
-        public string Email { get; set; }
+        public string UserEmail { get; set; }
 
         [Required]
-        public DateTime UpdateAt { get; set; }
+        public DateTime UserUpdateAt { get; set; }
 
         [Required]
-        public DateTime CreationAt { get; set; }
+        public DateTime UserCreationAt { get; set; }
 
         [Required]
-        public bool Status { get; set; }
+        public bool UserStatus { get; set; }
 
 
         // Relación 1:N con tabla "Roles"
@@ -44,7 +44,7 @@ namespace DocumentRetentionAPI.Models
 
 
         // Relación 1:N con tabla "Clients"
-        public List<Clients> clietn { get; set; }
+        public List<Clients> client { get; set; }
 
 
         // Relación 1:N con tabla "Project"

@@ -82,14 +82,14 @@ namespace DocumentRetentionAPI.Controllers
                                 {
                                     user.IDUser,
                                     user.UID,
-                                    user.Name,
-                                    user.Email,
+                                    user.UserName,
+                                    user.UserEmail,
                                     user.IDRole
                                 };
 
                 _auth.UID = userExist.First().UID;
-                _auth.Name = userExist.First().Name;
-                _auth.Email = userExist.First().Email;
+                _auth.Name = userExist.First().UserName;
+                _auth.Email = userExist.First().UserEmail;
                 _auth.IDRole = userExist.First().IDRole;
                 _auth.IDUser = userExist.First().IDUser;
 

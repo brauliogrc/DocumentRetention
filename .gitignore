@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+
+/DR
+/Tets_docs
+
 # compiled output
 /dist
 /tmp
@@ -43,6 +47,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-/DR
-/Tets_docs

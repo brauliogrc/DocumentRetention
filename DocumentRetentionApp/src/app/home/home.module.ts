@@ -6,7 +6,7 @@ import { AuthModule } from '@app/auth/auth.module';
 
 // Importación de componentes
 import { HomeComponent } from './home.component';
-import { HeaderBarComponent } from '@app/shared/header-bar/header-bar.component';
+import { HeaderBarComponent } from '@app/shared/components/header-bar/header-bar.component';
 
 // Importación de elementos "Primeng"
 import { SidebarModule } from 'primeng/sidebar';

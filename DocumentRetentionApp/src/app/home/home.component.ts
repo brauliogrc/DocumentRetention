@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Importación de servicios
 import { AuthSericeService } from '@auth/autServices/auth-serice.service'
-import { EncryptionAndDecryptionService } from '@shared/encryptionanddecryption/encryption-and-decryption.service';
+import { EncryptionAndDecryptionService } from '@app/shared/services/encryptionanddecryption/encryption-and-decryption.service';
 
 @Component({
   selector: 'app-home',

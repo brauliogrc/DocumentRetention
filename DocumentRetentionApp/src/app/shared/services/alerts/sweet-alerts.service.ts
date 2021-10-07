@@ -13,6 +13,8 @@ export class SweetAlertsService {
   // Menjo del codigo de error
   errorsHandler = (err: HttpErrorResponse) => {
     if (err.status == 0) this.connectionRefused();
+    if (err.status == 400) this.badRequest(err.error.message);
+    if (err.status == 401) this.unauthorized(err.error.message);
   }
 
   // Manejo del error de logeo
@@ -39,11 +41,28 @@ export class SweetAlertsService {
   }
 
   // Manejo de error "conección rechasada a la API"
-  connectionRefused = () => {
+  private connectionRefused = () => {
     Swal.fire({
       icon: 'error',
       title: 'Conección rechasada a la API del sistema',
       text: 'Favor de contactar a soporte'
     });
+  }
+
+  // Manejo de error "Bad Request (400)"
+  private badRequest = (error: string) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Fallo en la petición',
+      text: error
+    })
+  }
+
+  private unauthorized = (error: string) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Usuario no autorizado',
+      text: error
+    })
   }
 }

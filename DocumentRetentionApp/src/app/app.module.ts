@@ -10,7 +10,7 @@ import { FirstViewModule } from './first-view/first-view.module';
 import { CapturistModule } from './capturist/capturist.module';
 
 // Importacion de componentes de "shared"
-import { Page404Component } from './shared/page404/page404.component';
+import { Page404Component } from './shared/components/page404/page404.component';
 import { HomeModule } from './home/home.module';
 
 // Importaciones de Servicios

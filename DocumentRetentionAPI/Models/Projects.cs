@@ -9,19 +9,19 @@ namespace DocumentRetentionAPI.Models
     public class Projects
     {
         [Key]
-        public int IDProjects { get; set; }
+        public int IDProject { get; set; }
 
         [Required][MaxLength(80)]
-        public string Name { get; set; }
+        public string ProjectName { get; set; }
 
         [Required]
-        public DateTime UpdateAt { get; set; }
+        public DateTime ProjecUpdateAt { get; set; }
 
         [Required]
-        public DateTime CreationAt { get; set; }
+        public DateTime ProjectCreationAt { get; set; }
 
         [Required]
-        public bool Status { get; set; }
+        public bool ProjectStatus { get; set; }
 
 
         // Relación 1:N con tabla "Documents"

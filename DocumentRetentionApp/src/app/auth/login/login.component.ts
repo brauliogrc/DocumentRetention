@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { loginData } from '@shared/interfaces/interfaces';
 import { AuthSericeService } from '../autServices/auth-serice.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SweetAlertsService } from '@shared/alerts/sweet-alerts.service';
+import { SweetAlertsService } from '@app/shared/services/alerts/sweet-alerts.service';
 import { bearer } from '@shared/interfaces/interfaces';
-import { EncryptionAndDecryptionService } from '@shared/encryptionanddecryption/encryption-and-decryption.service';
+import { EncryptionAndDecryptionService } from '@app/shared/services/encryptionanddecryption/encryption-and-decryption.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -60,6 +60,8 @@ export class LoginComponent implements OnInit {
         this.loginData.reset();
       }
     );
+
+    this.loginData.reset();
   }
 
 }

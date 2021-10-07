@@ -40,8 +40,8 @@ namespace DocumentRetentionAPI.Models
 
             // Relación 1:N entre tablas "Clients" y "Users"
             modelBuilder.Entity<Clients>()
-                .HasOne<Users>(clietn => clietn.user)
-                .WithMany(user => user.clietn)
+                .HasOne<Users>(client => client.user)
+                .WithMany(user => user.client)
                 .HasForeignKey(client => client.CreationUser)
                 .OnDelete(DeleteBehavior.NoAction);
 
@@ -74,7 +74,7 @@ namespace DocumentRetentionAPI.Models
             modelBuilder.Entity<Documents>()
                 .HasOne<Processes>(document => document.process)
                 .WithMany(process => process.document)
-                .HasForeignKey(document => document.IDProcesses)
+                .HasForeignKey(document => document.IDProcess)
                 .OnDelete(DeleteBehavior.NoAction);
 
 
@@ -90,7 +90,7 @@ namespace DocumentRetentionAPI.Models
             modelBuilder.Entity<Documents>()
                 .HasOne<Projects>(document => document.project)
                 .WithMany(project => project.document)
-                .HasForeignKey(document => document.IDProjects)
+                .HasForeignKey(document => document.IDProject)
                 .OnDelete(DeleteBehavior.NoAction);
 
 

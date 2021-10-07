@@ -15,7 +15,7 @@ import { catchError } from 'rxjs/operators';
 
 // Importación de servicios
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { SweetAlertsService } from '@shared/alerts/sweet-alerts.service';
+import { SweetAlertsService } from '@app/shared/services/alerts/sweet-alerts.service';
 
 const helper = new JwtHelperService();
 
