@@ -12,6 +12,7 @@
                 <th>Usuario creación</th>
                 <th>UID usuario</th>
                 <th>Tipo doc</th>
+                <th>Archivo</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-docsList>
@@ -25,6 +26,7 @@
                 <td>{{ docsList.userName }}</td>
                 <td>{{ docsList.uid }}</td>
                 <td>{{ docsList.dtName }}</td>
+                <td><p-button icon="pi pi-file-pdf" iconPos="left" ></p-button></td>
             </tr>
         </ng-template>
     </p-table>
