@@ -1,0 +1,21 @@
+<p>pdf-viewer works!</p>
+
+<ngx-extended-pdf-viewer
+    [src]="archivo"
+    [customToolbar]="newToolbar"
+    useBrowserLocale="true"
+    height="80vh"
+></ngx-extended-pdf-viewer>
+
+<ng-template #newToolbar>
+    <div class="header">
+        <div id="toolbarViewerLeft">
+            <pdf-toggle-sidebar></pdf-toggle-sidebar>
+            <div class="toolbarButtonSpacer"></div>
+            <pdf-paging-area></pdf-paging-area>
+          </div>
+
+        <button pButton icon="pi pi-search-plus" iconPos="left" id="zoomIn"></button>
+        <button pButton icon="pi pi-search-minus" iconPos="left" id="zoomOut"></button>
+      </div>
+</ng-template>

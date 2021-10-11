@@ -5,6 +5,8 @@ import { EncryptionAndDecryptionService } from '@shared/services/encryptionandde
 import { docsTable } from '@shared/interfaces/tablesInterface';
 import { TablesFiltersHelper } from '@app/shared/helpers/tableFiltersHelper';
 
+import { pdfDefaultOptions } from 'ngx-extended-pdf-viewer';
+
 @Component({
   selector: 'app-show-results',
   templateUrl: './show-results.component.html',
@@ -18,7 +20,9 @@ export class ShowResultsComponent implements OnInit {
   constructor(
     private _tableService: TableServiceService,
     private _crypt: EncryptionAndDecryptionService,
-  ) { }
+  ) {
+    // pdfDefaultOptions.assetsFolder = 'bleeding-edge';
+   }
 
     private _userRole = this._crypt.userRole;
     private _tableFilterHelper = new TablesFiltersHelper();
