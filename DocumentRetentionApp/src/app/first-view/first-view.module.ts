@@ -5,6 +5,7 @@ import { FirstViewRoutingModule } from './first-view-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowResultsComponent } from './show-results/show-results.component';
+import { DatePipe } from '@angular/common';
 
 // Importaciones de Primeng
 import { InputTextModule } from 'primeng/inputtext';
@@ -32,6 +33,9 @@ import { TableModule } from 'primeng/table';
     CalendarModule,
     TableModule,
 
-  ]
+  ],
+  providers: [
+    DatePipe,
+  ],
 })
 export class FirstViewModule { }

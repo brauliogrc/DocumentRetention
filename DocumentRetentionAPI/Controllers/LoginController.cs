@@ -38,7 +38,7 @@ namespace DocumentRetentionAPI.Controllers
         [HttpPost][AllowAnonymous]  
         public async Task<IActionResult> login([FromBody] LoginTemplate loginData )
         {
-
+            // Autenticación por LDAP
             string domainUser = @"CW01\" + loginData.UID;
 
             DirectoryEntry entry = new DirectoryEntry(_config.GetValue<string>("AuthLDAP"), domainUser, loginData.Pass);

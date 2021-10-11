@@ -2,7 +2,7 @@
 <div class="p-grid p-fluid">
     <div class="p-col-12 p-md-4">
 
-        <form (ngSubmit)="metodos()">
+        <form (ngSubmit)="filter()">
             <div class="grupo">
                     <button 
                         class="searchButton" 
@@ -79,5 +79,5 @@
 
     <!-- El filterData dentro de [] pertenece al componente show results -->
     <!-- El filterData dentro de "" pertenece al componente docs viewer -->
-    <app-show-results [filterData]="filterData"></app-show-results>
+    <app-show-results></app-show-results>
 </div>

@@ -90,14 +90,14 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     on doc.IDDT equals docType.IDDT
                                 join user in _context.Users
                                     on doc.CreationUser equals user.IDUser
-                                where doc.DocumentStatus == true /*&& (
+                                where doc.DocumentStatus == true /*|| (
                                     doc.IDDocument == filter.docId ||
                                     doc.DocumentDueDate == filter.dueDate ||
                                     doc.DocumentStartDate == filter.startDate ||
                                     process.IDProcess == filter.selectedProcess ||
                                     projetc.IDProject == filter.selectedProject ||
                                     docType.IDDT == filter.selectedDocType)*/
-                                    
+
                                 select new
                                 {
                                     // Datos del documento

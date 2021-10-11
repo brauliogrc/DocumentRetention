@@ -63,7 +63,7 @@ namespace DocumentRetentionAPI
 
             // Definición del contexto de la DB
             services.AddDbContext<DRDBContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("devDocumentRetention"))
+                options.UseSqlServer(Configuration.GetConnectionString("devDocumentRetentionSA"))
             );
 
             // Configuración para aceptar el envio de json

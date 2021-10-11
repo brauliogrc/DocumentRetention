@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';
 import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encryption-and-decryption.service';
 import { docsTable } from '@shared/interfaces/tablesInterface';
@@ -32,7 +32,7 @@ export class TableServiceService {
   private _userRole: number = this._crypt.userRole;
 
   // Peticion HTTP a la API para obtener el lisado de documentos segun los datos de filtro admin
-  getAdminDocsTable(filter: filterDocs): Observable<docsTable[]> {
+  getAdminDocsTable(): Observable<docsTable[]> {
     return this._http.get<docsTable[]>(`${environment.API}` + this.controllerRoute + this.adminTable, {headers: this.headers})
       .pipe(
         catchError((err: HttpErrorResponse) => {
@@ -42,7 +42,7 @@ export class TableServiceService {
   }
 
   // Peticion HTTP a la API para obtener el lisado de documentos segun los datos de filtro usuarios
-  getUserDocsTable(filter: filterDocs): Observable<docsTable[]> {
+  getUserDocsTable(): Observable<docsTable[]> {
     return this._http.get<docsTable[]>(`${environment.API}` + this.controllerRoute + this.userTable)
       .pipe(
         catchError((err: HttpErrorResponse) => {
