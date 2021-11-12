@@ -1,16 +1,19 @@
 <p>show-results works!</p>
-<div class="results">
+<div class="results" >
+    <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()"> <mat-icon>restart_alt</mat-icon> </p-button>
     <p-table [value]="docsList" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
                 <th>ID doc</th>
-                <th>Nombre dec</th>
+                <th>Nombre doc</th>
                 <th>Due date</th>
                 <th>Start date</th>
                 <th>Proceso</th>
                 <th>Projecto</th>
-                <th>Usuario creación</th>
-                <th>UID usuario</th>
+                <th>Cliente</th>
+                <th>Propietario</th>
+                <th *ngIf="this.isLogged && this.userRole === 1">Usuario creación</th>
+                <th *ngIf="this.isLogged && this.userRole === 1">UID usuario</th>
                 <th>Tipo doc</th>
                 <th>Archivo</th>
             </tr>
@@ -18,15 +21,19 @@
         <ng-template pTemplate="body" let-docsList>
             <tr>
                 <td>{{ docsList.idDocument }}</td>
-                <td>{{ docsList.documentName }}</td>
+                <td>{{ docsList.documentName | sliceString }}</td>
                 <td>{{ docsList.documentDueDate | date: shortDate }}</td>
                 <td>{{ docsList.documentStartDate | date: shortDate }}</td>
                 <td>{{ docsList.processName }}</td>
                 <td>{{ docsList.projectName }}</td>
-                <td>{{ docsList.userName }}</td>
-                <td>{{ docsList.uid }}</td>
+                <td>{{ docsList.clientName }}</td>
+                <td>{{ docsList.ownerName }}</td>
+                <td *ngIf="this.isLogged && this.userRole === 1">{{ docsList.userName }}</td>
+                <td *ngIf="this.isLogged && this.userRole === 1">{{ docsList.uid }}</td>
                 <td>{{ docsList.dtName }}</td>
-                <td><p-button icon="pi pi-file-pdf" iconPos="left" ></p-button></td>
+                <td>
+                    <p-button icon="pi pi-file-pdf" iconPos="left" (click)="showDocuments(docsList.documentName)"></p-button>
+                </td>
             </tr>
         </ng-template>
     </p-table>

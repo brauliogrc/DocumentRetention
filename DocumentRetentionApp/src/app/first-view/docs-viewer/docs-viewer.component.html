@@ -1,32 +1,45 @@
 <p>docs-viewer works!</p>
-<div class="p-grid p-fluid">
+<div class="p-grid p-fluid search-panel">
     <div class="p-col-12 p-md-4">
 
         <form (ngSubmit)="filter()">
             <div class="grupo">
-                    <button 
-                        class="searchButton" 
-                        type="submit" 
-                        pButton pRipple 
-                        icon="pi pi-search" 
+                    <button
+                        class="searchButton"
+                        type="submit"
+                        pButton pRipple
+                        icon="pi pi-search"
                         iconPos="left"
                         >
                     </button>
                     <!-- <input type="text" pInputText placeholder="ID del documento"> -->
-                    <p-inputNumber 
-                        class="fieldsNumber" 
-                        inputId="withoutgrouping" 
+                    <p-inputNumber
+                        class="fieldsNumber"
+                        inputId="withoutgrouping"
                         placeholder="ID del documento"
                         [(ngModel)]="docID"
                         [ngModelOptions]="{standalone: true}">
                     </p-inputNumber>
+                    <p-dropdown
+                        name="client"
+                        class="fields"
+                        [options]="clientMenu"
+                        [(ngModel)]="selectedClient"
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Cliente"
+                        optionLabel="clientName"
+                        optionValue="idClient"
+                        [filter]="true"
+                        filterBy="clientName"
+                        [showClear]="true"
+                    ></p-dropdown>
                     <p-dropdown 
                         name="project"
                         class="fields" 
                         [options]="projectsMenu" 
                         [(ngModel)]="selectedProject" 
                         [ngModelOptions]="{standalone: true}"
-                        placeholder="Seleccione proyecto" 
+                        placeholder="Proyecto" 
                         optionLabel="projectName"
                         optionValue="idProject"
                         [filter]="true"
@@ -40,7 +53,7 @@
                         [options]="processesMenu" 
                         [(ngModel)]="selectedProcess" 
                         [ngModelOptions]="{standalone: true}"
-                        placeholder="Seleccione proceso" 
+                        placeholder="Proceso" 
                         optionLabel="processName"
                         optionValue="idProcess"
                         [filter]="true"
@@ -54,7 +67,7 @@
                         [options]="docTypeMenu"
                         [(ngModel)]="selectedDocType"
                         [ngModelOptions]="{standalone: true}"
-                        placeholder="Seleccione un tipo de documento"
+                        placeholder="Tipo de documento"
                         optionLabel="dtName"
                         optionValue="iddt"
                         [filter]="true"
@@ -65,13 +78,13 @@
                         class="fields"
                         [(ngModel)]="startDate" 
                         [ngModelOptions]="{standalone: true}"
-                        placeholder="Seleccione fecha de inicio">
+                        placeholder="Fecha de inicio">
                     </p-calendar>
                     <p-calendar 
                         class="fields" 
                         [(ngModel)]="dueDate" 
                         [ngModelOptions]="{standalone: true}"
-                        placeholder="Seleccione fecha de fin">
+                        placeholder="Fecha de fin">
                     </p-calendar>
             </div>
         </form>

@@ -3,7 +3,13 @@ import { environment } from '@env/environment';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { projectField, processField, docTypeField } from '@shared/interfaces/fieldsInterfaces';
+import {
+  projectField,
+  processField,
+  clientField,
+  docTypeField,
+  docOwnerField,
+} from '@shared/interfaces/fieldsInterfaces';
 import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encryption-and-decryption.service';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';
 
@@ -19,8 +25,12 @@ export class FieldsServiceService {
   private adminProcesses:   string = 'getAdminProcesses';
   private userProcesses:    string = 'getUserProcesses';
   private generalDocTypes:  string = 'getDocTypes';
+  private adminClients:     string = 'getAdminClients';
+  private userClients:      string = 'getUserClients';
+  private ownersList:        string = 'getOwnersList';
 
   // Variables que contienen los campos
+  private clientList:   clientField[] = [];
   private projectList:  projectField[] = [];
   private processList:  processField[] = [];
 
@@ -118,12 +128,34 @@ export class FieldsServiceService {
       )
   }
 
+  // Petición HTTP a la API para obtener la lista de clientes para el administrador
+
+  // Petición HTTP a la API para obtener la lista de clientes para cualquier usuario incluido el admin
+  getUserClients(): Observable<clientField[]> {
+    return this._http.get<clientField[]>(`${environment.API}` + this.controllerRoute + this.userClients)
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError( this._sweetAlert.errorsHandler(err) );
+        })
+      )
+  }
+
   // Petición HTTP a la API para obtener la lista de tipos de documentos para cualquier usuario y el admin
   getGeneralDocTypeField(): Observable<docTypeField[]> {
     return this._http.get<docTypeField[]>(`${environment.API}` + this.controllerRoute + this.generalDocTypes)
       .pipe(
         catchError((err: HttpErrorResponse) => {
-          return throwError( this._sweetAlert.errorsHandler(err) )
+          return throwError( this._sweetAlert.errorsHandler(err) );
+        })
+      )
+  }
+
+  // Petición HTTP a la API para obtener la lista de Owners de los documentos
+  getOwnersList(): Observable<docOwnerField[]> {
+    return this._http.get<docOwnerField[]>(`${environment.API}` + this.controllerRoute + this.ownersList, { headers: this.headers })
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError( this._sweetAlert.errorsHandler(err) );
         })
       )
   }

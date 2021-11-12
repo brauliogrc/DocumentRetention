@@ -55,9 +55,13 @@ export class LoginComponent implements OnInit {
         this._authService.saveToken(data.token);
         this._authService.verify();
         this._crypting.decrypToken();
+
+        // FIXME: Buscar mejor manera para actualizar el munu de administración dependiendo del rol del usuario
+        window.location.reload();
+
         this._router.navigate(['home/firstView']);
-        
         this.loginData.reset();
+
       }
     );
 

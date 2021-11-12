@@ -59,7 +59,6 @@ C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\Docu
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Release\net5.0\staticwebassets\DocumentRetentionAPI.StaticWebAssets.xml
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Release\net5.0\scopedcss\bundle\DocumentRetentionAPI.styles.css
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Release\net5.0\DocumentRetentionAPI.RazorTargetAssemblyInfo.cache
-C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Release\net5.0\DocumentRetentionAPI.csproj.CopyComplete
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Release\net5.0\DocumentRetentionAPI.dll
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Release\net5.0\ref\DocumentRetentionAPI.dll
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Release\net5.0\DocumentRetentionAPI.pdb

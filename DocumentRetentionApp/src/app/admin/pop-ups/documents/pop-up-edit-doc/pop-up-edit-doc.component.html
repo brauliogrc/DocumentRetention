@@ -1,0 +1,119 @@
+<div class="poup-body">
+    <mat-dialog-content class="form">
+        <div class="form-items">
+            <h1 class="field-title">Editando "{{ oldName }}"</h1>
+            <p>Propietario</p>
+            <p-dropdown
+                name="owner"
+                [options]="ownersList"
+                [(ngModel)]="selectedOwner"
+                [ngModelOptions]="{standalone: true}"
+                optionLabel="employeeName"
+                optionValue="employeeNumber"
+                placeholder="Seleccione"
+                [filter]="true"
+                filterBy="employeeName"
+                [showClear]="true"
+                [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+            ></p-dropdown>
+        </div>
+        <div class="form-items">
+            <p class="field-title">Estatus del documentos</p>
+            <p-dropdown
+                class="fields"
+                name="status"
+                [options]="statusMenu"
+                [(ngModel)]="selectedStatus"
+                optionLabel="statusName"
+                optionValue="statusValue"
+                placeholder="Seleccione"
+                [filter]="true"
+                filterBy="statusName"
+                [showClear]="true"
+                [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+            ></p-dropdown>
+        </div>
+        <div class="form-items">
+            <p class="field-title">Projecto del documento</p>
+            <p-dropdown
+                class="fields"
+                name="project"
+                [options]="projectMenu"
+                [(ngModel)]="selectedProject"
+                optionLabel="projectName"
+                optionValue="idProject"
+                placeholder="Seleccione"
+                [filter]="true"
+                filterBy="projectName"
+                [showClear]="true"
+                [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+            ></p-dropdown>
+        </div>
+        <div class="form-items">
+            <p class="field-title">Proceso del documento</p>
+            <p-dropdown
+                class="fields"
+                name="process"
+                [options]="processMenu"
+                [(ngModel)]="selectedProcess"
+                optionLabel="processName"
+                optionValue="idProcess"
+                placeholder="Seleccione"
+                [filter]="true"
+                filterBy="processName"
+                [showClear]="true"
+                [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+            ></p-dropdown>
+        </div>
+        <div class="form-items">
+            <p class="field-title">Tipo de documento</p>
+            <p-dropdown
+                class="fields"
+                name="docType"
+                [options]="docTypeMenu"
+                [(ngModel)]="selectedDocType"
+                optionLabel="dtName"
+                optionValue="iddt"
+                placeholder="Seleccione"
+                [filter]="true"
+                filterBy="dtName"
+                [showClear]="true"
+                [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+            ></p-dropdown>
+        </div>
+        <div class="form-items">
+            <div>
+                <p class="field-title">Fecha de inicio</p>
+                <!-- <p-calendar
+                    class="fields"
+                    [(ngModel)]="startdDate"
+                    [showIcon]="true"
+                    [style]="{'width':'25%', 'background-color':'#c9c7c9', 'text-color':'black'}"
+                ></p-calendar> -->
+                <input class="fields" pInputText type="date" [(ngModel)]="startdDate">
+            </div>
+            <div>
+                <p class="field-title">Fecha de fin</p>
+                <!-- <p-calendar
+                    class="fields"
+                    [(ngModel)]="dueDate"
+                    [showIcon]="true"
+                    [style]="{'width':'25%', 'background-color':'#c9c7c9', 'text-color':'black'}"
+                ></p-calendar> -->
+                <input class="fields" pInputText type="date" [(ngModel)]="dueDate">
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons">
+        <ng-container *ngIf="!docupdated; else elseTemplate">
+            <button pButton pRipple type="button" label="Cancelar" class="p-button-danger" (click)="clickCancel()"></button>
+            <button pButton pRipple type="button" label="Guardar" class="p-button-success" (click)="saveChanges()"></button>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <button pButton pRipple type="button" label="Cerrar" class="p-button-danger" (click)="clickCancel()"></button>
+        </ng-template>
+        
+    </mat-dialog-actions>
+</div>
+
+<!-- [mat-dialog-close]="true" -->

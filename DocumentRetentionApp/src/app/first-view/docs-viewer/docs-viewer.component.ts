@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FieldsServiceService } from '@app/shared/services/fieldsservice/fields-service.service';
+import { FieldsServiceService } from '@shared/services/fieldsservice/fields-service.service';
 import { 
   projectField,
   processField,
   docTypeField,
+  clientField,
   filterDocs,
 } from '@shared/interfaces/fieldsInterfaces';
 import { EncryptionAndDecryptionService } from '@shared/services/encryptionanddecryption/encryption-and-decryption.service';
 import { FormBuilder } from '@angular/forms';
 import { ShowResultsComponent } from '../show-results/show-results.component';
-import { DatePipe } from '@angular/common'; 
+import { DatePipe } from '@angular/common';
 
 
 
@@ -24,6 +25,7 @@ export class DocsViewerComponent implements OnInit {
   @ViewChild(ShowResultsComponent) showResults: ShowResultsComponent;
 
   // Variables que contienen el listado de los "dropdrown"
+  public clientMenu:        clientField[];
   public docTypeMenu:       docTypeField[];
   public projectsMenu:      projectField[];
   public processesMenu:     processField[];
@@ -32,6 +34,7 @@ export class DocsViewerComponent implements OnInit {
   public docID:             number;
   public dueDate:           Date;
   public startDate:         Date;
+  public selectedClient:    number;
   public selectedProject:   number;
   public selectedProcess:   number;
   public selectedDocType:   number;
@@ -49,6 +52,11 @@ export class DocsViewerComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillDropdowns();
+  }
+
+  // Método llamado desde "doc-creation.component.ts" depues de cerrar el pop up "pop-up-create-doc.component-ts"
+  public refillTable(): void {
+    this.showResults.refillTable();
   }
 
   // Llenado de los dropdowns con los datos de la DB retornados por la API
@@ -88,6 +96,15 @@ export class DocsViewerComponent implements OnInit {
       );
     }
 
+    // Ejecución del método de obtención de la lista de clientes
+    this._fieldsService.getUserClients().subscribe(
+      (data) => {
+        this.clientMenu = [...data];
+        console.log(this.clientMenu);
+        
+      }
+    )
+
     // Ejecución del metodo de obtención de la lista de tipos de documentos
     this._fieldsService.getGeneralDocTypeField().subscribe(
       (data) => {
@@ -105,6 +122,7 @@ export class DocsViewerComponent implements OnInit {
       docID: this.docID,
       dueDate: this._datePipe.transform(this.dueDate, 'yyyy-MM-dd'),
       startDate: this._datePipe.transform(this.startDate, 'yyyy-MM-dd'),
+      selectedClient: this.selectedClient,
       selectedProject: this.selectedProject,
       selectedProcess: this.selectedProcess,
       selectedDocType: this.selectedDocType,

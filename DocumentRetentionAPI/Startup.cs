@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
+using DocumentRetentionAPI.Helpers;
+using DocumentRetentionAPI.Helpers.AuthorizationPolicies;
 
 namespace DocumentRetentionAPI
 {
@@ -38,27 +41,44 @@ namespace DocumentRetentionAPI
             var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("SecretKey"));
             // Agregamos el servicio de autenticación a utilizar
             services.AddAuthentication(x =>
-           {
+            {
                 // Definimos el método de autenticación por JWT
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-               x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-           }).AddJwtBearer(x =>
-           {
-               x.RequireHttpsMetadata = false;
-               x.SaveToken = true;
-               x.TokenValidationParameters = new TokenValidationParameters
-               {
-                   ValidateIssuerSigningKey = true,
-                   IssuerSigningKey = new SymmetricSecurityKey(key),
-                   ValidateIssuer = false,
-                   ValidateAudience = false
-               };
-           });
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+            // Agregando nuestra policity creada en "AuthorizationHndler"
+            /*services.AddAuthorization( options => 
+                options.AddPolicy( "aceptedRole", policy => 
+                    policy.Requirements.Add( new AceptedRoles( 1, 2 ) ) ) );
+
+            services.AddAuthorization( options =>
+                options.AddPolicy( "AdminAuth", policy =>
+                    policy.Requirements.Add( new AdminAuthorization( 1 ) ) ) );
+
+            services.AddAuthorization( options =>
+                options.AddPolicy( "CapturistRole", policy =>
+                    policy.Requirements.Add( new CapturistAuthorization( 1, 2 ) ) ) );*/
+
+
+            services.AddSingleton<IAuthorizationHandler, AceptedRolesHandler>();
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Adm", pol => pol.RequireClaim("Role", new string[] { "1" }));
-                options.AddPolicy("Capturist", pol => pol.RequireClaim("Role,", new string[] { "1", "2" }));
+                //options.AddPolicy("Capturist", pol => pol.RequireClaim("Role,", new string[] { "1", "2" }));
+                options.AddPolicy("CapturistRole", pol => pol.RequireClaim("Role", new string[] { "1", "2" }));
             });
 
             // Definición del contexto de la DB

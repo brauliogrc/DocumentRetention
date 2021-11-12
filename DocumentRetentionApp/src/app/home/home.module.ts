@@ -11,6 +11,7 @@ import { HeaderBarComponent } from '@app/shared/components/header-bar/header-bar
 // Importación de elementos "Primeng"
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ButtonModule } from 'primeng/button';
     // Modulos de "Primeng"
     SidebarModule,
     ButtonModule,
+    PanelMenuModule,
   ],
   exports: [
     HeaderBarComponent

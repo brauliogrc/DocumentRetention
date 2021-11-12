@@ -1,0 +1,15 @@
+*** puntos pendientes ***
+Parte del Front
+	-Solucionar la visualización del mensaje de "egistro exitoso" al registrar un nuevo archivo
+	-Diseño de interface de registro de documentos
+	-Interface y funcionamiento del popUp para editar documetnos
+	-Pulir la funcionlalidad del mat-dialog-close para que no se emita el valor hasta que sea correcta la petición de la api
+	-El menu de administración no se carga cuando se inicia sesión
+	-Mostrar mensaje de registro de nuevo documento
+
+	*pdfViewer (Solucionado)
+		-Habilitar opción de descarga del documento para el administrador
+		-Validación de envio de formulario con datos vacios o sin documento en componente "docs-creation"
+		-Convertir el modulo de crear documento en un popUp
+Parte del Back
+	-Validación de no ingresar documentos con el mismo nombre

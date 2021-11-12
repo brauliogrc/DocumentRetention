@@ -1,0 +1,189 @@
+import { DatePipe } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { SweetAlertsService } from '@shared/services/alerts/sweet-alerts.service';
+import { FieldsServiceService } from '@shared/services/fieldsservice/fields-service.service';
+import { EncryptionAndDecryptionService } from '@shared/services/encryptionanddecryption/encryption-and-decryption.service';
+import { DocumentsHandlerService } from '@shared/services/documentshandler/documents-handler.service';
+import { 
+  docTypeField,
+  projectField,
+  processField,
+  docOwnerField,
+ } from '@shared/interfaces/fieldsInterfaces';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DateFormat } from '@shared/helpers/dateFormat';
+
+@Component({
+  selector: 'app-pop-up-create-doc',
+  templateUrl: './pop-up-create-doc.component.html',
+  styleUrls: ['./pop-up-create-doc.component.css']
+})
+export class PopUpCreateDocComponent implements OnInit {
+  // Variables que contienen el listado de los "dropdown"
+  public docTypeMenu:   docTypeField[];
+  public projectMenu:   projectField[];
+  public processMenu:   processField[];
+  public ownersList:    docOwnerField[];
+
+  
+  // Variables que contienen los valores del form
+  // public docName:           string;
+  public dueDate:           Date;
+  public startDate:         Date;
+  public selectedDocType:   number;
+  public selectedProject:   number;
+  public selectedProcess:   number;
+  public selectedOwner:     number;
+  
+  private _file:             File;
+  private _newDocData = new FormData(); // Formato de datos necesatio para enviar un archivo adjunto a la API
+  // Istancia de la clase para las validaciones de fechas
+  private _dateFormat = new DateFormat();
+  // Bandera para modificar los botones del popUp, cambia de estado cuando el documento es actualizado
+  public docCreated: boolean = false;
+
+  constructor(
+    private _dialogRef: MatDialogRef<PopUpCreateDocComponent>,
+    @Inject(MAT_DIALOG_DATA) private _arrData: string,
+    
+    private _datePipe: DatePipe,
+    private _sweetAlert: SweetAlertsService,
+    private _fieldsService: FieldsServiceService,
+    private _crypt: EncryptionAndDecryptionService,
+    private _documentsHandler: DocumentsHandlerService,
+  ) { }
+    
+  ngOnInit(): void {
+    this._fillDropdowns();
+  }
+    
+  // Cancela la modificación del documento y cierra el popup
+  public clickCancel(): void {
+    this._dialogRef.close();
+  }
+
+  public fileName: string = '';
+  // Manejo del archivo seleccionado
+  public onFileSelected(event: any): void {
+    console.log(event);
+    
+    this._file = event;
+    
+    if ( this._file ) {
+      this.fileName = this._file.name;
+    }
+  }
+
+  // Asignación de valores objeto enviado a la API y validación de su contenido
+  public registerDoc(): void {
+    // this._newDoc = {
+    //   docName: this.docName,
+    //   docType: this.selectedDocType,
+    //   dueDate: this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' ),
+    //   process: this.selectedProcess,
+    //   project: this.selectedProject,
+    //   startDate: this._datePipe.transform( this.startDate, 'yyyy-MM-dd' ),
+    //   creationUser: this._crypt.userIDUser
+    // }
+
+    this._newDocData.append('ownerEmployeeNumber',        String( this.selectedOwner ) );
+    this._newDocData.append('docType',        String( this.selectedDocType ) );
+    this._newDocData.append('dueDate',        this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' ) );
+    this._newDocData.append('process',        String( this.selectedProcess ) );
+    this._newDocData.append('project',        String( this.selectedProject ) );
+    this._newDocData.append('startDate',      this._datePipe.transform( this.startDate, 'yyyy-MM-dd' ) );
+    this._newDocData.append('creationUser',   String( this._crypt.userIDUser ) );
+    this._newDocData.append('file',           this._file );
+    
+    console.log('numero del owner', this.selectedOwner);
+    
+    if ( this._validData() ) {
+      this._registerDocument();
+    }
+  }
+
+  // Validación de los campos del formulario
+  private _validData(): boolean {
+    let isValid: boolean = false;
+    if ( (String( this.selectedOwner )) &&
+          (String(this.selectedDocType)) &&
+          (this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' )) &&
+          (String( this.selectedProcess )) &&
+          (String( this.selectedProject )) &&
+          (this._datePipe.transform( this.startDate, 'yyyy-MM-dd' )) &&
+          (String( this._crypt.userIDUser )) &&
+          (this._file) &&
+          this._dateVaidation()
+     ) {
+       isValid = true;
+      // console.log('Datos del nuevo documento correctos');
+     }
+     else {
+       this._sweetAlert.invalidNewData();
+     }
+
+     console.log('Validacion del formulario', isValid);
+     
+    return isValid;
+  }
+
+  // Validación de fechas, dueDate no puede ser menor que startDate
+  private _dateVaidation(): boolean {
+
+    let isDateValid = this._dateFormat.setNewDate(this.startDate, this.dueDate);
+
+    if ( !isDateValid ) {
+      this._sweetAlert.dateValidationError();
+      return isDateValid;
+    }
+
+    return isDateValid;
+  }
+
+  // Método que ejecuta el registro del documento en la DB
+  private _registerDocument = (): void => {
+    this._documentsHandler.addNewDocument(this._newDocData).subscribe(
+      (data) => {
+        this._sweetAlert.successfulRegistration(data.message);
+        console.log('Archivo registrado con exito, mensaje: ', data.message);
+        this.docCreated = true;
+      }
+    )
+  }
+  
+  // Método que realiza las peticiones necesarias para llenar el contenido de los Dropdowns
+  private _fillDropdowns(): void {
+    // Ejecución del método de obtención de la lista de procesos
+    this._fieldsService.getUserProcessField().subscribe(
+      (data) => {
+        this.processMenu = [...data];
+        console.log(this.processMenu);
+        
+      }
+    );
+    // Ejecución del método de obtención de la lista de projectos
+    this._fieldsService.getUserProjectField().subscribe(
+      (data) => {
+        this.projectMenu = [...data];
+        console.log(this.projectMenu);
+        
+      }
+    );
+    // Ejecución del método de obtención de la lista de tipos de documentos
+    this._fieldsService.getGeneralDocTypeField().subscribe(
+      (data) => {
+        this.docTypeMenu = [...data];
+        console.log(this.docTypeMenu);
+        
+      }
+    );
+    // Ejecución del método de obtención de la lista de owners
+    this._fieldsService.getOwnersList().subscribe(
+      (data) => {
+        this.ownersList = [... data];
+        console.log(this.ownersList);
+        
+      }
+    )
+  }
+}

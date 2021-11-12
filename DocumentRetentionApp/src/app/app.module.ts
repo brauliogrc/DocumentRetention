@@ -13,6 +13,8 @@ import { CapturistModule } from './capturist/capturist.module';
 import { Page404Component } from './shared/components/page404/page404.component';
 import { HomeModule } from './home/home.module';
 
+// Importación de pipes
+
 // Importaciones de Servicios
 
 // Importacionde de "Primeng"

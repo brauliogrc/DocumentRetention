@@ -1,5 +1,5 @@
-<p>pdf-viewer works!</p>
-
+<h2 class="" >Visualizando: {{ fileName | sliceString }} </h2>
+<p-button type="button" styleClass="p-button-danger" icon="pi pi-arrow-left" iconPos="left" label="Regresar" (click)="backLastPage()"></p-button>
 <ngx-extended-pdf-viewer
     [src]="archivo"
     [customToolbar]="newToolbar"
@@ -17,5 +17,8 @@
 
         <button pButton icon="pi pi-search-plus" iconPos="left" id="zoomIn"></button>
         <button pButton icon="pi pi-search-minus" iconPos="left" id="zoomOut"></button>
+        <!-- Se muestra el botón de descarga solo si el usuario es administrador -->
+        <button pButton *ngIf="this.isLogged && this.userRole === 1" icon="pi pi-download" iconPos="left" id="download"></button>
+        
       </div>
 </ng-template>

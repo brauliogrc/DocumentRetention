@@ -1,16 +1,16 @@
 import { DatePipe } from '@angular/common';
-import { filterDocs } from '../interfaces/fieldsInterfaces';
+import { filterDocs, docTypeField } from '../interfaces/fieldsInterfaces';
 import { docsTable } from '../interfaces/tablesInterface';
 
 
 export class TablesFiltersHelper {
     
-    // private dataTable: docsTable[];
+    private finalArray: docsTable[] = [];
 
     constructor(){}
 
     // Seteo de las fechas a un formato especifico (para eso las fechas deben ser string)
-    private formatDate = ( arr: docsTable[] ): void => {
+    private _formatDate = ( arr: docsTable[] ): void => {
         let newDate: string;
         arr.forEach((item) => {
             let newDueDate: string[] = item.documentDueDate.split("T");
@@ -26,43 +26,96 @@ export class TablesFiltersHelper {
         })
     }
 
+    // Concatenación del resultrado de fultar por medio de cada parametro
+    private _arrayConcat = ( arr1: docsTable[] ): void => {
+        // console.log('_arrayConcat');
+        
+        this.finalArray = this.finalArray.concat( arr1 );
+        console.log( this.finalArray );
+    }
+
+    // Remoción de los elementos duplicados en el arreglo final
+    private _removeDuplicateItems = (): void => {
+        // console.log('_removeDuplicateItems  ');
+
+        this.finalArray = this.finalArray.filter( (item, index) => {
+            return this.finalArray.indexOf(item) === index
+        })
+        
+        console.log(this.finalArray);
+        
+    }
+
+    // Filtrado del arreglo segun los parámetros del campo de filtrado
     objectFilter = (dataTable: docsTable[], parameterF: filterDocs): docsTable[] => {
-        this.formatDate(dataTable);
+        
+        let arrayAux: docsTable[];
+        this._formatDate(dataTable);
 
         // Filtrado mediante id del documento
         if (typeof parameterF.docID != undefined && parameterF.docID >= 0) {
-            dataTable = dataTable.filter( (value) => value.idDocument === parameterF.docID )
-            // console.log('dataTable');
+            arrayAux = [...dataTable];
+            arrayAux = dataTable.filter( (value) => value.idDocument === parameterF.docID )
+
+            // console.log(arrayAux);
+            this._arrayConcat( arrayAux );
         }
+
         // Filtrado por el dua date
         if (parameterF.dueDate != null && typeof parameterF.dueDate != undefined){
-            dataTable = dataTable.filter( (value) => value.documentDueDate === parameterF.dueDate )
-            // console.log(dataTable);
+            arrayAux = [...dataTable];
+            arrayAux = dataTable.filter( (value) => value.documentDueDate === parameterF.dueDate )
+            
+            // console.log(arrayAux);
+            this._arrayConcat( arrayAux );
+        }
+
+        // Filtrado por cliente
+        if (typeof parameterF.selectedClient != undefined && parameterF.selectedClient != 0) {
+            arrayAux = [...dataTable];
+            arrayAux = dataTable.filter( (value) => value.idClient == parameterF.selectedClient )
+
+            this._arrayConcat( arrayAux );
         }
 
         // Filtrado por tipo de documento
         if (typeof parameterF.selectedDocType != undefined && parameterF.selectedDocType >= 0){
-            dataTable = dataTable.filter( (value) => value.iddt === parameterF.selectedDocType )
-            // console.log('doctye');
+            arrayAux = [...dataTable];
+            arrayAux = dataTable.filter( (value) => value.iddt === parameterF.selectedDocType )
+            
+            // console.log(arrayAux);
+            this._arrayConcat( arrayAux );
         }
 
         // Filtrado por proceso
         if (parameterF.selectedProcess >= 0 && typeof parameterF.selectedProcess != undefined){
-            dataTable = dataTable.filter( (value) => value.idProcess === parameterF.selectedProcess )
-            // console.log('process');
+            arrayAux = [...dataTable];
+            arrayAux = dataTable.filter( (value) => value.idProcess === parameterF.selectedProcess )
+            
+            // console.log(arrayAux);
+            this._arrayConcat( arrayAux );
         }
 
         // Filtrado por projecto
-        if (parameterF.selectedProject >= 0 && typeof parameterF.selectedProject != undefined){
-            dataTable = dataTable.filter( (value) => value.idProject === parameterF.selectedProject )
-            // console.log('project');
+        if (parameterF.selectedProject >= 0 && typeof parameterF.selectedProject != undefined){ 
+            arrayAux = [...dataTable];
+            arrayAux = dataTable.filter( (value) => value.idProject === parameterF.selectedProject )
+            
+            
+            // console.log(arrayAux);
+            this._arrayConcat( arrayAux );
         }
 
         // Filtrado por start date
         if (parameterF.startDate != null &&  typeof parameterF.startDate != undefined){
-            dataTable = dataTable.filter( (value) => value.documentStartDate === parameterF.startDate )
-            // console.log('start date');
-        }
-        return dataTable;
+            arrayAux = [...dataTable];
+            arrayAux = dataTable.filter( (value) => value.documentStartDate === parameterF.startDate )
+
+            // console.log(arrayAux);
+            this._arrayConcat( arrayAux );
+        }   
+
+        this._removeDuplicateItems();
+        return this.finalArray;
     }
 }

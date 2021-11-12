@@ -23,7 +23,7 @@ const helper = new JwtHelperService();
   providedIn: 'root'
 })
 export class AuthSericeService {
-  private controllerRoute: string = 'Login';
+  private _controllerRoute: string = 'Login';
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   // public _loggedIn: boolean = false;
@@ -42,7 +42,7 @@ export class AuthSericeService {
 
   // Método de obención del token desde la API (loggeo en la api)
   singIn(loginData: loginData): Observable<bearer> {
-    return this._http.post<bearer>(`${environment.API}` + this.controllerRoute, loginData).pipe(
+    return this._http.post<bearer>(`${environment.API}` + this._controllerRoute, loginData).pipe(
       catchError((err: HttpErrorResponse) => {
         console.log(err);
 

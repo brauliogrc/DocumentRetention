@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace DocumentRetentionAPI.Helpers
 {
+    // EN DESUSO HASTA EL MOMENTO
 
     public class FilterTable {
 
@@ -24,6 +25,8 @@ namespace DocumentRetentionAPI.Helpers
 
     public class DataTableHleper
     {
+        // EN DESUSO HASTA EL MOMENTO
+
         // Datos del documentos
         public int IDDocument { get; set; }
 

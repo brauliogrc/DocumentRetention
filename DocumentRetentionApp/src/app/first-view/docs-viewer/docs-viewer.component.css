@@ -1,9 +1,13 @@
+.search-panel {
+    height: 100%;
+}
+
 .searchButton{
     width: 40px;
 }
 
 .fields{
-    width: 17%;
+    width: 15%;
 }
 
 .fieldsNumber{

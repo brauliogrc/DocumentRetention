@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" onload="ngOnInit()">
     <!-- Header -->
     <div class="header">
         <app-header-bar></app-header-bar>
@@ -8,11 +8,12 @@
     
     <p-sidebar [(visible)]="sidebar01">
         <h2>Welcome to Document Retention {{ showName() }}</h2>
+        <p-panelMenu [model]="menuItems" [style]="{'width':'300px'}" ></p-panelMenu>
     </p-sidebar>
     
     <button pButton
-    (click)="sidebar01 = true"
-    icon="pi pi-plus"
+    (click)="sidebar01 = true; this.ngOnInit()"
+    icon="pi pi-bars"
     [ngClass]=" !isLogged ? 'not-visible' : ''">
     </button>
 

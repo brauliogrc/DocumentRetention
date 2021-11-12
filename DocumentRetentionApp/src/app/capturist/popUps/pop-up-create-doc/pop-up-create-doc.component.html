@@ -1,0 +1,126 @@
+<h1>Registro de nuevo documento</h1>
+
+    <mat-dialog-content class="form">
+        <div class="formularioReg">
+            <p>Seleccione propietario del documento</p>
+            <div class="form-items">
+                <!-- <input pInputText
+                    class="fields"
+                    type="text"
+                    [(ngModel)]="docName"
+                    [ngModelOptions]="{standalone: true}"
+                    placeholder=""
+                > -->
+                <!-- [ngModelOptions]="{standalone: true}"  se necesita cuando se utiliza [(ngModel)] dentro de un formulario -->
+                <p-dropdown
+                    name="poject"
+                    [options]="ownersList"
+                    [(ngModel)]="selectedOwner"
+                    [ngModelOptions]="{standalone: true}"
+                    optionLabel="employeeName"
+                    optionValue="employeeNumber"
+                    placeholder="Seleccione"
+                    [filter]="true"
+                    filterBy="employeeName"
+                    [showClear]="true"
+                    [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+                ></p-dropdown>
+            </div>
+            <p>Sleccione projecto</p>
+            <div class="form-items">
+                <p-dropdown
+                    name="poject"
+                    [options]="projectMenu"
+                    [(ngModel)]="selectedProject"
+                    [ngModelOptions]="{standalone: true}"
+                    optionLabel="projectName"
+                    optionValue="idProject"
+                    placeholder="Seleccione"
+                    [filter]="true"
+                    filterBy="projectName"
+                    [showClear]="true"
+                    [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+                ></p-dropdown>
+            </div>
+            <p>Sleccione proceso</p>
+            <div class="form-items">
+                <p-dropdown
+                    name="pocess"
+                    [options]="processMenu"
+                    [(ngModel)]="selectedProcess"
+                    [ngModelOptions]="{standalone: true}"
+                    optionLabel="processName"
+                    optionValue="idProcess"
+                    placeholder="Seleccione"
+                    [filter]="true"
+                    filterBy="processName"
+                    [showClear]="true"
+                    [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+                ></p-dropdown>
+            </div>
+            <p>Sleccione tipo del documento</p>
+            <div class="form-items">
+                <p-dropdown
+                    name="docType"
+                    [options]="docTypeMenu"
+                    [(ngModel)]="selectedDocType"
+                    [ngModelOptions]="{standalone: true}"
+                    optionLabel="dtName"
+                    optionValue="iddt"
+                    placeholder="Seleccione"
+                    [filter]="true"
+                    filterBy="dtName"
+                    [showClear]="true"
+                    [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+                ></p-dropdown>
+            </div>
+            <p>Sleccione fecha de inicio</p>
+            <div class="form-items">
+                <!-- <p-calendar
+                    [(ngModel)]="startDate"
+                    [ngModelOptions]="{standalone: true}"
+                    placeholder="Seleccione"
+                    [showIcon]="true"
+                ></p-calendar> -->
+                <input type="date" pInputText class="fields" [(ngModel)]="startDate">
+            </div>
+            <p>Sleccione fecha de fin</p>
+            <div class="form-items">
+                <!-- <p-calendar
+                    [(ngModel)]="dueDate"
+                    [ngModelOptions]="{standalone: true}"
+                    placeholder="Seleccione"
+                    [showIcon]="true"
+                ></p-calendar> -->
+                <input type="date" pInputText class="fields" [(ngModel)]="dueDate">
+            </div>
+            <div class="input-file">
+                <input type="file" style="display: none;" (change)="onFileSelected($event.target.files[0])" #fileUpload
+                accept=".pdf">
+                <div class="file-upload form-items">
+                    {{ fileName || "No file uploaded yet" }}
+                </div>
+                <button pButton
+                    type="button"
+                    icon="pi pi-paperclip"
+                    iconPos="left"
+                    label="Add file"
+                    class="upload-btn"
+                    (click)="fileUpload.click()"
+                ></button>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="buttons">
+        <ng-container *ngIf="!docCreated; else elseTemplate">
+            <button pButton pRipple type="button" label="Cancelar" class="p-button-danger" (click)="clickCancel()"></button>
+            <button pButton pRipple type="button" label="Registrar" icon="pi pi-send" iconPos="left" class="p-button-success" (click)="registerDoc()"></button>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <button pButton pRipple type="button" label="Cerrar" class="p-button-danger" (click)="clickCancel()"></button>
+        </ng-template>
+        
+    </mat-dialog-actions>
+
+    <!-- [mat-dialog-close]="true -->

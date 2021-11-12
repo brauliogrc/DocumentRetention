@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~animate.css/animate.min";
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
 
 * {
-  font-family: "typo-grotesk-rounded", "arial", sans-serif;
+  font-family: typo-grotesk-rounded, Arial, sans-serif;
 }
 
 .not-visible {
@@ -12,12 +13,16 @@
 
 html,
 body {
+  height: 100%;
   background-color: var(--gray-700);
+}
+body {
+  margin: 0;
 }
 
 @font-face {
   font-family: Stick_No_Bills;
-  src: url(assets/fonts/Stick_No_Bills/StickNoBills-VariableFont_wght.ttf)
+  src: url("./assets/fonts/Stick_No_Bills/StickNoBills-VariableFont_wght.ttf")
     format("opentype");
 }
 
@@ -32,5 +37,3 @@ body {
     format("opentype");
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

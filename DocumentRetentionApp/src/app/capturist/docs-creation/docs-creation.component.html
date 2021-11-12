@@ -1,1 +1,23 @@
 <p>docs-creation works!</p>
+
+<div class="register" *ngIf="isLogger && (userRole === 1 || userRole === 2)">
+
+    <button pButton
+        class="p-button-info"
+        icon="pi pi-plus"
+        iconPos="right"
+        label="Crear nuevo documento"
+        (click)="popUpDocumentRegister()"
+    ></button>
+
+    <app-docs-viewer></app-docs-viewer>
+</div>
+
+
+<!-- 
+    <label for="uploadPicture" class="upload-file">
+    <mat-icon>add_a_photo</mat-icon>
+</label>
+<input type="file"id="uploadPicture"class="hidden-input"accept="text/kml, .kml"
+       (change)="selectFile($event.target.files[0])"><button mat-button (click)="onCancel()">Cancel</button><button mat-button (click)="onOk()" [disabled]="!selected">Ok</button>
+ -->

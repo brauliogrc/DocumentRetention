@@ -11,14 +11,14 @@ export class SweetAlertsService {
   constructor() { }
 
   // Menjo del codigo de error
-  errorsHandler = (err: HttpErrorResponse) => {
+  public errorsHandler = (err: HttpErrorResponse): void => {
     if (err.status == 0) this.connectionRefused();
     if (err.status == 400) this.badRequest(err.error.message);
     if (err.status == 401) this.unauthorized(err.error.message);
   }
 
   // Manejo del error de logeo
-  loginError = (err: HttpErrorResponse) => {
+  public loginError = (err: HttpErrorResponse): void => {
     if (err.error.errors) {
       const errorValues: any = err.error.errors;
       let i: number = 0;
@@ -41,7 +41,7 @@ export class SweetAlertsService {
   }
 
   // Manejo de error "conección rechasada a la API"
-  private connectionRefused = () => {
+  private connectionRefused = (): void => {
     Swal.fire({
       icon: 'error',
       title: 'Conección rechasada a la API del sistema',
@@ -50,7 +50,7 @@ export class SweetAlertsService {
   }
 
   // Manejo de error "Bad Request (400)"
-  private badRequest = (error: string) => {
+  private badRequest = (error: string): void => {
     Swal.fire({
       icon: 'error',
       title: 'Fallo en la petición',
@@ -58,11 +58,57 @@ export class SweetAlertsService {
     })
   }
 
-  private unauthorized = (error: string) => {
+  // Manejo de error "Unauthorized (401)"
+  private unauthorized = (error: string): void => {
     Swal.fire({
       icon: 'error',
       title: 'Usuario no autorizado',
       text: error
+    })
+  }
+  
+  // Manejo de error de la validación de fechas
+  public dateValidationError = (  ): void => {
+    Swal.fire({
+      title: 'Fechas invalidas',
+      icon: 'warning',
+      text: 'La fecha de fin del documento no puede ser menor que la fecha de inicio del documento'
+    })
+  }
+
+  // Manejo de ingreso de datos inválidos al crear un nuevoo documento
+  public invalidNewData = (): void => {
+    Swal.fire({
+      title: 'Datos inváidos',
+      icon: 'error',
+      text: 'Los datos ingresados son inválidos, comprobar que no se encuentre algún campo vació'
+    })
+  }
+
+  // Mensaje de registro exitoso
+  public successfulRegistration = ( message: string ): void => {
+    Swal.fire({
+      title: 'Registro exitoso',
+      icon: 'success',
+      text: message
+    })
+  }
+
+  // Mensaje de actualización exitosa
+  public successfulUpdate = ( message: string ): void => {
+    Swal.fire({
+      title: 'Actualización exitosa',
+      icon: 'success',
+      text: message
+    })
+  }
+
+  // Mensaje de eliminación exitosa
+  public successfulDeletion = ( message: string ): void => {
+    Swal.fire({
+      title: 'Eliminación Exitosa',
+      icon: 'success',
+      text: message
     })
   }
 }

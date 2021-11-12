@@ -25,7 +25,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
         }
 
         // Obención de los documentos existentes en la base de datos para ser mostrados en la tabla del
-        // componente "Doc-Viewer"
+        // componente "Doc-Viewer". Visualización del Admin
         [HttpGet][Route("adminTable")][Authorize(Policy = "Adm")]
         public async Task<ActionResult> adminTable()
         {
@@ -36,6 +36,8 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     on doc.IDProcess equals process.IDProcess
                                 join projetc in _context.Projects
                                     on doc.IDProject equals projetc.IDProject
+                                    join client in _context.Clients
+                                        on projetc.IDClient equals client.IDClient
                                 join docType in _context.DocType
                                     on doc.IDDT equals docType.IDDT
                                 join user in _context.Users
@@ -48,12 +50,17 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     doc.DocumentName,
                                     doc.DocumentStartDate,
                                     doc.DocumentDueDate,
+                                    doc.ownerName,
+                                    doc.DocumentStatus,
                                     // Datos del proceso
                                     process.IDProcess,
                                     process.ProcessName,
                                     // Datos del projecto
                                     projetc.IDProject,
                                     projetc.ProjectName,
+                                        // Datos del cleinte
+                                        client.IDClient,
+                                        client.ClientName,
                                     // Datos del usuario
                                     user.UID,
                                     user.UserName,
@@ -75,7 +82,8 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
             }
         }
 
-
+        // Obención de los documentos existentes en la base de datos para ser mostrados en la tabla del
+        // componente "Doc-Viewer". Visualización de cualquier usuario
         [HttpGet][Route("userTable")][AllowAnonymous]
         public async Task<ActionResult> userTable()
         {
@@ -86,18 +94,13 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     on doc.IDProcess equals process.IDProcess
                                 join projetc in _context.Projects
                                     on doc.IDProject equals projetc.IDProject
+                                    join client in _context.Clients
+                                        on projetc.IDClient equals client.IDClient
                                 join docType in _context.DocType
                                     on doc.IDDT equals docType.IDDT
                                 join user in _context.Users
                                     on doc.CreationUser equals user.IDUser
-                                where doc.DocumentStatus == true /*|| (
-                                    doc.IDDocument == filter.docId ||
-                                    doc.DocumentDueDate == filter.dueDate ||
-                                    doc.DocumentStartDate == filter.startDate ||
-                                    process.IDProcess == filter.selectedProcess ||
-                                    projetc.IDProject == filter.selectedProject ||
-                                    docType.IDDT == filter.selectedDocType)*/
-
+                                where doc.DocumentStatus == true
                                 select new
                                 {
                                     // Datos del documento
@@ -105,15 +108,19 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     doc.DocumentName,
                                     doc.DocumentStartDate,
                                     doc.DocumentDueDate,
+                                    doc.ownerName,
                                     // Datos del proceso
                                     process.IDProcess,
                                     process.ProcessName,
                                     // Datos del projecto
                                     projetc.IDProject,
                                     projetc.ProjectName,
+                                        // Datos del cleinte
+                                        client.IDClient,
+                                        client.ClientName,
                                     // Datos del usuario
-                                    user.UID,
-                                    user.UserName,
+                                    // user.UID,
+                                    // user.UserName,
                                     // Datos del tipo de documento
                                     docType.IDDT,
                                     docType.DTName

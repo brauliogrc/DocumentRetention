@@ -6,3 +6,7 @@ export interface loginData {
 export interface bearer {
     token: string;
 }
+
+export interface successMessages {
+    message: string;
+}

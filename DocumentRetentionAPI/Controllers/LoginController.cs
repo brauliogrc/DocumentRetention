@@ -35,6 +35,7 @@ namespace DocumentRetentionAPI.Controllers
             _config = configuration;
         }
 
+        // Método de autenticación
         [HttpPost][AllowAnonymous]  
         public async Task<IActionResult> login([FromBody] LoginTemplate loginData )
         {
@@ -58,6 +59,7 @@ namespace DocumentRetentionAPI.Controllers
                         this.generateToken();
                         if ( bearerToken != null)
                         {
+                            
                             return Ok( new { token = bearerToken } );
                         }
                     }
@@ -70,6 +72,7 @@ namespace DocumentRetentionAPI.Controllers
             }
         }
 
+        // Búsqueda del usuario en la base de datos del sistema
         [HttpGet][AllowAnonymous]
         private /*Task<ActionResult>*/ bool DBQueryUser(string uid)
         {
@@ -101,6 +104,7 @@ namespace DocumentRetentionAPI.Controllers
             }
         }
 
+        // Creación del token de autorización
         [HttpGet][AllowAnonymous]
         private string generateToken()
         {

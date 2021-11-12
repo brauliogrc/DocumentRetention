@@ -98,8 +98,8 @@ namespace DocumentRetentionAPI.Migrations
 
                     b.Property<string>("DocumentPath")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(280)
+                        .HasColumnType("nvarchar(280)");
 
                     b.Property<DateTime?>("DocumentStartDate")
                         .HasColumnType("datetime2");
@@ -118,6 +118,14 @@ namespace DocumentRetentionAPI.Migrations
 
                     b.Property<int>("IDProject")
                         .HasColumnType("int");
+
+                    b.Property<long>("ownerEmployNum")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ownerName")
+                        .IsRequired()
+                        .HasMaxLength(85)
+                        .HasColumnType("nvarchar(85)");
 
                     b.HasKey("IDDocument");
 

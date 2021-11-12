@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DocumentRetentionAPI.Helpers
 {
+    // Utilizado en LoginController
     public class LoginTemplate
     {
         [Required(ErrorMessage = "UID is required")]
@@ -15,6 +16,7 @@ namespace DocumentRetentionAPI.Helpers
         public string Pass { get; set; }
     }
 
+    // Utilizado en LoginController
     public class AuthUser
     {
         public long IDUser { get; set; }
