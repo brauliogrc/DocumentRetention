@@ -1,6 +1,6 @@
 <p>show-results works!</p>
 <div class="results" >
-    <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()"> <mat-icon>restart_alt</mat-icon> </p-button>
+    <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()" icon="pi pi-replay" iconPos="left"></p-button>
     <p-table [value]="docsList" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>

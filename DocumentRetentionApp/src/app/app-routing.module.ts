@@ -18,7 +18,7 @@ import { Page404Component } from './shared/components/page404/page404.component'
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
-  { path: '**', component: Page404Component },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

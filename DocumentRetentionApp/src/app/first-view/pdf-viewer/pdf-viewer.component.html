@@ -1,4 +1,5 @@
-<h2 class="" >Visualizando: {{ fileName | sliceString }} </h2>
+<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">PDF Viewer</h1>
+<h2 style="font-family: typo-grotesk-rounded; font-weight: bold;">Visualizando: {{ fileName | sliceString }} </h2>
 <p-button type="button" styleClass="p-button-danger" icon="pi pi-arrow-left" iconPos="left" label="Regresar" (click)="backLastPage()"></p-button>
 <ngx-extended-pdf-viewer
     [src]="archivo"
