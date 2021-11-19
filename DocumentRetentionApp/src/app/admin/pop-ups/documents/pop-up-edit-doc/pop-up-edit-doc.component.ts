@@ -81,9 +81,9 @@ export class PopUpEditDocComponent implements OnInit {
 
     console.log('Start date: ', this.startdDate, ' Due date: ', this.dueDate);
     
-    if ( this._dateValidation() ) {
-      this._updateDocument();
-    }
+    // if ( this._dateValidation() ) {
+    //   this._updateDocument();
+    // }
 
     console.log(this._editedDocInfo);
   }

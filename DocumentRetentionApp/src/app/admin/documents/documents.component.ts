@@ -49,7 +49,7 @@ export class DocumentsComponent implements OnInit {
 
   // Método que muestra el popUp de editado del documento
   public editPopUp(docId: number, docName: string, docStartDate: string, docDueDate: string): void {
-    const dialogRef = this._dialog.open(PopUpEditDocComponent, {panelClass: 'panel',width: '40%', height: '78%', data: {docId, docName, docStartDate, docDueDate} });
+    const dialogRef = this._dialog.open(PopUpEditDocComponent, {width: '40%', height: '78%', data: {docId, docName, docStartDate, docDueDate} });
     dialogRef.afterClosed().subscribe(
       (res) => {
         this._fillTable();

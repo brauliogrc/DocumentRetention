@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 // Componentes
 import { UsersComponent } from './users/users.component';
@@ -12,8 +13,14 @@ import { DocumentsComponent } from './documents/documents.component';
 import { ProcessesComponent } from './processes/processes.component';
 import { PopUpEditDocComponent } from './pop-ups/documents/pop-up-edit-doc/pop-up-edit-doc.component';
 
+// Importación de servicios
+import { UsersHandlerService } from '@shared/services/usershandler/users-handler.service';
+
 // Importación de modulos del proyecto
 import { FirstViewModule } from '@first-view/first-view.module'
+
+// Importación de Pipes
+import { ShowStatusPipe } from '../shared/pipes/show-status.pipe';
 
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -25,7 +32,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 
-
 @NgModule({
   declarations: [
     UsersComponent,
@@ -35,13 +41,14 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DocTypesComponent,
     DocumentsComponent,
     PopUpEditDocComponent,
-    // Importación de pipes
+    ShowStatusPipe,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     MatDialogModule,
+    HttpClientModule,
     // Importación de modulos del proyecto
     FirstViewModule,
     //  Importaciones de primeng
@@ -51,6 +58,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DropdownModule,
     CalendarModule,
     InputNumberModule,
+  ],
+  providers: [
+    UsersHandlerService
   ],
 })
 export class AdminModule { }

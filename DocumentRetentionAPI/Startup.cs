@@ -81,7 +81,7 @@ namespace DocumentRetentionAPI
                 options.AddPolicy("CapturistRole", pol => pol.RequireClaim("Role", new string[] { "1", "2" }));
             });
 
-            // Definición del contexto de la DB
+            // Definición del contexto de la DB (devDocumentRetentionSA para desarrollo, prodDocumentRetention para producción)
             services.AddDbContext<DRDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("devDocumentRetentionSA"))
             );

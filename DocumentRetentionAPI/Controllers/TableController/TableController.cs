@@ -19,14 +19,14 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
     {
         private readonly DRDBContext _context;
 
-        public TableController( DRDBContext context)
+        public TableController(DRDBContext context)
         {
             _context = context;
         }
 
         // Obención de los documentos existentes en la base de datos para ser mostrados en la tabla del
         // componente "Doc-Viewer". Visualización del Admin
-        [HttpGet][Route("adminTable")][Authorize(Policy = "Adm")]
+        [HttpGet] [Route("adminTable")] [Authorize(Policy = "Adm")]
         public async Task<ActionResult> adminTable()
         {
             try
@@ -36,8 +36,8 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     on doc.IDProcess equals process.IDProcess
                                 join projetc in _context.Projects
                                     on doc.IDProject equals projetc.IDProject
-                                    join client in _context.Clients
-                                        on projetc.IDClient equals client.IDClient
+                                join client in _context.Clients
+                                    on projetc.IDClient equals client.IDClient
                                 join docType in _context.DocType
                                     on doc.IDDT equals docType.IDDT
                                 join user in _context.Users
@@ -58,9 +58,9 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     // Datos del projecto
                                     projetc.IDProject,
                                     projetc.ProjectName,
-                                        // Datos del cleinte
-                                        client.IDClient,
-                                        client.ClientName,
+                                    // Datos del cleinte
+                                    client.IDClient,
+                                    client.ClientName,
                                     // Datos del usuario
                                     user.UID,
                                     user.UserName,
@@ -84,7 +84,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
 
         // Obención de los documentos existentes en la base de datos para ser mostrados en la tabla del
         // componente "Doc-Viewer". Visualización de cualquier usuario
-        [HttpGet][Route("userTable")][AllowAnonymous]
+        [HttpGet] [Route("userTable")] [AllowAnonymous]
         public async Task<ActionResult> userTable()
         {
             try
@@ -94,8 +94,8 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     on doc.IDProcess equals process.IDProcess
                                 join projetc in _context.Projects
                                     on doc.IDProject equals projetc.IDProject
-                                    join client in _context.Clients
-                                        on projetc.IDClient equals client.IDClient
+                                join client in _context.Clients
+                                    on projetc.IDClient equals client.IDClient
                                 join docType in _context.DocType
                                     on doc.IDDT equals docType.IDDT
                                 join user in _context.Users
@@ -115,9 +115,9 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     // Datos del projecto
                                     projetc.IDProject,
                                     projetc.ProjectName,
-                                        // Datos del cleinte
-                                        client.IDClient,
-                                        client.ClientName,
+                                    // Datos del cleinte
+                                    client.IDClient,
+                                    client.ClientName,
                                     // Datos del usuario
                                     // user.UID,
                                     // user.UserName,
@@ -186,5 +186,36 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
             }
             return Ok();
         }*/
+
+        [HttpGet] [Route("getUsersList")] [Authorize(Policy = "Adm")]
+        public async Task<ActionResult> getUsersList()
+        {
+            try
+            {
+                var usersList = from user in _context.Users
+                                join role in _context.Roles
+                                    on user.IDRole equals role.IDRole
+                                select new
+                                {
+                                    user.IDUser,
+                                    user.UserName,
+                                    user.UserEmail,
+                                    user.UserStatus,
+                                    role.IDRole,
+                                    role.RoleName
+                                };
+
+                if (usersList == null || usersList.Count() == 0)
+                {
+                    return NotFound(new { message = $"No se encuentra ningún usuario registrado" });
+                }
+
+                return Ok(usersList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = $"Ha ocurrido un error al obtener la lista del usuarios. ERROR: {ex.Message}" });
+            }
+        }
     }
 }

@@ -37,3 +37,26 @@ body {
     format("opentype");
 }
 
+/* body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px ;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, .2);
+}
+body::-webkit-scrollbar-thumb:active {
+  background-color: blue;
+}
+body::-webkit-scrollbar-track{
+  background: red;
+  border-radius: 4px;
+}
+body::-webkit-scrollbar-track:hover,
+body::-webkit-scrollbar-track:active {
+  background: green;
+} */

@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';
 import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encryption-and-decryption.service';
 import { docsTable } from '@shared/interfaces/tablesInterface';
+import { userList } from '@shared/interfaces/userListInterface';
 import { filterDocs } from '@shared/interfaces/fieldsInterfaces';
 
 @Injectable({
@@ -14,10 +15,11 @@ import { filterDocs } from '@shared/interfaces/fieldsInterfaces';
 export class TableServiceService {
 
   // Ruta del controlador de la API
-  private controllerRoute:  string = 'Table/';
+  private _controllerRoute:      string = 'Table/';
   // Rutas de los metodos que contiene el controlador de la API
-  private userTable:        string = 'userTable';
-  private adminTable:       string = 'adminTable';
+  private _userTable:            string = 'userTable';
+  private _adminTable:           string = 'adminTable';
+  private _userList:             string = 'getUsersList';
 
   private headers = new HttpHeaders({
     'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
@@ -33,7 +35,7 @@ export class TableServiceService {
 
   // Peticion HTTP a la API para obtener el lisado de documentos segun los datos de filtro admin
   getAdminDocsTable(): Observable<docsTable[]> {
-    return this._http.get<docsTable[]>(`${environment.API}` + this.controllerRoute + this.adminTable, {headers: this.headers})
+    return this._http.get<docsTable[]>(`${environment.API}` + this._controllerRoute + this._adminTable, {headers: this.headers})
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return throwError( this._sweedAlert.errorsHandler(err) )
@@ -43,10 +45,20 @@ export class TableServiceService {
 
   // Peticion HTTP a la API para obtener el lisado de documentos segun los datos de filtro usuarios
   getUserDocsTable(): Observable<docsTable[]> {
-    return this._http.get<docsTable[]>(`${environment.API}` + this.controllerRoute + this.userTable)
+    return this._http.get<docsTable[]>(`${environment.API}` + this._controllerRoute + this._userTable)
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return throwError( this._sweedAlert.errorsHandler(err) )
+        })
+      )
+  }
+
+  // Petición a las API para obtener el listado de los usuarios
+  public getAllUsers(): Observable<userList[]> {
+    return this._http.get<userList[]>(`${environment.API}` + this._controllerRoute + this._userList, {headers: this.headers})
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError( this._sweedAlert.errorsHandler(err) );
         })
       )
   }
