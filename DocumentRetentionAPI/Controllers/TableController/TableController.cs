@@ -198,6 +198,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                 select new
                                 {
                                     user.IDUser,
+                                    user.UID,
                                     user.UserName,
                                     user.UserEmail,
                                     user.UserStatus,

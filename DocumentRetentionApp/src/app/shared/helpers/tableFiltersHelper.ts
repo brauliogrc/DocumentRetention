@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { filterDocs, docTypeField } from '../interfaces/fieldsInterfaces';
 import { docsTable } from '../interfaces/tablesInterface';
+import { filterUsers, userList } from '@shared/interfaces/userListInterface';
 
 
 export class TablesFiltersHelper {
@@ -26,7 +27,7 @@ export class TablesFiltersHelper {
         })
     }
 
-    // Concatenación del resultrado de fultar por medio de cada parametro
+    // Concatenación del resultrado de filtrar por medio de cada parametro
     private _arrayConcat = ( arr1: docsTable[] ): void => {
         // console.log('_arrayConcat');
         
@@ -47,7 +48,7 @@ export class TablesFiltersHelper {
     }
 
     // Filtrado del arreglo segun los parámetros del campo de filtrado
-    objectFilter = (dataTable: docsTable[], parameterF: filterDocs): docsTable[] => {
+    public docsFilter = (dataTable: docsTable[], parameterF: filterDocs): docsTable[] => {
         
         let arrayAux: docsTable[];
         this._formatDate(dataTable);

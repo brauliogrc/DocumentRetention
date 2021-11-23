@@ -20,20 +20,20 @@ import { DateFormat } from '@shared/helpers/dateFormat';
 })
 export class PopUpCreateDocComponent implements OnInit {
   // Variables que contienen el listado de los "dropdown"
-  public docTypeMenu:   docTypeField[];
-  public projectMenu:   projectField[];
-  public processMenu:   processField[];
-  public ownersList:    docOwnerField[];
+  public docTypeMenu:   docTypeField[];     // Lista de los tipos de documetnos
+  public projectMenu:   projectField[];     // Lista de los projectos
+  public processMenu:   processField[];     // Lista de los procesos
+  public ownersList:    docOwnerField[];    // Lista de los owners del documento
 
   
   // Variables que contienen los valores del form
   // public docName:           string;
-  public dueDate:           Date;
-  public startDate:         Date;
-  public selectedDocType:   number;
-  public selectedProject:   number;
-  public selectedProcess:   number;
-  public selectedOwner:     number;
+  public dueDate:           Date;     // Fecha de fin seleccionada
+  public startDate:         Date;     // Fecha de inicio del documetos selecionada
+  public selectedDocType:   string;   // ID del tipo de documento seleccionado
+  public selectedProject:   string;   // ID del projecto seleccionado
+  public selectedProcess:   string;   // ID del proceso seleccionado
+  public selectedOwner:     string;   // Número de empleado del owner seleccionado
   
   private _file:             File;
   private _newDocData = new FormData(); // Formato de datos necesatio para enviar un archivo adjunto a la API
@@ -85,6 +85,7 @@ export class PopUpCreateDocComponent implements OnInit {
     //   startDate: this._datePipe.transform( this.startDate, 'yyyy-MM-dd' ),
     //   creationUser: this._crypt.userIDUser
     // }
+    // FIXME: Sujeto a cambios, crear clase auxiliar para filtrar con base en el nombre para obtener el id (Queda a consireción de Mike)
 
     this._newDocData.append('ownerEmployeeNumber',        String( this.selectedOwner ) );
     this._newDocData.append('docType',        String( this.selectedDocType ) );

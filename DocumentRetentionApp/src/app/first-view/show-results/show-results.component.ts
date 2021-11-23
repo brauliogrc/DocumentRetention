@@ -87,7 +87,7 @@ export class ShowResultsComponent implements OnInit {
     console.log(filterData);
 
     this.docsList = [...this.back];
-    this.docsList = this._tableFilterHelper.objectFilter(this.docsList, filterData);
+    this.docsList = this._tableFilterHelper.docsFilter(this.docsList, filterData);
   }
 
   // Volver a mostar todos los documentos en la tabla

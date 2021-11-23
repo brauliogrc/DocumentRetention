@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NgSelect2Module } from 'ng-select2';
 
 // Componentes
 import { UsersComponent } from './users/users.component';
@@ -12,6 +13,8 @@ import { DocTypesComponent } from './doc-types/doc-types.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { ProcessesComponent } from './processes/processes.component';
 import { PopUpEditDocComponent } from './pop-ups/documents/pop-up-edit-doc/pop-up-edit-doc.component';
+import { PopUpEditUserComponent } from './pop-ups/users/pop-up-edit-user/pop-up-edit-user.component';
+import { PopUpCreateUserComponent } from './pop-ups/users/pop-up-create-user/pop-up-create-user.component';
 
 // Importación de servicios
 import { UsersHandlerService } from '@shared/services/usershandler/users-handler.service';
@@ -21,6 +24,7 @@ import { FirstViewModule } from '@first-view/first-view.module'
 
 // Importación de Pipes
 import { ShowStatusPipe } from '../shared/pipes/show-status.pipe';
+import { ToUpperCasePipe } from '../shared/pipes/to-upper-case.pipe';
 
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -42,6 +46,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DocumentsComponent,
     PopUpEditDocComponent,
     ShowStatusPipe,
+    ToUpperCasePipe,
+    PopUpEditUserComponent,
+    PopUpCreateUserComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +56,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     FormsModule,
     MatDialogModule,
     HttpClientModule,
+    NgSelect2Module,
     // Importación de modulos del proyecto
     FirstViewModule,
     //  Importaciones de primeng
@@ -61,6 +69,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
   ],
   providers: [
     UsersHandlerService
+  ],
+  exports: [
+    ToUpperCasePipe
   ],
 })
 export class AdminModule { }

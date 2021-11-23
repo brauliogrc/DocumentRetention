@@ -9,7 +9,7 @@ import {
   projectField,
   processField,
   docOwnerField,
-  docStatus,
+  generalStatus,
   docInformation,
 } from '@shared/interfaces/fieldsInterfaces';
 import { DateFormat } from '@shared/helpers/dateFormat';
@@ -22,24 +22,24 @@ import { DateFormat } from '@shared/helpers/dateFormat';
 })
 export class PopUpEditDocComponent implements OnInit {
   // Variables que contienen el listado de los "dropdown"
-  public docTypeMenu:   docTypeField[];
-  public projectMenu:   projectField[];
-  public processMenu:   processField[];
-  public ownersList:     docOwnerField[];
-  public statusMenu:        docStatus[];
+  public docTypeMenu:   docTypeField[];     // Lista de los tipos de documetnos
+  public projectMenu:   projectField[];     // Lista de los projectos
+  public processMenu:   processField[];     // Lista de los procesos
+  public ownersList:    docOwnerField[];    // Lista de los owners del documento
+  public statusMenu:    generalStatus[];    // Lista de los estatus de los documentos
   
   // Variable que contiene elos valores del form
-  public dueDate:         string;
-  public startdDate:      string;
-  public selectedOwner:   number;
-  public selectedStatus:  number;
-  public selectedProject: number;
-  public selectedProcess: number;
-  public selectedDocType: number;
+  public dueDate:         string;   // Fecha de fin seleccionada
+  public startdDate:      string;   // Fecha de inicio del documetos selecionada
+  public selectedOwner:   string;   // Número de empleado del owner seleccionado
+  public selectedStatus:  string;   // ID del status seleccionado (1->habilidato->true, 0->deshabilitado->false)
+  public selectedProject: string;   // ID del projecto seleccionado
+  public selectedProcess: string;   // ID del proceso seleccionado
+  public selectedDocType: string;   // ID del tipo de documento seleccionado
 
   private _editedDocInfo:   editedDocInfo;  // Contiene los valores de cada uno de los campos del form
   // Almacenamos el nombre el documento para mostrarlo en l PopUp
-  public oldName:         string = this._arrData.docName;
+  public docName:         string = this._arrData.docName;
   // Istancia de la clase para las validaciones de fechas
   private _dateFormat = new DateFormat();
   // Bandera para modificar los botones del popUp, cambia de estado cuando el documento es actualizado
@@ -69,21 +69,23 @@ export class PopUpEditDocComponent implements OnInit {
     console.log('Aplicacndo cambios al documento');
     
     this._editedDocInfo = {
+      // FIXME: Sujeto a cambios, crear clase auxiliar para filtrar con base en el nombre para obtener el id (Queda a consireción de Mike)
+      
       idDoc:         this._arrData.docId,
-      newStatus:     this.selectedStatus,
-      newDocType:    this.selectedDocType,
+      newStatus:     Number(this.selectedStatus),
+      newDocType:    Number(this.selectedDocType),
       newDueDate:    this.dueDate,
-      newProcess:    this.selectedProcess,
-      newProject:    this.selectedProject,
+      newProcess:    Number(this.selectedProcess),
+      newProject:    Number(this.selectedProject),
       newStartDate:  this.startdDate,
-      newOwnerEmployeeNumber:   this.selectedOwner,
+      newOwnerEmployeeNumber:   Number(this.selectedOwner),
     }
 
     console.log('Start date: ', this.startdDate, ' Due date: ', this.dueDate);
     
-    // if ( this._dateValidation() ) {
-    //   this._updateDocument();
-    // }
+    if ( this._dateValidation() ) {
+      this._updateDocument();
+    }
 
     console.log(this._editedDocInfo);
   }
@@ -141,14 +143,14 @@ export class PopUpEditDocComponent implements OnInit {
       }
     );
 
-    // Asignación de valores al menu de estados del documento
+    // Asignación de valores al menu de status del documento
     this.statusMenu = [
       {
         statusName: 'Habilitado',
         statusValue: 1
       },
       {
-        statusName: 'Desabilitado',
+        statusName: 'Deshabilitado',
         statusValue: 0
       }
     ];

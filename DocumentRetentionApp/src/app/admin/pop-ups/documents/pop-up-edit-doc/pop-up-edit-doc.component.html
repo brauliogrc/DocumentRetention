@@ -1,16 +1,15 @@
 <div class="poup-body">
     <mat-dialog-content class="form">
+        <h1 class="field-title" style="font-family: typo-grotesk-rounded; font-weight: bold;">Editando "{{ docName }}"</h1>
         <div class="form-items">
-            <h1 class="field-title" style="font-family: typo-grotesk-rounded; font-weight: bold;">Editando "{{ oldName }}"</h1>
-            <p>Propietario</p>
-            <!-- Prueba se Select con "input" y "datalist" -->
+            <p class="field-title">Propietario</p>
             <input pInputText
+                class="fields"
                 type="text"
                 [(ngModel)]="selectedOwner"
-                list="optionValues"
-                [style]="{'width':'60%', 'background-color':'#FFFFFF', 'text-color':'black', 'color':'black'}"
+                list="ownersList"
             >
-            <datalist id="optionValues" class="list">
+            <datalist id="ownersList" class="list">
                 <option *ngFor="let owner of ownersList" value="{{ owner.employeeNumber }}"> {{ owner.employeeName }} </option>
             </datalist>
             <!-- <p-dropdown
@@ -29,7 +28,16 @@
         </div>
         <div class="form-items">
             <p class="field-title">Estatus del documentos</p>
-            <p-dropdown
+            <input pInputText
+                class="fields"
+                type="text"
+                [(ngModel)]="selectedStatus"
+                list="statusList"
+            >
+            <datalist id="statusList">
+                <option *ngFor="let status of statusMenu" value="{{ status.statusValue }}"> {{ status.statusName }} </option>
+            </datalist>
+            <!-- <p-dropdown
                 class="fields"
                 name="status"
                 [options]="statusMenu"
@@ -41,11 +49,20 @@
                 filterBy="statusName"
                 [showClear]="true"
                 [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
-            ></p-dropdown>
+            ></p-dropdown> -->
         </div>
         <div class="form-items">
             <p class="field-title">Projecto del documento</p>
-            <p-dropdown
+            <input pInputText
+                class="fields"
+                type="text"
+                [(ngModel)]="selectedProject"
+                list="projectList"
+            >
+            <datalist id="projectList">
+                <option *ngFor="let project of projectMenu" value="{{ project.idProject }}"> {{ project.projectName }} </option>
+            </datalist>
+            <!-- <p-dropdown
                 class="fields"
                 name="project"
                 [options]="projectMenu"
@@ -57,11 +74,20 @@
                 filterBy="projectName"
                 [showClear]="true"
                 [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
-            ></p-dropdown>
+            ></p-dropdown> -->
         </div>
         <div class="form-items">
             <p class="field-title">Proceso del documento</p>
-            <p-dropdown
+            <input pInputText
+                class="fields"
+                type="text"
+                [(ngModel)]="selectedProcess"
+                list="processList"
+            >
+            <datalist id="processList">
+                <option *ngFor="let process of processMenu" value="{{ process.idProcess }}"> {{ process.processName }} </option>
+            </datalist>
+            <!-- <p-dropdown
                 class="fields"
                 name="process"
                 [options]="processMenu"
@@ -73,11 +99,20 @@
                 filterBy="processName"
                 [showClear]="true"
                 [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
-            ></p-dropdown>
+            ></p-dropdown> -->
         </div>
         <div class="form-items">
             <p class="field-title">Tipo de documento</p>
-            <p-dropdown
+            <input pInputText
+                class="fields"
+                type="text"
+                [(ngModel)]="selectedDocType"
+                list="docTypeList"
+            >
+            <datalist id="docTypeList">
+                <option *ngFor="let docType of docTypeMenu" value="{{ docType.iddt }}"> {{ docType.dtName }} </option>
+            </datalist>
+            <!-- <p-dropdown
                 class="fields"
                 name="docType"
                 [options]="docTypeMenu"
@@ -89,7 +124,7 @@
                 filterBy="dtName"
                 [showClear]="true"
                 [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
-            ></p-dropdown>
+            ></p-dropdown> -->
         </div>
         <div class="form-items">
             <div>

@@ -23,7 +23,7 @@ export interface docOwnerField {
     employeeNumber: number;
 }
 
-export interface docStatus {
+export interface generalStatus {
     statusName:     string;
     statusValue:    number;
 }

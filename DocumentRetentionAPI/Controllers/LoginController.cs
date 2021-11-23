@@ -80,7 +80,7 @@ namespace DocumentRetentionAPI.Controllers
             {
                 // Consulta del usuario en la base de datos
                 var userExist = from user in _context.Users
-                                where user.UID.ToUpper() == uid.ToUpper()
+                                where user.UID.ToUpper() == uid.ToUpper() && user.UserStatus == true
                                 select new
                                 {
                                     user.IDUser,

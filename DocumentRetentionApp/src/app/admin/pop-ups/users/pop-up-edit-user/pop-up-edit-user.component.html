@@ -1,0 +1,46 @@
+<div class="poup-body">
+    <mat-dialog-content class="form">
+        <h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Editando a {{ userName }}</h1>
+        <div class="form-items">
+            <p class="field-title">Email</p>
+            <input pInputText
+                class="fields"
+                type="email"
+                [(ngModel)]="newEmail"
+            >
+        </div>
+        <div class="form-items">
+            <p class="field-title">Estatus</p>
+            <input pInputText
+                class="fields"
+                type="text"
+                list="statusList"
+                [(ngModel)]="selectedStatus"
+            >
+            <datalist id="statusList">
+                <option *ngFor="let status of statusMenu" value="{{ status.statusValue }}">{{ status.statusName }}</option>
+            </datalist>
+        </div>
+        <div class="form-items">
+            <p class="field-title">Rol</p>
+            <input pInputText
+                class="fields"
+                type="text"
+                list="roleList"
+                [(ngModel)]="selectedRole"
+            >
+            <datalist id="roleList">
+                <option *ngFor="let role of rolesMenu" value="{{ role.idRole }}">{{ role.roleName }}</option>
+            </datalist>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons" >
+        <ng-container *ngIf="!userUpdated; else elseTemplate">
+            <button pButton pRipple type="button" label="Cancelar" class="p-button-danger" (click)="clickCancel()"></button>
+            <button pButton pRipple type="button" label="Guardar" class="p-button-success" (click)="saveChanges()"></button>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <button pButton pRipple type="button" label="Cerrar" class="p-button-danger" (click)="clickCancel()"></button>
+        </ng-template>
+    </mat-dialog-actions>
+</div>

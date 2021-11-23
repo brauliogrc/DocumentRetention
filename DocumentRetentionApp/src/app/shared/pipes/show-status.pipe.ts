@@ -9,7 +9,7 @@ export class ShowStatusPipe implements PipeTransform {
     if ( value ) {
       return 'Activo';
     }
-    return 'Incativo';  
+    return 'Inactivo';  
   }
 
 }

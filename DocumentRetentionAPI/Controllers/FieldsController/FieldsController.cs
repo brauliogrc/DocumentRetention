@@ -256,6 +256,32 @@ namespace DocumentRetentionAPI.Controllers.FieldsController
                 return BadRequest( new { message = $"Ha ocurrido un error al obtener la lista de owners. ERROR: {ex.Message}" } );
             }
         }
+
+        // Obtención de los roles de usuario
+        [HttpGet][Route("getUserRoles")][Authorize(Policy = "Adm")]
+        public async Task<ActionResult> getUserRoles()
+        {
+            try
+            {
+                var field = from rol in _context.Roles
+                            select new
+                            {
+                                rol.IDRole,
+                                rol.RoleName
+                            };
+
+                if ( field == null || field.Count() == 0 )
+                {
+                    return BadRequest( new { message = $"No se ha encontrado nigún rol registrado" } );
+                }
+
+                return Ok( field );
+            }
+            catch ( Exception ex )
+            {
+                return BadRequest( new { message = $"Ha ocurrido un error al obtener los roles de usuario. ERROR: { ex.Message }" } );
+            }
+        }
     }
 
     public class DataOwners

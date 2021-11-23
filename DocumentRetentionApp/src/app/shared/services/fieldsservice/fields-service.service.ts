@@ -10,6 +10,7 @@ import {
   docTypeField,
   docOwnerField,
 } from '@shared/interfaces/fieldsInterfaces';
+import { userRoles } from '@shared/interfaces/userListInterface';
 import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encryption-and-decryption.service';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';
 
@@ -27,7 +28,8 @@ export class FieldsServiceService {
   private generalDocTypes:  string = 'getDocTypes';
   private adminClients:     string = 'getAdminClients';
   private userClients:      string = 'getUserClients';
-  private ownersList:        string = 'getOwnersList';
+  private ownersList:       string = 'getOwnersList';
+  private rolesList:        string = 'getUserRoles';
 
   // Variables que contienen los campos
   private clientList:   clientField[] = [];
@@ -160,4 +162,13 @@ export class FieldsServiceService {
       )
   }
 
+  // Petición HTTP a la API para obtener la lista de roles de usuario
+  getUsersRoles(): Observable<userRoles[]> {
+    return this._http.get<userRoles[]>( `${environment.API}` + this.controllerRoute + this.rolesList, { headers: this.headers } )
+      .pipe(
+        catchError( (err: HttpErrorResponse) => {
+          return throwError( this._sweetAlert.errorsHandler(err) );
+        } )
+      )
+  }
 }

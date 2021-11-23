@@ -7,6 +7,7 @@
         icon="pi pi-plus"
         iconPos="left"
         label="Crear nuevo usuario"
+        (click)="userRegisterPopUp()"
     ></button>
     <div class="p-grid p-fluid search-panel">
         <div class="p-col-12 p-md-4">
@@ -15,13 +16,19 @@
                     type="button"
                     icon="pi pi-search"
                     iconPos="left"
+                    (click)="filterUsersTable()"
                 ></button>
                 <p-inputNumber
                     class="fields"
                     inputId="integeronly"
                     placeholder="Ingrese ID del usuario"
+                    [(ngModel)]="userId"
                 ></p-inputNumber>
-                <input pInputText class="fields" placeholder="Ingrese UID">
+                <input pInputText
+                    class="fields"
+                    placeholder="Nombre de usuario"
+                    [(ngModel)]="userName"
+                >
             </div>
         </div>
     </div>
@@ -30,6 +37,7 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>ID</th>
+                <th>UID</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Rol</th>
@@ -40,21 +48,26 @@
         <ng-template pTemplate="body" let-userList>
             <tr>
                 <td>{{ userList.idUser }}</td>
+                <td>{{ userList.uid }}</td>
                 <td>{{ userList.userName }}</td>
                 <td>{{ userList.userEmail }}</td>
                 <td>{{ userList.roleName }}</td>
                 <td>{{ userList.userStatus | showStatus }}</td>
                 <td>
-                    <button pButton pRipple
-                        type="button"
-                        icon="pi pi-pencil"
-                        class="p-button-rounded p-button-info p-button-text"
-                    ></button>
-                    <button pButton pRipple
-                        type="button"
-                        icon="pi pi-trash"
-                        class="p-button-rounded p-button-danger p-button-text"
-                    ></button>
+                    <div class="button-section">
+                        <button pButton pRipple
+                            type="button"
+                            icon="pi pi-pencil"
+                            class="p-button-rounded p-button-info p-button-text"
+                            (click)="editUserPopUp( userList.idUser, userList.userName )"
+                        ></button>
+                        <button pButton pRipple
+                            type="button"
+                            icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger p-button-text"
+                            (click)="deleteUser( userList.idUser )"
+                        ></button>
+                    </div>
                 </td>
             </tr>
         </ng-template>
