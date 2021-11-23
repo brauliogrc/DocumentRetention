@@ -7,11 +7,10 @@
                 <input pInputText
                     class="fields"sss
                     type="text"
-                    [(ngModel)]="selectedOwner"
                     list="ownersList"
                 >
                 <datalist id="ownersList" class="list">
-                    <option *ngFor="let owner of ownersList" value="{{ owner.employeeNumber }}"> {{ owner.employeeName }} </option>
+                    <option  value="">  </option>
                 </datalist>
                 <!-- <p-dropdown
                     name="poject"
@@ -32,11 +31,10 @@
                 <input pInputText
                     class="fields"
                     type="text"
-                    [(ngModel)]="selectedProject"
                     list="projectList"
                 >
                 <datalist id="projectList">
-                    <option *ngFor="let project of projectMenu" value="{{ project.idProject }}"> {{ project.projectName }} </option>
+                    <option  value="">  </option>
                 </datalist>
                 <!-- <p-dropdown
                     name="poject"
@@ -57,11 +55,10 @@
                 <input pInputText
                     class="fields"
                     type="text"
-                    [(ngModel)]="selectedProcess"
                     list="processList"
                 >
                 <datalist id="processList">
-                    <option *ngFor="let process of processMenu" value="{{ process.idProcess }}"> {{ process.processName }} </option>
+                    <option  value="">  </option>
                 </datalist>
                 <!-- <p-dropdown
                     name="pocess"
@@ -82,11 +79,10 @@
                 <input pInputText
                     class="fields"
                     type="text"
-                    [(ngModel)]="selectedDocType"
                     list="docTypeList"
                 >
                 <datalist id="docTypeList">
-                    <option *ngFor="let docType of docTypeMenu" value="{{ docType.iddt }}"> {{ docType.dtName }} </option>
+                    <option  value="">  </option>
                 </datalist>
                 <!-- <p-dropdown
                     name="docType"
@@ -110,7 +106,7 @@
                     placeholder="Seleccione"
                     [showIcon]="true"
                 ></p-calendar> -->
-                <input type="date" pInputText class="fields" [(ngModel)]="startDate">
+                <input type="date" pInputText class="fields">
             </div>
             <p>Sleccione fecha de fin</p>
             <div class="form-items">
@@ -120,13 +116,13 @@
                     placeholder="Seleccione"
                     [showIcon]="true"
                 ></p-calendar> -->
-                <input type="date" pInputText class="fields" [(ngModel)]="dueDate">
+                <input type="date" pInputText class="fields">
             </div>
             <div class="input-file">
-                <input type="file" style="display: none;" (change)="onFileSelected($event.target.files[0])" #fileUpload
+                <input type="file" style="display: none;" #fileUpload
                 accept=".pdf">
                 <div class="file-upload form-items">
-                    {{ fileName || "No file uploaded yet" }}
+                    
                 </div>
                 <button pButton
                     type="button"
@@ -141,9 +137,9 @@
     </mat-dialog-content>
 
     <mat-dialog-actions class="buttons">
-        <ng-container *ngIf="!docCreated; else elseTemplate">
-            <button pButton pRipple type="button" label="Cancelar" class="p-button-danger" (click)="clickCancel()"></button>
-            <button pButton pRipple type="button" label="Registrar" icon="pi pi-send" iconPos="left" class="p-button-success" (click)="registerDoc()"></button>
+        <ng-container >
+            <button pButton pRipple type="button" label="Cancelar" class="p-button-danger" ></button>
+            <button pButton pRipple type="button" label="Registrar" icon="pi pi-send" iconPos="left" class="p-button-success" ></button>
         </ng-container>
         <ng-template #elseTemplate>
             <button pButton pRipple type="button" label="Cerrar" class="p-button-danger" (click)="clickCancel()"></button>
