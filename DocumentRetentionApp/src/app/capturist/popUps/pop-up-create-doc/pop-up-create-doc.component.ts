@@ -8,7 +8,7 @@ import {
   docTypeField,
   projectField,
   processField,
-  docOwnerField,
+  ownersAndNewUsers,
  } from '@shared/interfaces/fieldsInterfaces';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DateFormat } from '@shared/helpers/dateFormat';
@@ -23,7 +23,7 @@ export class PopUpCreateDocComponent implements OnInit {
   public docTypeMenu:   docTypeField[];     // Lista de los tipos de documetnos
   public projectMenu:   projectField[];     // Lista de los projectos
   public processMenu:   processField[];     // Lista de los procesos
-  public ownersList:    docOwnerField[];    // Lista de los owners del documento
+  public ownersList:    ownersAndNewUsers[];    // Lista de los owners del documento
 
   
   // Variables que contienen los valores del form
@@ -40,7 +40,7 @@ export class PopUpCreateDocComponent implements OnInit {
   // Istancia de la clase para las validaciones de fechas
   private _dateFormat = new DateFormat();
   // Bandera para modificar los botones del popUp, cambia de estado cuando el documento es actualizado
-  public docCreated: boolean = false;
+  // public docCreated: boolean = false;
 
   constructor(
     private _dialogRef: MatDialogRef<PopUpCreateDocComponent>,
@@ -147,7 +147,8 @@ export class PopUpCreateDocComponent implements OnInit {
       (data) => {
         this._sweetAlert.successfulRegistration(data.message);
         console.log('Archivo registrado con exito, mensaje: ', data.message);
-        this.docCreated = true;
+        // this.docCreated = true;
+        // TODO: Resetear el formulario al registrar los cambios
       }
     )
   }

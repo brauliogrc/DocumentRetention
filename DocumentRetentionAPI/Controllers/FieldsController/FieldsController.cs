@@ -22,6 +22,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsController
         private readonly IConfiguration _conf;
         private ProjectFieldHelper projectField = new ProjectFieldHelper();
         private List<ProjectFieldHelper> listField = new List<ProjectFieldHelper>();
+        private string shortDate = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " 00:00:00";
 
         public FieldsController( DRDBContext context, IConfiguration conf )
         {
@@ -220,7 +221,6 @@ namespace DocumentRetentionAPI.Controllers.FieldsController
         public async Task<ActionResult> getOwners()
         {
             List<DataOwners> listOwners = new List<DataOwners>();
-            string shortDate = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " 00:00:00";
             // string[] longDate = DateTime.Parse(shortDate).ToString().Split('a');
             try
             {
@@ -228,7 +228,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsController
                 string query = "SELECT [EmployeeNumber], [FullName] " +
                                 "FROM [p_HRPortal].[dbo].[VW_EmployeeData] " +
                                 //"WHERE [Plant] = 'Tijera' AND [UpdateTiemeStamp] >= '" + longDate[0] + "'";
-                                "WHERE [Plant] = 'Tijera' AND [UpdateTiemeStamp] >= '" + shortDate + "'";
+                                "WHERE [Plant] = 'Tijera' AND [UpdateTiemeStamp] >= '" + this.shortDate + "'";
 
                 using ( SqlConnection conn = new SqlConnection( _conf.GetConnectionString( "RHPortal" ) ) )
                 {
@@ -282,12 +282,50 @@ namespace DocumentRetentionAPI.Controllers.FieldsController
                 return BadRequest( new { message = $"Ha ocurrido un error al obtener los roles de usuario. ERROR: { ex.Message }" } );
             }
         }
+
+        // Obtención de los usuarios con WindowsID para el registro de un nuevo usuario en la DB
+        [HttpGet][Route("getNewUsersList")][Authorize(Policy = "Adm")]
+        public async Task<ActionResult> getNewUsersList()
+        {
+            List<DataOwners> usersList = new List<DataOwners>();
+            try
+            {
+                var query = "SELECT [WindowsUid], [FullName], [EMail]" +
+                            "FROM [p_HRPortal].[dbo].[VW_EmployeeData]" +
+                            "WHERE [Plant] = 'Tijera' AND [WindowsUid] != ''  AND [EMail] != '' AND [UpdateTiemeStamp] >= '" + this.shortDate +  "'";
+
+                using ( SqlConnection conn = new SqlConnection( _conf.GetConnectionString("RHPortal") ) )
+                {
+                    using ( SqlCommand command = new SqlCommand(query, conn) )
+                    {
+                        conn.Open();
+                        using ( SqlDataReader reader = command.ExecuteReader() )
+                        {
+                            while ( reader.Read() )
+                            {
+                                usersList.Add( new DataOwners() { employeeUID = reader.GetString(0).Trim(), employeeName = reader.GetString(1).Trim(), employeeEmail = reader.GetString(2).Trim() } );
+                            }
+                        }
+                        conn.Close();
+                    }
+                }
+
+                return Ok( usersList );
+            }
+            catch ( Exception ex )
+            {
+                return BadRequest( new { message = $"Ha ocurrido un error al obtener la lista de usuarios para crear un nuevo registro. ERROR: { ex.Message }" } );
+            }
+        }
     }
 
     public class DataOwners
     {
+        // Clae usilzada en el método "getOwners"
+        public string employeeUID { get; set; }
         public long employeeNumber { get; set; }
         public string employeeName { get; set; }
+        public string employeeEmail { get; set; }
     }
 
 }

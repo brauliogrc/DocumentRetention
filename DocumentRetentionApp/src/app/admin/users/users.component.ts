@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersHandlerService } from '@shared/services/usershandler/users-handler.service';
 import { AuthSericeService } from '@auth/autServices/auth-serice.service';
 import { TableServiceService } from '@shared/services/table/table-service.service';
-import { userList, filterUsers } from '@shared/interfaces/userListInterface';
+import { userList, filterUsers } from '@shared/interfaces/userInterfaces';
 import { UserTableFilter } from '@shared/helpers/userTableFilter';
 import { SweetAlertsService } from '@shared/services/alerts/sweet-alerts.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -65,24 +65,20 @@ export class UsersComponent implements OnInit {
 
   // Método de registro de un nuevo usuario
   public userRegisterPopUp(): void {
-    const dialog = this._dialog.open( PopUpCreateUserComponent, {width: '40%', height: '78%'} );
+    const dialog = this._dialog.open( PopUpCreateUserComponent, {width: '38%', height: '40%'} );
     dialog.afterClosed().subscribe(
       () => {
         this._fillTable();
-        console.log("Actualizando tabla");
-        
       }
     )
   }
 
   // Método de actualización del usuario
   public editUserPopUp( userId: number, userName: string ): void {
-    const dialog = this._dialog.open( PopUpEditUserComponent, {width: '38%', height: '60%%', data: { userId, userName }} );
+    const dialog = this._dialog.open( PopUpEditUserComponent, {width: '38%', height: '60%', data: { userId, userName }} );
     dialog.afterClosed().subscribe(
       () => {
         this._fillTable();
-        console.log("Actualizando tabla");
-        
       }
     )
   }

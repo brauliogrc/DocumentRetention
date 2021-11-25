@@ -8,7 +8,7 @@ import {
   docTypeField,
   projectField,
   processField,
-  docOwnerField,
+  ownersAndNewUsers,
   generalStatus,
   docInformation,
 } from '@shared/interfaces/fieldsInterfaces';
@@ -25,7 +25,7 @@ export class PopUpEditDocComponent implements OnInit {
   public docTypeMenu:   docTypeField[];     // Lista de los tipos de documetnos
   public projectMenu:   projectField[];     // Lista de los projectos
   public processMenu:   processField[];     // Lista de los procesos
-  public ownersList:    docOwnerField[];    // Lista de los owners del documento
+  public ownersList:    ownersAndNewUsers[];    // Lista de los owners del documento
   public statusMenu:    generalStatus[];    // Lista de los estatus de los documentos
   
   // Variable que contiene elos valores del form
@@ -109,6 +109,7 @@ export class PopUpEditDocComponent implements OnInit {
         this._sweetAlert.successfulUpdate(data.message);
         // this._dialogRef.close();
         this.docupdated = true;
+        // TODO: Resetear el formulario al registrar los cambios
       }
     )
   }
@@ -140,6 +141,8 @@ export class PopUpEditDocComponent implements OnInit {
     this._fieldsService.getOwnersList().subscribe(
       (data) => {
         this.ownersList = [...data];
+        console.log(this.ownersList);
+        
       }
     );
 

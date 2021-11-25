@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authorization;
 using DocumentRetentionAPI.Helpers.Interfaces.UsersInterfaces;
+using DocumentRetentionAPI.Helpers.ExistenceValidation;
 
 namespace DocumentRetentionAPI.Controllers.RegisterControllers.Users
 {
@@ -16,19 +17,44 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Users
     public class UsersController : ControllerBase
     {
         private readonly DRDBContext _context;
+        private readonly ExistenceValidationHelper _existence;
 
-        public UsersController(DRDBContext context)
+        public UsersController(DRDBContext context /*, ExistenceValidationHelper existence*/ )
         {
             _context = context;
+            _existence = new ExistenceValidationHelper( _context );
+
+            //_existence = existence;
         }
 
         //Registro de un nuevo usuario
         [HttpPost][Route("addNewUser")][AllowAnonymous]
-        public async Task<ActionResult> addNewUser( [FromBody] int Data)
+        public async Task<ActionResult> addNewUser( [FromBody] NewUser newUser)
         {
             try
             {
-                return Ok();
+                // Verificación de la existencia del usuario
+                if (_existence.userExistence(newUser.UID)) return Conflict( new { message = $"El usuario ya se encuentra registrado" } ); // Encontar el codifo de peticion correcta a devolver
+
+                var user = new DocumentRetentionAPI.Models.Users()
+                {
+                    UID = newUser.UID,
+                    UserName = newUser.name,
+                    UserEmail = newUser.email,
+                    IDRole = newUser.role,
+
+                    // Asignación de fechas de creación y actualización
+                    UserUpdateAt = DateTime.Now,
+                    UserCreationAt = DateTime.Now,
+
+                    // Asignación del status del usuario
+                    UserStatus = true,
+                };
+
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+
+                return Ok( new { message = $"El usuario se ha registrado con exito" } );
             }
             catch ( Exception ex )
             {

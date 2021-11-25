@@ -61,7 +61,7 @@
                             class="p-button-rounded p-button-info p-button-text"
                             (click)="editUserPopUp( userList.idUser, userList.userName )"
                         ></button>
-                        <button pButton pRipple
+                        <button pButton pRipple *ngIf="userList.userStatus"
                             type="button"
                             icon="pi pi-trash"
                             class="p-button-rounded p-button-danger p-button-text"

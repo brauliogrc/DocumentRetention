@@ -18,9 +18,11 @@ export interface clientField {
     clientName:     string;
 }
 
-export interface docOwnerField {
+export interface ownersAndNewUsers {
     employeeName:   string;
     employeeNumber: number;
+    employeeUID:    string;
+    employeeEmail:  string;
 }
 
 export interface generalStatus {

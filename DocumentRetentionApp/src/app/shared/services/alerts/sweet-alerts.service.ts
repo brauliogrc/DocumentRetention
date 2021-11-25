@@ -15,6 +15,7 @@ export class SweetAlertsService {
     if (err.status == 0) this.connectionRefused();
     if (err.status == 400) this.badRequest(err.error.message);
     if (err.status == 401) this.unauthorized(err.error.message);
+    if (err.status == 409) this.conflict(err.error.message);
   }
 
   // Manejo del error de logeo
@@ -66,6 +67,15 @@ export class SweetAlertsService {
       text: error
     })
   }
+
+  // Manjo de error "Conflict (409)"
+  private conflict = (error: string): void => {
+    Swal.fire({
+      icon: 'info',
+      title: 'Conflicto detectado',
+      text: error
+    })
+  }
   
   // Manejo de error de la validación de fechas
   public dateValidationError = (  ): void => {
@@ -81,7 +91,7 @@ export class SweetAlertsService {
     Swal.fire({
       title: 'Datos inváidos',
       icon: 'error',
-      text: 'Los datos ingresados son inválidos, comprobar que no se encuentre algún campo vació'
+      text: 'Los datos ingresados son inválidos, comprobar que no se encuentre algún campo vació y el formato de los mismos'
     })
   }
 

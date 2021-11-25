@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';
 import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encryption-and-decryption.service';
 import { docsTable } from '@shared/interfaces/tablesInterface';
-import { userList } from '@shared/interfaces/userListInterface';
+import { userList } from '@shared/interfaces/userInterfaces';
 import { filterDocs } from '@shared/interfaces/fieldsInterfaces';
 
 @Injectable({

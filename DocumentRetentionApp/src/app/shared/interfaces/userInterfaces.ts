@@ -24,3 +24,10 @@ export interface editedUserInfo {
     newStatus:      number;
     newRole:        number;
 }
+
+export interface dataNewUser {
+    UID:    string;
+    name:   string;
+    email:  string;
+    role:   number;
+}

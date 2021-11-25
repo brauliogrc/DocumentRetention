@@ -1,7 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { filterDocs, docTypeField } from '../interfaces/fieldsInterfaces';
+// import { DatePipe } from '@angular/common';
+import { filterDocs } from '../interfaces/fieldsInterfaces';
 import { docsTable } from '../interfaces/tablesInterface';
-import { filterUsers, userList } from '@shared/interfaces/userListInterface';
 
 
 export class TablesFiltersHelper {

@@ -5,7 +5,8 @@ import { Observable, throwError } from 'rxjs';
 import { successMessages } from '@shared/interfaces/interfaces';
 import { catchError } from 'rxjs/operators';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';
-import { editedUserInfo } from '@shared/interfaces/userListInterface';
+import { editedUserInfo, dataNewUser } from '@shared/interfaces/userInterfaces';
+import { ownersAndNewUsers } from '@shared/interfaces/fieldsInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class UsersHandlerService {
   // Ruta del cotrolador de la API
   private _controllerRoute:     string = 'Users/';
   // Rutas de los métodos que contiene el controlador de la API
+  private _addUser:             string = 'addNewUser';
   private _updateUser:          string = 'updateUser';
   private _deleteUserRoute:     string = 'deleteUser/';
 
@@ -29,6 +31,16 @@ export class UsersHandlerService {
   // 1. Metodo add
   // 2. Metodo update
   // 3. Metodo delete
+  
+  // TODO: Desarrollo del metodo para ejecutar la peticion en la api para crear un nuevo usuario
+  public addNewuser( userData: dataNewUser ): Observable<successMessages>{
+    return this._http.post<successMessages>( `${environment.API}` + this._controllerRoute + this._addUser, userData, { headers: this._headers } )
+      .pipe(
+        catchError( (err:HttpErrorResponse) => {
+          return throwError(this._sweetAlert.errorsHandler(err));
+        })
+      )
+  }
   
   // Petición HTTP a la API para la actualización dlusuario
   public updateUser( editedInfo: editedUserInfo ): Observable<successMessages> {

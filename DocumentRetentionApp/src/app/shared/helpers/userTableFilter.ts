@@ -1,4 +1,4 @@
-import { filterUsers, userList } from '@shared/interfaces/userListInterface';
+import { filterUsers, userList } from '@shared/interfaces/userInterfaces';
 
 export class UserTableFilter {
 

@@ -8,9 +8,9 @@ import {
   processField,
   clientField,
   docTypeField,
-  docOwnerField,
+  ownersAndNewUsers,
 } from '@shared/interfaces/fieldsInterfaces';
-import { userRoles } from '@shared/interfaces/userListInterface';
+import { userRoles } from '@shared/interfaces/userInterfaces';
 import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encryption-and-decryption.service';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';
 
@@ -30,6 +30,7 @@ export class FieldsServiceService {
   private userClients:      string = 'getUserClients';
   private ownersList:       string = 'getOwnersList';
   private rolesList:        string = 'getUserRoles';
+  private newUsersList:     string = 'getNewUsersList';
 
   // Variables que contienen los campos
   private clientList:   clientField[] = [];
@@ -153,8 +154,8 @@ export class FieldsServiceService {
   }
 
   // Petición HTTP a la API para obtener la lista de Owners de los documentos
-  getOwnersList(): Observable<docOwnerField[]> {
-    return this._http.get<docOwnerField[]>(`${environment.API}` + this.controllerRoute + this.ownersList, { headers: this.headers })
+  getOwnersList(): Observable<ownersAndNewUsers[]> {
+    return this._http.get<ownersAndNewUsers[]>(`${environment.API}` + this.controllerRoute + this.ownersList, { headers: this.headers })
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return throwError( this._sweetAlert.errorsHandler(err) );
@@ -169,6 +170,16 @@ export class FieldsServiceService {
         catchError( (err: HttpErrorResponse) => {
           return throwError( this._sweetAlert.errorsHandler(err) );
         } )
+      )
+  }
+
+  // Petición HTTP a la API para obtener la lista de los usuarios que pueden ser registrados en la DB
+  getNewUsersList(): Observable<ownersAndNewUsers[]> {
+    return this._http.get<ownersAndNewUsers[]>( `${environment.API}` + this.controllerRoute + this.newUsersList, { headers: this.headers } )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(this._sweetAlert.errorsHandler(err));
+        })
       )
   }
 }

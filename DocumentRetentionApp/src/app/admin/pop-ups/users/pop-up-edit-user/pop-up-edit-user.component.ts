@@ -4,7 +4,7 @@ import {
   userRoles,
   editedUserInfo,
   filterUsers 
-} from '@shared/interfaces/userListInterface';
+} from '@shared/interfaces/userInterfaces';
 import { FieldsServiceService } from '@shared/services/fieldsservice/fields-service.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsersHandlerService } from '@shared/services/usershandler/users-handler.service';
@@ -29,6 +29,7 @@ export class PopUpEditUserComponent implements OnInit {
   private _editedUserInfo:    editedUserInfo;
   // // Bandera para modificar los botones del popUp, cambia de estado cuando el usuario es actualizado
   public userUpdated: boolean = false;
+  private _regex: RegExp = new RegExp('.(@)?conti.+?com');
 
   constructor(
     private _dialogRef: MatDialogRef<PopUpEditUserComponent>,
@@ -73,12 +74,25 @@ export class PopUpEditUserComponent implements OnInit {
     this._dialogRef.close();
   }
 
+  // Manejador del evento de editar un usuario (ejecuta validaciones y llama al método de actualización)
+  public eventHandler():void {
+
+    if ( this.newEmail != undefined && !this._regex.test( this.newEmail ) ) {
+      this._sweetAlert.invalidNewData();
+      return;
+    }
+
+    this._saveChanges();
+  }
+
   // Almacena los datos elfmulario en un variable para llamar al método que ejecuta una petición HTTP a la API parar actualizar el usuario
-  public saveChanges(): void {
+  private _saveChanges(): void {
+
     this._editedUserInfo = {
       userId:     this._arrData.userId,
       newRole:    Number(this.selectedRole),
       newEmail:   this.newEmail,
+      
       newStatus:  Number(this.selectedStatus),
     }
 
@@ -87,7 +101,11 @@ export class PopUpEditUserComponent implements OnInit {
     this._userHandler.updateUser( this._editedUserInfo ).subscribe(
       (data) => {
         this._sweetAlert.successfulUpdate( data.message );
+        // Reseteo del formulario
         this.userUpdated = true;
+        this.newEmail = '';
+        this.selectedRole = '';
+        this.selectedStatus = '';
       }
     );
   }
