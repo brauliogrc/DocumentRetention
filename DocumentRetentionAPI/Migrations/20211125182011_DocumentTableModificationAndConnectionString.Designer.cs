@@ -4,14 +4,16 @@ using DocumentRetentionAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DocumentRetentionAPI.Migrations
 {
     [DbContext(typeof(DRDBContext))]
-    partial class DRDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211125182011_DocumentTableModificationAndConnectionString")]
+    partial class DocumentTableModificationAndConnectionString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,9 +87,6 @@ namespace DocumentRetentionAPI.Migrations
                     b.Property<long>("CreationUser")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("DocumentComment")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("DocumentCreationAt")
                         .HasColumnType("datetime2");
 
@@ -112,6 +111,9 @@ namespace DocumentRetentionAPI.Migrations
 
                     b.Property<DateTime>("DocumentUpdateAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DocummentComment")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IDDT")
                         .HasColumnType("int");

@@ -9,7 +9,7 @@ namespace DocumentRetentionAPI.Models
     public class Documents
     {
         [Key]
-        public int IDDocument { get; set; } //Auto
+        public int IDDocument { get; set; }
 
         [Required]
         [MaxLength(80)]
@@ -17,20 +17,22 @@ namespace DocumentRetentionAPI.Models
 
         [Required]
         [MaxLength(280)]
-        public string DocumentPath { get; set; }    //Auto
+        public string DocumentPath { get; set; }
 
         public DateTime? DocumentStartDate { get; set; }
 
         public DateTime? DocumentDueDate { get; set; }
 
         [Required]
-        public DateTime DocumentUpdateAt { get; set; }  //Auto
+        public DateTime DocumentUpdateAt { get; set; }
 
         [Required]
-        public DateTime DocumentCreationAt { get; set; }    //Auto
+        public DateTime DocumentCreationAt { get; set; }
+
+        public string? DocumentComment { get; set; }
 
         [Required]
-        public bool DocumentStatus { get; set; }    //Auto
+        public bool DocumentStatus { get; set; }
 
 
         // Relación 1:N con tabla "Processes"

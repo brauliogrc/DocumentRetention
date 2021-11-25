@@ -35,6 +35,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ShowCommentsComponent } from '../shared/popups/show-comments/show-comments.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ToUpperCasePipe,
     PopUpEditUserComponent,
     PopUpCreateUserComponent,
+    ShowCommentsComponent,
   ],
   imports: [
     CommonModule,

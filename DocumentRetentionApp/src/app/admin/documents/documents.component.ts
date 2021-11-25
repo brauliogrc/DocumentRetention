@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TableServiceService } from '@shared/services/table/table-service.service';
 import { docsTable } from '@shared/interfaces/tablesInterface';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { PopUpEditDocComponent } from '../pop-ups/documents/pop-up-edit-doc/pop-up-edit-doc.component';
 import { DocumentsHandlerService } from '@shared/services/documentshandler/documents-handler.service';
 import { SweetAlertsService } from '../../shared/services/alerts/sweet-alerts.service';
+import { ShowCommentsComponent } from '@shared/popups/show-comments/show-comments.component';
 
 @Component({
   selector: 'app-documents',
@@ -64,5 +65,9 @@ export class DocumentsComponent implements OnInit {
     //     console.log(data);
     //   }
     // )
+  }
+
+  public showComments( docName: string, comment: string ): void {
+    const fialogRef = this._dialog.open(ShowCommentsComponent, { width: '40%', height: '78%', data: { docName, comment } });
   }
 }

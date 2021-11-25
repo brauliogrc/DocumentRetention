@@ -54,7 +54,7 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                     // Datos generados automáticamente
                     DocumentCreationAt = DateTime.Now,
                     DocumentStatus = true,
-
+                    DocumentComment = null,
                 };
 
                 // Obtener el nombre del owner del documento
@@ -88,6 +88,7 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
         {
             OwnerDataHelper ownerDataHelper = new OwnerDataHelper(_conf);
             bool valid = false;
+            string changeTracking = DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + "\n";
             string aux;
             try
             {
@@ -105,46 +106,54 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                     doc.ownerEmployNum = employeeNumber;
 
                     doc.ownerName = ownerDataHelper.getOwnerData(employeeNumber);
+                    changeTracking += "*Cambio del propietario del documento\n";
                 }
                 if ( updateDcuments.newStatus != null )
                 {
                     valid = true;
                     string status = updateDcuments.newStatus.ToString();
                     doc.DocumentStatus = Convert.ToBoolean( Convert.ToInt32( status ) );
+                    changeTracking += "*Cambio de status del documento\n";
                 }
                 if ( updateDcuments.newProcess != null )
                 {
                     valid = true;
                     aux = updateDcuments.newProcess.ToString();
                     doc.IDProcess = Int32.Parse( aux );
+                    changeTracking += "*Cambio del proceso del documento\n";
                 }
                 if ( updateDcuments.newProject != null )
                 {
                     valid = true;
                     aux = updateDcuments.newProject.ToString();
                     doc.IDProject = Int32.Parse( aux );
+                    changeTracking += "*Cambio del projecto del documento\n";
                 }
                 if ( updateDcuments.newDocType != null )
                 {
                     valid = true;
                     aux = updateDcuments.newDocType.ToString();
                     doc.IDDT = Int32.Parse( aux );
+                    changeTracking += "*Cambio del tipo de documento\n";
                 }
                 if (updateDcuments.newDueDate != null)
                 {
                     valid = true;
                     aux = updateDcuments.newDueDate.ToString();
                     doc.DocumentDueDate = DateTime.Parse( aux );
+                    changeTracking += "*Cambio de fecha de vencimiento del documento\n";
                 }
                 if ( updateDcuments.newStartDate != null )
                 {
                     valid = true;
                     aux = updateDcuments.newStartDate.ToString();
                     doc.DocumentStartDate = DateTime.Parse( aux );
+                    changeTracking += "*Cambio de fecha de inicio del documento\n";
                 }
 
                 if ( valid )
                 {
+                    doc.DocumentComment = changeTracking;
                     _context.Documents.Update(doc);
                     await _context.SaveChangesAsync();
                     return Ok(new { message = $"Documento actualizado correctamente" });

@@ -26,7 +26,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
 
         // Obención de los documentos existentes en la base de datos para ser mostrados en la tabla del
         // componente "Doc-Viewer". Visualización del Admin
-        [HttpGet] [Route("adminTable")] [Authorize(Policy = "Adm")]
+        [HttpGet] [Route("adminTable")] [AllowAnonymous]//[Authorize(Policy = "Adm")]
         public async Task<ActionResult> adminTable()
         {
             try
@@ -52,6 +52,8 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     doc.DocumentDueDate,
                                     doc.ownerName,
                                     doc.DocumentStatus,
+                                    doc.DocumentUpdateAt,
+                                    doc.DocumentComment,
                                     // Datos del proceso
                                     process.IDProcess,
                                     process.ProcessName,
