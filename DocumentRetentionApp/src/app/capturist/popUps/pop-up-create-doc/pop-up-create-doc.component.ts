@@ -28,6 +28,7 @@ export class PopUpCreateDocComponent implements OnInit {
   
   // Variables que contienen los valores del form
   // public docName:           string;
+  public version:           string;   // Versión del documento
   public dueDate:           Date;     // Fecha de fin seleccionada
   public startDate:         Date;     // Fecha de inicio del documetos selecionada
   public selectedDocType:   string;   // ID del tipo de documento seleccionado
@@ -94,9 +95,12 @@ export class PopUpCreateDocComponent implements OnInit {
     this._newDocData.append('project',        String( this.selectedProject ) );
     this._newDocData.append('startDate',      this._datePipe.transform( this.startDate, 'yyyy-MM-dd' ) );
     this._newDocData.append('creationUser',   String( this._crypt.userIDUser ) );
+    this._newDocData.append('version',        this.version);
     this._newDocData.append('file',           this._file );
     
-    console.log('numero del owner', this.selectedOwner);
+    // console.log('numero del owner', this.selectedOwner);
+    console.log('La versión: ', this.version);
+    
     
     if ( this._validData() ) {
       this._registerDocument();

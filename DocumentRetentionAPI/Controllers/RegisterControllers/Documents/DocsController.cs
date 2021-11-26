@@ -49,7 +49,7 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                     IDProcess = Int32.Parse(newDoc.process),
                     IDProject = Int32.Parse(newDoc.project),
                     IDDT = Int32.Parse(newDoc.docType),
-                    // DocumentVersion = newDoc.version
+                    DocumentVersion = newDoc.version,
                     CreationUser = Int64.Parse(newDoc.creationUser),
 
                     // Datos generados automáticamente
@@ -63,7 +63,7 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
 
                 // Validación del nombre del archivo y almacenamiento/registro del mismo
                 //pathAndName = fsh.saveFiles(newDoc.file, newDoc.process, newDoc.project);
-                pathAndName = fsh.saveFiles(newDoc.file/*, version */);
+                pathAndName = fsh.saveFiles(newDoc.file, newDoc.version);
                 if (pathAndName == null)
                 {
                     return BadRequest(new { message = $"Ha ocurrido un error al almacenar el archivo ajunto. El archivo no es valido o el nombre del archivo ya se encuentra registrado" });

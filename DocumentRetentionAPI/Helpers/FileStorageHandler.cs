@@ -22,7 +22,7 @@ namespace DocumentRetentionAPI.Helpers
             _conf = conf;
         }
 
-        public string[]? saveFiles(IFormFile doc /*, string version */)
+        public string[]? saveFiles(IFormFile doc, string version)
         {
             // Guardado del archivo adjunto
             var file = doc;
@@ -46,10 +46,15 @@ namespace DocumentRetentionAPI.Helpers
                     string extencion = Path.GetExtension(file.FileName).Substring(1);
                     string name = fileName.Split('.')[0];
 
-                    //if ( version == null ) string newName = name;
-                    //else string newName = name + ":_" + version;
+                    // Definiendo el nuevo nombre del documento
+                    string newName;
+                    if (version == null) newName = name;
+                    else
+                    {
+                        version = version.Replace(' ', '_');
+                        newName = name + '_' + version;
+                    }
 
-                    string newName = name + ":_"/* version */;
                     // newPath = pathToSave + '\\' + fileName;
                     newPath = pathToSave + '\\' + newName + '.' + extencion;
 

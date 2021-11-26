@@ -36,7 +36,7 @@ export class DocsCreationComponent implements OnInit {
 
   // Método quemuestra el PopUp para la creación de un nuevo documento
   public popUpDocumentRegister (): void {
-    const dialogRef = this._dialog.open(PopUpCreateDocComponent, {panelClass: 'panel',width: '40%', height: '78%'});
+    const dialogRef = this._dialog.open(PopUpCreateDocComponent, {panelClass: 'panel',width: '40%', height: '85%'});
     dialogRef.afterClosed().subscribe(
       (res) => {
         console.log(res);
