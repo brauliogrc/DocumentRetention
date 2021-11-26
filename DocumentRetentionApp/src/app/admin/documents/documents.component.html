@@ -16,6 +16,7 @@
                 <th>UID usuario</th>
                 <th>Tipo doc</th>
                 <th>Modificado</th>
+                <th>Versión</th>
                 <th>Comentario</th>
                 <th>Acciones</th>
             </tr>
@@ -34,6 +35,7 @@
                 <td>{{ docsList.uid }}</td>
                 <td>{{ docsList.dtName }}</td>
                 <td>{{ docsList.documentUpdateAt | date: shortDate }}</td>
+                <td>{{ docsList.documentVersion }}</td>
                 <td>
                     <div *ngIf="docsList.documentComment != null" class="button-section">
                         <button pButton

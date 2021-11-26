@@ -54,6 +54,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     doc.DocumentStatus,
                                     doc.DocumentUpdateAt,
                                     doc.DocumentComment,
+                                    doc.DocumentVersion,
                                     // Datos del proceso
                                     process.IDProcess,
                                     process.ProcessName,
@@ -111,6 +112,8 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     doc.DocumentStartDate,
                                     doc.DocumentDueDate,
                                     doc.ownerName,
+                                    doc.DocumentUpdateAt,
+                                    doc.DocumentVersion,
                                     // Datos del proceso
                                     process.IDProcess,
                                     process.ProcessName,

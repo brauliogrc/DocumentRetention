@@ -15,6 +15,7 @@
                 <th *ngIf="this.isLogged && this.userRole === 1">Usuario creación</th>
                 <th *ngIf="this.isLogged && this.userRole === 1">UID usuario</th>
                 <th>Tipo doc</th>
+                <th>Versión</th>
                 <th *ngIf="this.isLogged && this.userRole === 1">Comentario</th>
                 <th>Archivo</th>
             </tr>
@@ -32,6 +33,7 @@
                 <td *ngIf="this.isLogged && this.userRole === 1">{{ docsList.userName }}</td>
                 <td *ngIf="this.isLogged && this.userRole === 1">{{ docsList.uid }}</td>
                 <td>{{ docsList.dtName }}</td>
+                <td>{{ docsList.documentVersion }}</td>
                 <td *ngIf="this.isLogged && this.userRole === 1">
                     <div *ngIf="docsList.documentComment != null" class="button-section">
                         <button pButton

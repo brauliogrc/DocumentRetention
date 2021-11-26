@@ -109,6 +109,7 @@ export class ShowResultsComponent implements OnInit {
     this._router.navigate(['home/firstView/pdfViewer']);
   }
 
+  // Visualizacio´n del popup con la información de los cambios realizados en el documento
   public showComments( docName: string, comment: string, modifyDate: string ): void {
     const fialogRef = this._dialog.open(ShowCommentsComponent, { width: '40%', height: '46%', data: { docName, comment, modifyDate } });
   }

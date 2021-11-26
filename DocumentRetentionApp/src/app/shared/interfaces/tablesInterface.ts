@@ -6,6 +6,7 @@ export interface docsTable {
     documentUpdateAt:   string; // Se colocó como string para fines de facilitar la comparación de fechas
     documentStatus:     boolean;
     documentComment:    string;
+    documentVersion:    string;
     ownerName:          string;
     idProcess:          number;
     processName:        string;
