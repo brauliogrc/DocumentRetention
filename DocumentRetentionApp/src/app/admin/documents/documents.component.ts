@@ -67,7 +67,7 @@ export class DocumentsComponent implements OnInit {
     // )
   }
 
-  public showComments( docName: string, comment: string ): void {
-    const fialogRef = this._dialog.open(ShowCommentsComponent, { width: '40%', height: '78%', data: { docName, comment } });
+  public showComments( docName: string, comment: string, modifyDate: string ): void {
+    const fialogRef = this._dialog.open(ShowCommentsComponent, { width: '40%', height: '46%', data: { docName, comment, modifyDate } });
   }
 }

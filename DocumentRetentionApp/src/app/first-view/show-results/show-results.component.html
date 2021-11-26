@@ -15,6 +15,7 @@
                 <th *ngIf="this.isLogged && this.userRole === 1">Usuario creación</th>
                 <th *ngIf="this.isLogged && this.userRole === 1">UID usuario</th>
                 <th>Tipo doc</th>
+                <th *ngIf="this.isLogged && this.userRole === 1">Comentario</th>
                 <th>Archivo</th>
             </tr>
         </ng-template>
@@ -31,6 +32,15 @@
                 <td *ngIf="this.isLogged && this.userRole === 1">{{ docsList.userName }}</td>
                 <td *ngIf="this.isLogged && this.userRole === 1">{{ docsList.uid }}</td>
                 <td>{{ docsList.dtName }}</td>
+                <td *ngIf="this.isLogged && this.userRole === 1">
+                    <div *ngIf="docsList.documentComment != null" class="button-section">
+                        <button pButton
+                            icon="pi pi-book"
+                            class="p-button-rounded p-button-help p-button-text"
+                            (click)="showComments(docsList.documentName, docsList.documentComment, docsList.documentUpdateAt)"
+                        ></button>
+                    </div>
+                </td>
                 <td>
                     <p-button icon="pi pi-file-pdf" iconPos="left" (click)="showDocuments(docsList.documentName)"></p-button>
                 </td>

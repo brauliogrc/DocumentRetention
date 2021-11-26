@@ -26,6 +26,13 @@ export class TablesFiltersHelper {
         })
     }
 
+    // TODO: Eliminar    
+    public formatDate = ( date: string ): string => {
+        let arr: string[] =  date.split("T");
+        date = arr[0];
+        return date;
+    }
+
     // Concatenación del resultrado de filtrar por medio de cada parametro
     private _arrayConcat = ( arr1: docsTable[] ): void => {
         // console.log('_arrayConcat');

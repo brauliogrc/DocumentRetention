@@ -22,7 +22,7 @@ namespace DocumentRetentionAPI.Helpers
             _conf = conf;
         }
 
-        public string[]? saveFiles(IFormFile doc, string process, string project)
+        public string[]? saveFiles(IFormFile doc /*, string version */)
         {
             // Guardado del archivo adjunto
             var file = doc;
@@ -45,8 +45,11 @@ namespace DocumentRetentionAPI.Helpers
                     // cambiando el nombre al archivo
                     string extencion = Path.GetExtension(file.FileName).Substring(1);
                     string name = fileName.Split('.')[0];
-                    string newName = name + '_' + this.getProcessName( process ) + '_' + this.getProjectName( project );
-                    // newPath = pathToSave + '\\' + newName + '.' + extencion;             BORRAR
+
+                    //if ( version == null ) string newName = name;
+                    //else string newName = name + ":_" + version;
+
+                    string newName = name + ":_"/* version */;
                     // newPath = pathToSave + '\\' + fileName;
                     newPath = pathToSave + '\\' + newName + '.' + extencion;
 
@@ -98,7 +101,7 @@ namespace DocumentRetentionAPI.Helpers
             }
         }
 
-        // Busqueda del nombre del proyecto para concatenarlo al nombre del documento
+        // Busqueda del nombre del proyecto para concatenarlo al nombre del documento       EN DESUSO
         private string getProjectName(string idProject)
         {
             try
@@ -117,7 +120,7 @@ namespace DocumentRetentionAPI.Helpers
             }
         }
 
-        // Busqueda del nombre del proceso para concatenarlo al nombre del documento
+        // Busqueda del nombre del proceso para concatenarlo al nombre del documento        EN DESUSO
         private string getProcessName(string idProcess)
         {
             try

@@ -1,7 +1,12 @@
-<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">{{ docName }}</h1>
-<mat-dialog-content>
-    <p>{{ comment }}</p>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button pButton label="Cerrar" (click)="cerrarPopUp()" class="p-button-danger"></button>
-</mat-dialog-actions>
+<div class="content">
+    <h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">{{ docName }}</h1>
+    <h3 style="font-family: typo-grotesk-rounded; font-weight: bold;">Fecha de modificación: {{ modifyDate }}</h3>
+    <mat-dialog-content class="body">
+        <ul>
+            <li *ngFor="let change of comment" > {{ change }} </li>
+        </ul>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button pButton label="Cerrar" (click)="cerrarPopUp()" class="p-button-danger"></button>
+    </mat-dialog-actions>
+</div>

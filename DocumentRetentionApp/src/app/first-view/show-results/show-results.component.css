@@ -1,3 +1,8 @@
 .results {
     height: 100%;
 }
+.button-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

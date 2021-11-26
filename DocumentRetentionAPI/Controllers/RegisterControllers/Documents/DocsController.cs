@@ -49,6 +49,7 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                     IDProcess = Int32.Parse(newDoc.process),
                     IDProject = Int32.Parse(newDoc.project),
                     IDDT = Int32.Parse(newDoc.docType),
+                    // DocumentVersion = newDoc.version
                     CreationUser = Int64.Parse(newDoc.creationUser),
 
                     // Datos generados automáticamente
@@ -61,7 +62,8 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                 addDocument.ownerName = ownerDataHelper.getOwnerData(newDoc.ownerEmployeeNumber);
 
                 // Validación del nombre del archivo y almacenamiento/registro del mismo
-                pathAndName = fsh.saveFiles(newDoc.file, newDoc.process, newDoc.project);
+                //pathAndName = fsh.saveFiles(newDoc.file, newDoc.process, newDoc.project);
+                pathAndName = fsh.saveFiles(newDoc.file/*, version */);
                 if (pathAndName == null)
                 {
                     return BadRequest(new { message = $"Ha ocurrido un error al almacenar el archivo ajunto. El archivo no es valido o el nombre del archivo ya se encuentra registrado" });
@@ -88,7 +90,8 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
         {
             OwnerDataHelper ownerDataHelper = new OwnerDataHelper(_conf);
             bool valid = false;
-            string changeTracking = DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + "\n";
+            // string changeTracking = DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Year.ToString() + "\n";
+            string changeTracking = "";
             string aux;
             try
             {
@@ -106,54 +109,55 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                     doc.ownerEmployNum = employeeNumber;
 
                     doc.ownerName = ownerDataHelper.getOwnerData(employeeNumber);
-                    changeTracking += "*Cambio del propietario del documento\n";
+                    changeTracking += "Cambio del propietario del documento,";
                 }
                 if ( updateDcuments.newStatus != null )
                 {
                     valid = true;
                     string status = updateDcuments.newStatus.ToString();
                     doc.DocumentStatus = Convert.ToBoolean( Convert.ToInt32( status ) );
-                    changeTracking += "*Cambio de status del documento\n";
+                    changeTracking += "Cambio de status del documento,";
                 }
                 if ( updateDcuments.newProcess != null )
                 {
                     valid = true;
                     aux = updateDcuments.newProcess.ToString();
                     doc.IDProcess = Int32.Parse( aux );
-                    changeTracking += "*Cambio del proceso del documento\n";
+                    changeTracking += "Cambio del proceso del documento,";
                 }
                 if ( updateDcuments.newProject != null )
                 {
                     valid = true;
                     aux = updateDcuments.newProject.ToString();
                     doc.IDProject = Int32.Parse( aux );
-                    changeTracking += "*Cambio del projecto del documento\n";
+                    changeTracking += "Cambio del projecto del documento,";
                 }
                 if ( updateDcuments.newDocType != null )
                 {
                     valid = true;
                     aux = updateDcuments.newDocType.ToString();
                     doc.IDDT = Int32.Parse( aux );
-                    changeTracking += "*Cambio del tipo de documento\n";
+                    changeTracking += "Cambio del tipo de documento,";
                 }
                 if (updateDcuments.newDueDate != null)
                 {
                     valid = true;
                     aux = updateDcuments.newDueDate.ToString();
                     doc.DocumentDueDate = DateTime.Parse( aux );
-                    changeTracking += "*Cambio de fecha de vencimiento del documento\n";
+                    changeTracking += "Cambio de fecha de vencimiento del documento,";
                 }
                 if ( updateDcuments.newStartDate != null )
                 {
                     valid = true;
                     aux = updateDcuments.newStartDate.ToString();
                     doc.DocumentStartDate = DateTime.Parse( aux );
-                    changeTracking += "*Cambio de fecha de inicio del documento\n";
+                    changeTracking += "Cambio de fecha de inicio del documento,";
                 }
 
                 if ( valid )
                 {
                     doc.DocumentComment = changeTracking;
+                    doc.DocumentUpdateAt = DateTime.Now;
                     _context.Documents.Update(doc);
                     await _context.SaveChangesAsync();
                     return Ok(new { message = $"Documento actualizado correctamente" });
@@ -181,6 +185,7 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                 }
                 
                 document.DocumentStatus = false;
+                document.DocumentComment = "Cambio de status del documento,";
                 document.DocumentUpdateAt = DateTime.Now;
 
                 _context.Documents.Update(document);

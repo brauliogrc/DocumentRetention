@@ -29,6 +29,9 @@ namespace DocumentRetentionAPI.Models
         [Required]
         public DateTime DocumentCreationAt { get; set; }
 
+        [MaxLength(30)]
+        public string? DocumentVersion { get; set; }
+
         public string? DocumentComment { get; set; }
 
         [Required]

@@ -18,6 +18,8 @@ namespace DocumentRetentionAPI.Helpers
 
         public string project { get; set; }
 
+        public string? version { get; set; }
+
         public string startDate { get; set; }
 
         public string creationUser { get; set; }

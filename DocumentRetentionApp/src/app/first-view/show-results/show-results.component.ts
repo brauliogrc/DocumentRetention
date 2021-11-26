@@ -4,10 +4,12 @@ import { TableServiceService } from '@shared/services/table/table-service.servic
 import { EncryptionAndDecryptionService } from '@shared/services/encryptionanddecryption/encryption-and-decryption.service';
 import { docsTable } from '@shared/interfaces/tablesInterface';
 import { TablesFiltersHelper } from '@app/shared/helpers/tableFiltersHelper';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Router } from '@angular/router';
 import { ConnectShowPdfService } from '@shared/services/connectshowresultpdfviewer/connect-show-pdf.service';
 import { AuthSericeService } from '@auth/autServices/auth-serice.service';
+import { ShowCommentsComponent } from '@shared/popups/show-comments/show-comments.component'
 
 @Component({
   selector: 'app-show-results',
@@ -21,6 +23,7 @@ export class ShowResultsComponent implements OnInit {
 
   constructor(
     private _router: Router,
+    private _dialog: MatDialog,
     private _auth: AuthSericeService,
     private _connShowPdf: ConnectShowPdfService,
     private _tableService: TableServiceService,
@@ -104,5 +107,9 @@ export class ShowResultsComponent implements OnInit {
     
     this._connShowPdf.setFileName(docName);
     this._router.navigate(['home/firstView/pdfViewer']);
+  }
+
+  public showComments( docName: string, comment: string, modifyDate: string ): void {
+    const fialogRef = this._dialog.open(ShowCommentsComponent, { width: '40%', height: '46%', data: { docName, comment, modifyDate } });
   }
 }
