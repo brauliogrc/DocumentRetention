@@ -58,6 +58,9 @@ namespace DocumentRetentionAPI.Models
         public Users user { get; set; }
 
 
+        /// <summary>
+        /// Eliminar campos
+        /// </summary>
         // Datos del owner del documento
         [Required]
         public long ownerEmployNum { get; set; }
