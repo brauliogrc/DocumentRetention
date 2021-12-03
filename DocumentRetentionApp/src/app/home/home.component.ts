@@ -65,44 +65,44 @@ export class HomeComponent implements OnInit {
         icon: 'pi pi-key',
         items: [
           {
-            label: 'Users',
+            label: 'Usuarios',
             icon: 'pi pi-user-edit',
             routerLink: 'adm/users'
           },
           {
-            label: 'Processes',
+            label: 'Procesos',
             icon: 'pi pi-sitemap',
             routerLink: 'adm/processes'
           },
           {
-            label: 'Projects',
+            label: 'Proyectos',
             icon: 'pi pi-folder-open',
             routerLink: 'adm/projects'
           },
           {
-            label: 'Clients',
+            label: 'Clientes',
             icon: 'pi pi-users',
             routerLink: 'adm/clients'
           },
           {
-            label: 'Doc Type',
+            label: 'Tipos de documentos',
             icon: 'pi pi-file',
             routerLink: 'adm/docTypes'
           },
           {
-            label: 'Edit documents',
+            label: 'Edición de documentos',
             icon: 'pi pi-pencil',
             routerLink: 'adm/documents'
           }
         ]
       },
       {
-        label: 'Create document',
+        label: 'Registro de documentos',
         icon: 'pi pi-file-pdf',
         routerLink: 'capturist/docCreation'
       },
       {
-        label: 'Search documents',
+        label: 'Búsqueda de documentos',
         icon: 'pi pi-search',
         routerLink: 'firstView'
       }
@@ -113,12 +113,12 @@ export class HomeComponent implements OnInit {
   private _capturistMenu(): void {
     this.menuItems = [
       {
-        label: 'Create document',
+        label: 'Registro de documentos',
         icon: 'pi pi-file-pdf',
         routerLink: 'capturist/docCreation'
       },
       {
-        label: 'Search documents',
+        label: 'Búsqueda de documentos',
         icon: 'pi pi-search',
         routerLink: 'firstView'
       }

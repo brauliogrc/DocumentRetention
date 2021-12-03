@@ -1,0 +1,63 @@
+
+<div class="poup-body">
+    <mat-dialog-content class="form">
+        <h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Editando proceso {{ processName }}</h1>        
+        <div class="form-items">
+            <p class="field-title">Nombre del proceso</p>
+            <input pInputText
+                class="fields"
+                type="email"
+                [(ngModel)]="newName"
+                placeholder="Nombre del proceso"
+            >
+        </div>
+        <div class="form-items">
+            <p class="field-title">Propietario del proceso</p>
+            <input pInputText
+                class="fields"
+                type="text"
+                list="ownerList"
+                [(ngModel)]="selectedOwner"
+            >
+            <datalist id="ownerList">
+                <option *ngFor="let owner of ownerList" value="{{ owner.employeeNumber }}">{{ owner.employeeName }}</option>
+            </datalist>
+        </div>
+        <div class="form-items">
+            <p class="field-title">Status del proceso</p>
+            <input pInputText
+                class="fields"
+                type="text"
+                list="statusList"
+                [(ngModel)]="selectedStatus"
+            >
+            <datalist id="statusList">
+                <option *ngFor="let status of statusMenu" value="{{ status.statusValue }}">{{ status.statusName }}</option>
+            </datalist>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons" >
+        <ng-container *ngIf="!processUpdated; else elseTemplate">
+            <button pButton pRipple
+                type="button"
+                label="Cancelar"
+                class="p-button-danger"
+                (click)="clickCancel()"
+            ></button>
+            <button pButton pRipple
+                type="button"
+                label="Guardar"
+                class="p-button-success"
+                (click)="eventHandler()"
+            ></button>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <button pButton pRipple
+                type="button"
+                label="Cerrar"
+                class="p-button-danger"
+                (click)="clickCancel()"
+            ></button>
+        </ng-template>
+    </mat-dialog-actions>
+</div>

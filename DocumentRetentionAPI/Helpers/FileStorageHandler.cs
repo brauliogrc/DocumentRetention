@@ -30,7 +30,8 @@ namespace DocumentRetentionAPI.Helpers
             var rutaPadre = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
         
             // string pathToSave = _conf.GetValue<string>("PathToSaveInProd");
-            var pathToSave = Path.Combine(rutaPadre, "DocumentRetentionApp\\src\\assets\\Docs");
+            var pathToSave = Path.Combine(rutaPadre, "DocumentRetentionApp\\src\\assets\\Docs");    // desarrollo
+            //var pathToSave = Path.Combine(rutaPadre, "DocumentRetentionApp\\assets\\Docs");      // producción
 
             string newPath;
 

@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
+// import { environment } from '@env/environment.prod';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';
@@ -8,6 +9,7 @@ import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encry
 import { docsTable } from '@shared/interfaces/tablesInterface';
 import { userList } from '@shared/interfaces/userInterfaces';
 import { filterDocs } from '@shared/interfaces/fieldsInterfaces';
+import { processesList } from '@shared/interfaces/processesInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,7 @@ export class TableServiceService {
   private _userTable:            string = 'userTable';
   private _adminTable:           string = 'adminTable';
   private _userList:             string = 'getUsersList';
+  private _processList:          string = 'gerProcessesList';
 
   private headers = new HttpHeaders({
     'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
@@ -62,5 +65,16 @@ export class TableServiceService {
         })
       )
   }
+
+  // Peticion a la API para obtener el listado de los procesos
+  public getProcessesList(): Observable<processesList[]> {
+    return this._http.get<processesList[]>( `${environment.API}` + this._controllerRoute + this._processList, { headers: this.headers } )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(this._sweedAlert.errorsHandler(err));
+        })
+      )
+  }
+  
 
 }

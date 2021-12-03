@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
+// import { environment } from '@env/environment.prod';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SweetAlertsService } from '../alerts/sweet-alerts.service';

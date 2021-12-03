@@ -35,6 +35,11 @@
     margin-left: 10px;
 } */
 
+.field-title {
+    margin-bottom: 1px;
+    margin-top: 15px;
+}
+
 .fields {
     width: 60%;
     background-color: #FFFFFF;

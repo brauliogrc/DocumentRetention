@@ -1,4 +1,4 @@
-<p>users works!</p>
+
 <h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Users</h1>
 
 <div class="createUser">
@@ -33,6 +33,7 @@
         </div>
     </div>
 
+    <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()" icon="pi pi-replay" iconPos="left"></p-button>
     <p-table [value]="userList" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>

@@ -1,4 +1,4 @@
-<p>show-results works!</p>
+
 <div class="results" >
     <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()" icon="pi pi-replay" iconPos="left"></p-button>
     <p-table [value]="docsList" responsiveLayout="scroll">
@@ -6,10 +6,10 @@
             <tr>
                 <th>ID doc</th>
                 <th>Nombre doc</th>
-                <th>Due date</th>
-                <th>Start date</th>
+                <th>Vence</th>
+                <th>Comienza</th>
                 <th>Proceso</th>
-                <th>Projecto</th>
+                <th>Proyecto</th>
                 <th>Cliente</th>
                 <th>Propietario</th>
                 <th *ngIf="this.isLogged && this.userRole === 1">Usuario creación</th>

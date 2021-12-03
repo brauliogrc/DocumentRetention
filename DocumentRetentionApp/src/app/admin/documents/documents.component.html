@@ -1,19 +1,19 @@
-<p>documents works!</p>
-<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Documents</h1>
+
+<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Documentos</h1>
 <div class="body">
-    <p-table [value]="docsList" responsiveLayout="scroll">
+    <p-table class="table" [value]="docsList" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
                 <th>ID doc</th>
                 <th>Nombre doc</th>
-                <th>Due date</th>
-                <th>Start date</th>
+                <th>Vence</th>
+                <th>Comienza</th>
                 <th>Proceso</th>
-                <th>Projecto</th>
+                <th>Proyecto</th>
                 <th>Cliente</th>
                 <th>Propietario</th>
                 <th>Usuario creación</th>
-                <th>UID usuario</th>
+                <!-- <th>UID usuario</th> -->
                 <th>Tipo doc</th>
                 <th>Modificado</th>
                 <th>Versión</th>
@@ -32,7 +32,7 @@
                 <td>{{ docsList.clientName }}</td>
                 <td>{{ docsList.ownerName }}</td>
                 <td>{{ docsList.userName }}</td>
-                <td>{{ docsList.uid }}</td>
+                <!-- <td>{{ docsList.uid }}</td> -->
                 <td>{{ docsList.dtName }}</td>
                 <td>{{ docsList.documentUpdateAt | date: shortDate }}</td>
                 <td>{{ docsList.documentVersion }}</td>

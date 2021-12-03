@@ -234,7 +234,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
         // Obtención de la lista de procesos registrados en la DB
         [HttpGet]
         [Route("gerProcessesList")]
-        [AllowAnonymous]
+        [Authorize(Policy = "Adm")]
         public async Task<ActionResult> gerProcessesList()
         {
             try

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
+// import { environment } from '@env/environment.prod';
 import { Observable, throwError } from 'rxjs';
 import { successMessages } from '@shared/interfaces/interfaces';
 import { catchError } from 'rxjs/operators';
@@ -32,7 +33,7 @@ export class UsersHandlerService {
   // 2. Metodo update
   // 3. Metodo delete
   
-  // TODO: Desarrollo del metodo para ejecutar la peticion en la api para crear un nuevo usuario
+  // Petición HTTP a la API para registrar un nuevo documento
   public addNewuser( userData: dataNewUser ): Observable<successMessages>{
     return this._http.post<successMessages>( `${environment.API}` + this._controllerRoute + this._addUser, userData, { headers: this._headers } )
       .pipe(

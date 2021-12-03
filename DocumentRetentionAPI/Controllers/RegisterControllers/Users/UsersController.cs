@@ -28,7 +28,7 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Users
         }
 
         //Registro de un nuevo usuario
-        [HttpPost][Route("addNewUser")][AllowAnonymous]
+        [HttpPost][Route("addNewUser")][Authorize(Policy = "Adm")]
         public async Task<ActionResult> addNewUser( [FromBody] NewUser newUser)
         {
             try

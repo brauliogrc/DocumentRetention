@@ -27,7 +27,7 @@ export class PopUpEditUserComponent implements OnInit {
 
   // Objeto que contendrála nuevainfomación delusuario
   private _editedUserInfo:    editedUserInfo;
-  // // Bandera para modificar los botones del popUp, cambia de estado cuando el usuario es actualizado
+  // Bandera para modificar los botones del popUp, cambia de estado cuando el usuario es actualizado
   public userUpdated: boolean = false;
   private _regex: RegExp = new RegExp('.(@)?conti.+?com');
 

@@ -2,12 +2,14 @@
 
     <mat-dialog-content class="form">
         <div class="formularioReg">
-            <p>Seleccione propietario del documento</p>
+            
             <div class="form-items">
-                <input pInputText
+                <p class="field-title">Seleccione propietario del documento</p>
+                <input pInputText required
                     class="fields"
                     type="text"
                     [(ngModel)]="selectedOwner"
+                    [ngModelOptions]="{standalone: true}"
                     list="ownersList"
                 >
                 <datalist id="ownersList" class="list">
@@ -27,12 +29,13 @@
                     [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
                 ></p-dropdown> -->
             </div>
-            <p>Sleccione projecto</p>
             <div class="form-items">
-                <input pInputText
+                <p class="field-title">Seleccione proyecto</p>
+                <input pInputText required
                     class="fields"
                     type="text"
                     [(ngModel)]="selectedProject"
+                    [ngModelOptions]="{standalone: true}"
                     list="projectList"
                 >
                 <datalist id="projectList">
@@ -52,12 +55,13 @@
                     [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
                 ></p-dropdown> -->
             </div>
-            <p>Sleccione proceso</p>
             <div class="form-items">
-                <input pInputText
+                <p class="field-title">Seleccione proceso</p>
+                <input pInputText required
                     class="fields"
                     type="text"
                     [(ngModel)]="selectedProcess"
+                    [ngModelOptions]="{standalone: true}"
                     list="processList"
                 >
                 <datalist id="processList">
@@ -77,12 +81,13 @@
                     [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
                 ></p-dropdown> -->
             </div>
-            <p>Sleccione tipo del documento</p>
             <div class="form-items">
-                <input pInputText
+                <p class="field-title">Seleccione tipo del documento</p>
+                <input pInputText required
                     class="fields"
                     type="text"
                     [(ngModel)]="selectedDocType"
+                    [ngModelOptions]="{standalone: true}"
                     list="docTypeList"
                 >
                 <datalist id="docTypeList">
@@ -103,44 +108,55 @@
                 ></p-dropdown> -->
             </div>
             <div class="form-items">
-                <p>Versión del documento</p>
+                <p class="field-title">Versión del documento</p>
                 <input pInputText
                     class="fields"
                     type="text"
                     [(ngModel)]="version"
+                    [ngModelOptions]="{standalone: true}"
                 >
             </div>
-            <p>Sleccione fecha de inicio</p>
             <div class="form-items">
+                <p class="field-title">Seleccione fecha de inicio</p>
                 <!-- <p-calendar
                     [(ngModel)]="startDate"
                     [ngModelOptions]="{standalone: true}"
                     placeholder="Seleccione"
                     [showIcon]="true"
                 ></p-calendar> -->
-                <input type="date" pInputText class="fields" [(ngModel)]="startDate">
+                <input pInputText required
+                    type="date"
+                    class="fields"
+                    [(ngModel)]="startDate"
+                    [ngModelOptions]="{standalone: true}"
+                >
             </div>
-            <p>Sleccione fecha de fin</p>
             <div class="form-items">
+                <p class="field-title">Seleccione fecha de fin</p>
                 <!-- <p-calendar
                     [(ngModel)]="dueDate"
                     [ngModelOptions]="{standalone: true}"
                     placeholder="Seleccione"
                     [showIcon]="true"
                 ></p-calendar> -->
-                <input type="date" pInputText class="fields" [(ngModel)]="dueDate">
+                <input pInputText required
+                    type="date"
+                    class="fields"
+                    [(ngModel)]="dueDate"
+                    [ngModelOptions]="{standalone: true}"
+                >
             </div>
             <div class="input-file">
-                <input type="file" style="display: none;" (change)="onFileSelected($event.target.files[0])" #fileUpload
+                <input type="file" required style="display: none;" (change)="onFileSelected($event.target.files[0])" #fileUpload
                 accept=".pdf">
                 <div class="file-upload form-items">
-                    {{ fileName || "No file uploaded yet" }}
+                    {{ fileName || "Ningún archivo seleccionado" }}
                 </div>
                 <button pButton
                     type="button"
                     icon="pi pi-paperclip"
                     iconPos="left"
-                    label="Add file"
+                    label="Añadir archivo"
                     class="upload-btn"
                     (click)="fileUpload.click()"
                 ></button>
@@ -151,7 +167,7 @@
     <mat-dialog-actions class="buttons">
         <ng-container >
             <button pButton pRipple type="button" label="Cancelar" class="p-button-danger" (click)="clickCancel()"></button>
-            <button pButton pRipple type="button" label="Registrar" icon="pi pi-send" iconPos="left" class="p-button-success" (click)="registerDoc()"></button>
+            <button pButton pRipple type="button" label="Registrar" icon="pi pi-send" iconPos="left" class="p-button-success" (click)="validData()"></button>
         </ng-container>
         <!-- <ng-template #elseTemplate>
             <button pButton pRipple type="button" label="Cerrar" class="p-button-danger" (click)="clickCancel()"></button>

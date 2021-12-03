@@ -109,7 +109,13 @@ export class PopUpEditDocComponent implements OnInit {
         this._sweetAlert.successfulUpdate(data.message);
         // this._dialogRef.close();
         this.docupdated = true;
-        // TODO: Resetear el formulario al registrar los cambios
+        this.dueDate          = '';
+        this.startdDate       = '';
+        this.selectedOwner    = '';
+        this.selectedStatus   = '';
+        this.selectedProject  = '';
+        this.selectedProcess  = '';
+        this.selectedDocType  = '';
       }
     )
   }

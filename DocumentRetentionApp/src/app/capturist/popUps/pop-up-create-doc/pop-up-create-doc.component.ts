@@ -75,8 +75,39 @@ export class PopUpCreateDocComponent implements OnInit {
     }
   }
 
+  // Validación de los campos del formulario
+  public validData(): void {
+    if ( (String( this.selectedOwner )) &&
+          (String(this.selectedDocType)) &&
+          (this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' )) &&
+          (String( this.selectedProcess )) &&
+          (String( this.selectedProject )) &&
+          (this._datePipe.transform( this.startDate, 'yyyy-MM-dd' )) &&
+          (String( this._crypt.userIDUser )) &&
+          (this._file)
+     ) {
+       this._dateValidation()
+      // console.log('Datos del nuevo documento correctos');
+     }
+     else {
+       this._sweetAlert.invalidNewData();
+     }
+  }
+
+    // Validación de fechas, dueDate no puede ser menor que startDate
+  private _dateValidation(): void {
+    let isDateValid = this._dateFormat.setNewDate(this.startDate, this.dueDate);
+
+    if ( !isDateValid ) {
+      this._sweetAlert.dateValidationError();
+    }
+    else {
+      this._registerDoc();
+    }
+  }
+
   // Asignación de valores objeto enviado a la API y validación de su contenido
-  public registerDoc(): void {
+  private _registerDoc(): void {
     // this._newDoc = {
     //   docName: this.docName,
     //   docType: this.selectedDocType,
@@ -87,7 +118,7 @@ export class PopUpCreateDocComponent implements OnInit {
     //   creationUser: this._crypt.userIDUser
     // }
     // FIXME: Sujeto a cambios, crear clase auxiliar para filtrar con base en el nombre para obtener el id (Queda a consireción de Mike)
-
+    
     this._newDocData.append('ownerEmployeeNumber',        String( this.selectedOwner ) );
     this._newDocData.append('docType',        String( this.selectedDocType ) );
     this._newDocData.append('dueDate',        this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' ) );
@@ -95,55 +126,43 @@ export class PopUpCreateDocComponent implements OnInit {
     this._newDocData.append('project',        String( this.selectedProject ) );
     this._newDocData.append('startDate',      this._datePipe.transform( this.startDate, 'yyyy-MM-dd' ) );
     this._newDocData.append('creationUser',   String( this._crypt.userIDUser ) );
-    this._newDocData.append('version',        this.version);
     this._newDocData.append('file',           this._file );
-    
-    // console.log('numero del owner', this.selectedOwner);
-    console.log('La versión: ', this.version);
-    
-    
-    if ( this._validData() ) {
-      this._registerDocument();
+   
+    if ( !!this.version ) {
+      // console.log('La versión: ', this.version);
+      this._newDocData.append('version',        this.version);
+      // console.log(this._newDocData.get('version'));
     }
+    
+    // if ( this._validData() ) {
+      this._registerDocument();
+    // }
   }
 
   // Validación de los campos del formulario
-  private _validData(): boolean {
-    let isValid: boolean = false;
-    if ( (String( this.selectedOwner )) &&
-          (String(this.selectedDocType)) &&
-          (this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' )) &&
-          (String( this.selectedProcess )) &&
-          (String( this.selectedProject )) &&
-          (this._datePipe.transform( this.startDate, 'yyyy-MM-dd' )) &&
-          (String( this._crypt.userIDUser )) &&
-          (this._file) &&
-          this._dateVaidation()
-     ) {
-       isValid = true;
-      // console.log('Datos del nuevo documento correctos');
-     }
-     else {
-       this._sweetAlert.invalidNewData();
-     }
+  // private _validData(): boolean {
+  //   let isValid: boolean = false;
+  //   if ( (String( this.selectedOwner )) &&
+  //         (String(this.selectedDocType)) &&
+  //         (this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' )) &&
+  //         (String( this.selectedProcess )) &&
+  //         (String( this.selectedProject )) &&
+  //         (this._datePipe.transform( this.startDate, 'yyyy-MM-dd' )) &&
+  //         (String( this._crypt.userIDUser )) &&
+  //         (this._file) //&&
+  //         // this._dateValidation()
+  //    ) {
+  //      isValid = true;
+  //     // console.log('Datos del nuevo documento correctos');
+  //    }
+  //    else {
+  //      this._sweetAlert.invalidNewData();
+  //    }
 
-     console.log('Validacion del formulario', isValid);
+  //    console.log('Validacion del formulario', isValid);
      
-    return isValid;
-  }
-
-  // Validación de fechas, dueDate no puede ser menor que startDate
-  private _dateVaidation(): boolean {
-
-    let isDateValid = this._dateFormat.setNewDate(this.startDate, this.dueDate);
-
-    if ( !isDateValid ) {
-      this._sweetAlert.dateValidationError();
-      return isDateValid;
-    }
-
-    return isDateValid;
-  }
+  //   return isValid;
+  // }
 
   // Método que ejecuta el registro del documento en la DB
   private _registerDocument = (): void => {
@@ -152,7 +171,12 @@ export class PopUpCreateDocComponent implements OnInit {
         this._sweetAlert.successfulRegistration(data.message);
         console.log('Archivo registrado con exito, mensaje: ', data.message);
         // this.docCreated = true;
-        // TODO: Resetear el formulario al registrar los cambios
+        this.version          = '';
+        this.selectedDocType  = '';
+        this.selectedProject  = '';
+        this.selectedProcess  = '';
+        this.selectedOwner    = '';
+        this._file = null;
       }
     )
   }

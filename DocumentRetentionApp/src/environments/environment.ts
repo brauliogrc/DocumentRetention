@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API: 'https://localhost:44321/api/'
+  API: 'https://localhost:44321/api/',
+  // API: 'http://10.218.205.61:9095/DocumentRetentionAPI/api/',
 };
 
 /*

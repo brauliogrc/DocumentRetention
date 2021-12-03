@@ -28,6 +28,13 @@ export class UsersComponent implements OnInit {
     private _tableService: TableServiceService,
   ) { }
 
+  // 1. llenado de la tabla        
+  // 2. filtrado                   
+  // 3. reseteo del filtrado       
+  // 4. registro de nuevo elemento 
+  // 5. modificación de un elemento
+  // 6. eliminación de un elemento 
+
   private _userTableFilter = new UserTableFilter();
 
   ngOnInit(): void {
@@ -61,6 +68,11 @@ export class UsersComponent implements OnInit {
     this.userList = [...this.back];
     this.userList = this._userTableFilter.usersFilter( this.userList, this._filterData );
     this._filterData = null;
+  }
+
+  // Reseteo del fultrado para mostrar de nuevo todos los usuarios
+  public resetTable(): void {
+    this.userList = [...this.back];
   }
 
   // Método de registro de un nuevo usuario

@@ -1,0 +1,17 @@
+.fields {
+    width: 50%;
+}
+
+.grupo {
+    width: 100%;
+    padding-left: 9%;
+    padding-right: 9%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.button-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

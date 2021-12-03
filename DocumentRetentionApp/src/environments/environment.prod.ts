@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API: 'http://localhost:80/DocumentRetentionAPI/api/'
+  API: 'http://10.218.205.61:9095/DocumentRetentionAPI/api/'
 };

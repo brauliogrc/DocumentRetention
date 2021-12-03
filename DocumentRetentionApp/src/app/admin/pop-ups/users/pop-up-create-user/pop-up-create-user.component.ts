@@ -69,6 +69,7 @@ export class PopUpCreateUserComponent implements OnInit {
 
   // Método que ejecuta el método del servicio para registrar el nuevo usuario en la DB
   private _registerUser(): void {
+    // Obtención de los datos el usuario seleccionado
     let user: ownersAndNewUsers = this.newUsersMenu.find( x => x.employeeUID === this.selectedUserUID );
 
     // Seteo de datos al objeto esperdo por la API

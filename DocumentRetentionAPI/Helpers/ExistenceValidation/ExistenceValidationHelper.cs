@@ -27,5 +27,16 @@ namespace DocumentRetentionAPI.Helpers.ExistenceValidation
 
             return false;
         }
+
+        public bool processExistence(string name)
+        {
+            var processes = (from process in _context.Processes
+                             where process.ProcessName == name
+                             select process).FirstOrDefault();
+
+            if (processes != null) return true;
+
+            return false;
+        }
     }
 }

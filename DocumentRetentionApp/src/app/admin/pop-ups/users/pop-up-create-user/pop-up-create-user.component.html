@@ -2,8 +2,8 @@
 
     <mat-dialog-content class="form">
         <div class="formularioReg">
-            <p>Usuario a registrar</p>
             <div class="form-items">
+                <p class="field-title">Usuario a registrar</p>
                 <input pInputText
                     class="fields"sss
                     type="text"
@@ -13,7 +13,7 @@
                 <datalist id="ownersList" class="list">
                     <option *ngFor="let user of newUsersMenu" value="{{ user.employeeUID }}"> {{ user.employeeName }} </option>
                 </datalist>
-                <!-- <p-dropdown
+                <!-- <p class="field-title"-dropdown
                     name="poject"
                     [options]="ownersList"
                     [(ngModel)]="selectedOwner"
@@ -27,8 +27,8 @@
                     [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
                 ></p-dropdown> -->
             </div>
-            <p>Rol del usuario</p>
             <div class="form-items">
+                <p class="field-title">Rol del usuario</p>
                 <input pInputText
                     class="fields"
                     type="text"
@@ -38,7 +38,7 @@
                 <datalist id="projectList">
                     <option *ngFor="let role of rolesMenu" value="{{ role.idRole }}"> {{ role.roleName }} </option>
                 </datalist>
-                <!-- <p-dropdown
+                <!-- <p class="field-title"-dropdown
                     name="poject"
                     [options]="projectMenu"
                     [(ngModel)]="selectedProject"
