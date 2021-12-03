@@ -1,7 +1,7 @@
 <div class="poup-body">
     <mat-dialog-content class="form">
         <h1 class="field-title" style="font-family: typo-grotesk-rounded; font-weight: bold;">Editando "{{ docName }}"</h1>
-        <div class="form-items">
+        <!-- <div class="form-items">
             <p class="field-title">Propietario</p>
             <input pInputText
                 class="fields"
@@ -12,7 +12,7 @@
             <datalist id="ownersList" class="list">
                 <option *ngFor="let owner of ownersList" value="{{ owner.employeeNumber }}"> {{ owner.employeeName }} </option>
             </datalist>
-            <!-- <p-dropdown
+            <p-dropdown
                 name="owner"
                 [options]="ownersList"
                 [(ngModel)]="selectedOwner"
@@ -24,8 +24,8 @@
                 filterBy="employeeName"
                 [showClear]="true"
                 [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
-            ></p-dropdown> -->
-        </div>
+            ></p-dropdown> 
+        </div> -->
         <div class="form-items">
             <p class="field-title">Estatus del documentos</p>
             <input pInputText

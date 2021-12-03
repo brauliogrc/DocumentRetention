@@ -17,5 +17,4 @@ export interface editedDocInfo {
     newProcess: number;
     newDocType: number;
     newStartDate: string;
-    newOwnerEmployeeNumber:  number;
 }

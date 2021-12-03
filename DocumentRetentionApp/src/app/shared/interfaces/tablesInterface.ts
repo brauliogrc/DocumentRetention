@@ -7,7 +7,7 @@ export interface docsTable {
     documentStatus:     boolean;
     documentComment:    string;
     documentVersion:    string;
-    ownerName:          string;
+    nameOwner:          string;
     idProcess:          number;
     processName:        string;
     idProject:          number;

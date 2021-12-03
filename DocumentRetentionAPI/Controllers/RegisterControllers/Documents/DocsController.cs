@@ -35,7 +35,6 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
         [Authorize(Policy = "CapturistRole")]
         public async Task<IActionResult> addNewDocument([FromForm] NewDocument newDoc)
         {
-            OwnerDataHelper ownerDataHelper = new OwnerDataHelper(_conf);
             string[] pathAndName;
             string successMessage;
             try
@@ -43,7 +42,6 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                 var addDocument = new DocumentRetentionAPI.Models.Documents()
                 {
                     // Datos traidos del formulario
-                    ownerEmployNum = newDoc.ownerEmployeeNumber,
                     DocumentStartDate = DateTime.Parse(newDoc.startDate),
                     DocumentDueDate = DateTime.Parse(newDoc.dueDate),
                     IDProcess = Int32.Parse(newDoc.process),
@@ -57,9 +55,6 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                     DocumentStatus = true,
                     DocumentComment = null,
                 };
-
-                // Obtener el nombre del owner del documento
-                addDocument.ownerName = ownerDataHelper.getOwnerData(newDoc.ownerEmployeeNumber);
 
                 // Validación del nombre del archivo y almacenamiento/registro del mismo
                 //pathAndName = fsh.saveFiles(newDoc.file, newDoc.process, newDoc.project);
@@ -88,7 +83,6 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
         [HttpPatch][Route("updateDocument")][Authorize(Policy = "Adm")]
         public async Task<IActionResult> updateDocument([FromBody] UpdateDocument updateDcuments)
         {
-            OwnerDataHelper ownerDataHelper = new OwnerDataHelper(_conf);
             bool valid = false;
             // string changeTracking = DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Year.ToString() + "\n";
             string changeTracking = "";
@@ -100,16 +94,6 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Documents
                 if ( doc == null )
                 {
                     return NotFound( new { message = $"No se ha encontrado el documento especificado dentro de la base de datos" } );
-                }
-                if ( updateDcuments.newOwnerEmployeeNumber != null )
-                {
-                    valid = true;
-                    string ownerEmployeeNumber = updateDcuments.newOwnerEmployeeNumber.ToString();
-                    long employeeNumber = Int64.Parse(ownerEmployeeNumber);
-                    doc.ownerEmployNum = employeeNumber;
-
-                    doc.ownerName = ownerDataHelper.getOwnerData(employeeNumber);
-                    changeTracking += "Cambio del propietario del documento,";
                 }
                 if ( updateDcuments.newStatus != null )
                 {

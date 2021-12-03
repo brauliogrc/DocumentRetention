@@ -4,14 +4,16 @@ using DocumentRetentionAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DocumentRetentionAPI.Migrations
 {
     [DbContext(typeof(DRDBContext))]
-    partial class DRDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211203185759_DeleteOwnerFieldsFromTableDocuments")]
+    partial class DeleteOwnerFieldsFromTableDocuments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

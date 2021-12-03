@@ -52,7 +52,6 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     doc.DocumentName,
                                     doc.DocumentStartDate,
                                     doc.DocumentDueDate,
-                                    doc.ownerName,
                                     doc.DocumentStatus,
                                     doc.DocumentUpdateAt,
                                     doc.DocumentComment,
@@ -60,6 +59,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     // Datos del proceso
                                     process.IDProcess,
                                     process.ProcessName,
+                                    process.NameOwner,
                                     // Datos del projecto
                                     projetc.IDProject,
                                     projetc.ProjectName,
@@ -115,12 +115,12 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
                                     doc.DocumentName,
                                     doc.DocumentStartDate,
                                     doc.DocumentDueDate,
-                                    doc.ownerName,
                                     doc.DocumentUpdateAt,
                                     doc.DocumentVersion,
                                     // Datos del proceso
                                     process.IDProcess,
                                     process.ProcessName,
+                                    process.NameOwner,
                                     // Datos del projecto
                                     projetc.IDProject,
                                     projetc.ProjectName,

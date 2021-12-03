@@ -16,6 +16,11 @@ namespace DocumentRetentionAPI.Helpers
             _conf = conf;
         }
 
+        /// <summary>
+        /// EN DES USO
+        /// </summary>
+        /// <param name="employeeNumber"></param>
+        /// <returns></returns>
         // Busqueda de nombre del propietario del documento en base a su número de empleado
         public string? getOwnerData(long employeeNumber)
         {

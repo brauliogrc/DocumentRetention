@@ -25,13 +25,11 @@ export class PopUpEditDocComponent implements OnInit {
   public docTypeMenu:   docTypeField[];     // Lista de los tipos de documetnos
   public projectMenu:   projectField[];     // Lista de los projectos
   public processMenu:   processField[];     // Lista de los procesos
-  public ownersList:    ownersAndNewUsers[];    // Lista de los owners del documento
   public statusMenu:    generalStatus[];    // Lista de los estatus de los documentos
   
   // Variable que contiene elos valores del form
   public dueDate:         string;   // Fecha de fin seleccionada
   public startdDate:      string;   // Fecha de inicio del documetos selecionada
-  public selectedOwner:   string;   // Número de empleado del owner seleccionado
   public selectedStatus:  string;   // ID del status seleccionado (1->habilidato->true, 0->deshabilitado->false)
   public selectedProject: string;   // ID del projecto seleccionado
   public selectedProcess: string;   // ID del proceso seleccionado
@@ -78,7 +76,6 @@ export class PopUpEditDocComponent implements OnInit {
       newProcess:    Number(this.selectedProcess),
       newProject:    Number(this.selectedProject),
       newStartDate:  this.startdDate,
-      newOwnerEmployeeNumber:   Number(this.selectedOwner),
     }
 
     console.log('Start date: ', this.startdDate, ' Due date: ', this.dueDate);
@@ -111,7 +108,6 @@ export class PopUpEditDocComponent implements OnInit {
         this.docupdated = true;
         this.dueDate          = '';
         this.startdDate       = '';
-        this.selectedOwner    = '';
         this.selectedStatus   = '';
         this.selectedProject  = '';
         this.selectedProcess  = '';
@@ -140,15 +136,6 @@ export class PopUpEditDocComponent implements OnInit {
     this._fieldsService.getGeneralDocTypeField().subscribe(
       (data) => {
         this.docTypeMenu = [...data];
-      }
-    );
-    
-    // Ejecución del método de obtención de la lista de propietarios de los documentos
-    this._fieldsService.getOwnersList().subscribe(
-      (data) => {
-        this.ownersList = [...data];
-        console.log(this.ownersList);
-        
       }
     );
 

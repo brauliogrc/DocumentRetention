@@ -15,8 +15,6 @@ namespace DocumentRetentionAPI.Helpers.Interfaces
 
         public int? newStatus { get; set; }
 
-        public long? newOwnerEmployeeNumber { get; set; }
-
         public int? newProcess { get; set; }
 
         public int? newProject { get; set; }

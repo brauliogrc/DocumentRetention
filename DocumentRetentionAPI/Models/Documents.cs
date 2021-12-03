@@ -56,18 +56,5 @@ namespace DocumentRetentionAPI.Models
         // Relación 1:N con tabla "Users"
         public long CreationUser { get; set; }
         public Users user { get; set; }
-
-
-        /// <summary>
-        /// Eliminar campos
-        /// </summary>
-        // Datos del owner del documento
-        [Required]
-        public long ownerEmployNum { get; set; }
-
-        [Required]
-        [MaxLength(85)]     // Cambiar tamaño a 120
-        public string ownerName { get; set; }
-
     }
 }

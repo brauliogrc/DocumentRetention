@@ -23,7 +23,6 @@ export class PopUpCreateDocComponent implements OnInit {
   public docTypeMenu:   docTypeField[];     // Lista de los tipos de documetnos
   public projectMenu:   projectField[];     // Lista de los projectos
   public processMenu:   processField[];     // Lista de los procesos
-  public ownersList:    ownersAndNewUsers[];    // Lista de los owners del documento
 
   
   // Variables que contienen los valores del form
@@ -34,7 +33,6 @@ export class PopUpCreateDocComponent implements OnInit {
   public selectedDocType:   string;   // ID del tipo de documento seleccionado
   public selectedProject:   string;   // ID del projecto seleccionado
   public selectedProcess:   string;   // ID del proceso seleccionado
-  public selectedOwner:     string;   // Número de empleado del owner seleccionado
   
   private _file:             File;
   private _newDocData = new FormData(); // Formato de datos necesatio para enviar un archivo adjunto a la API
@@ -77,8 +75,7 @@ export class PopUpCreateDocComponent implements OnInit {
 
   // Validación de los campos del formulario
   public validData(): void {
-    if ( (String( this.selectedOwner )) &&
-          (String(this.selectedDocType)) &&
+    if (  (String(this.selectedDocType)) &&
           (this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' )) &&
           (String( this.selectedProcess )) &&
           (String( this.selectedProject )) &&
@@ -119,7 +116,6 @@ export class PopUpCreateDocComponent implements OnInit {
     // }
     // FIXME: Sujeto a cambios, crear clase auxiliar para filtrar con base en el nombre para obtener el id (Queda a consireción de Mike)
     
-    this._newDocData.append('ownerEmployeeNumber',        String( this.selectedOwner ) );
     this._newDocData.append('docType',        String( this.selectedDocType ) );
     this._newDocData.append('dueDate',        this._datePipe.transform( this.dueDate, 'yyyy-MM-dd' ) );
     this._newDocData.append('process',        String( this.selectedProcess ) );
@@ -175,7 +171,6 @@ export class PopUpCreateDocComponent implements OnInit {
         this.selectedDocType  = '';
         this.selectedProject  = '';
         this.selectedProcess  = '';
-        this.selectedOwner    = '';
         this._file = null;
       }
     )
@@ -207,13 +202,5 @@ export class PopUpCreateDocComponent implements OnInit {
         
       }
     );
-    // Ejecución del método de obtención de la lista de owners
-    this._fieldsService.getOwnersList().subscribe(
-      (data) => {
-        this.ownersList = [... data];
-        console.log(this.ownersList);
-        
-      }
-    )
   }
 }

@@ -8,8 +8,6 @@ namespace DocumentRetentionAPI.Helpers
 {
     public class NewDocument
     {
-        public long ownerEmployeeNumber { get; set; }
-
         public string docType { get; set; }
 
         public string dueDate { get; set; }
