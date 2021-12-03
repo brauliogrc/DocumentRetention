@@ -30,7 +30,7 @@ export class ProcessesComponent implements OnInit {
   // 2. filtrado - COMPLETE
   // 3. reseteo del filtrado - COMPLETE
   // 4. registro de nuevo elemento - COMPLETE
-  // 5. modificación de un elemento
+  // 5. modificación de un elemento - COMPETE
   // 6. eliminación de un elemento - COMPLETE
 
   private _processFilterTable = new ProcessTableFilter();
@@ -67,7 +67,7 @@ export class ProcessesComponent implements OnInit {
     this._filterData = null;
   }
 
-  // Reseteo del fultrado para mostrar de nuevo todos los procesos
+  // Reseteo del filtrado para mostrar de nuevo todos los procesos
   public resetTable(): void {
     this.processesList = [...this.back];
   }
