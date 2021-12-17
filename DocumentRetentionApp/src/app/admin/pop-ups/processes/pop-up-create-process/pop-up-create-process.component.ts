@@ -33,7 +33,7 @@ export class PopUpCreateProcessComponent implements OnInit {
   // 1. llenado de fields - COMPLETE
   // 2. validaciones - COMPLETE
   // 3. registro - COMPLETE
-  // 4. cerrar opup - COMPLETEñ
+  // 4. cerrar opup - COMPLETE
 
   ngOnInit(): void {
     this._fillDropdowns();
@@ -84,8 +84,7 @@ export class PopUpCreateProcessComponent implements OnInit {
     
     this._processHandler.addNewProcess(newProcess).subscribe(
       (data) => {
-        this.
-        _sweetAlert.successfulRegistration(data.message);
+        this._sweetAlert.successfulRegistration(data.message);
         this.processName = '';
         this.selectedOwner = '';
       }
@@ -93,7 +92,7 @@ export class PopUpCreateProcessComponent implements OnInit {
     
   }
 
-  // Método que cierra el PopUp de creación de usuarios
+  // Método que cierra el PopUp de creación de procesos
   public clickCancel(): void {
     this._dialog.close();
   }

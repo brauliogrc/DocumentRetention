@@ -1,12 +1,12 @@
 
-<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Procesos</h1>
+<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Proyectos</h1>
 
 <div class="createUser">
     <button pButton
         class="p-button-info"
         icon="pi pi-plus"
         iconPos="left"
-        label="Crear nuevo proceso"
+        label="Crear nuevo proyecto"
         (click)="projectRegisterPopUp()"
     ></button>
     <div class="p-grid p-fluid search-panel">
@@ -21,12 +21,12 @@
                 <p-inputNumber
                     class="fields"
                     inputId="integeronly"
-                    placeholder="Ingrese ID del proceso"
+                    placeholder="Ingrese ID del proyecto"
                     [(ngModel)]="projectId"
                 ></p-inputNumber>
                 <input pInputText
                     class="fields"
-                    placeholder="Nombre de proceso"
+                    placeholder="Nombre de proyecto"
                     [(ngModel)]="projectName"
                 >
             </div>
@@ -34,43 +34,41 @@
     </div>
 
     <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()" icon="pi pi-replay" iconPos="left"></p-button>
-    <p-table [value]="processesList" responsiveLayout="scroll">
+    <p-table [value]="projectsList" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Creación</th>
                 <th>Modificación</th>
-                <th>Propietario</th>
+                <th>Cliente</th>
                 <th>Usuario de creación</th>
-                <th>UID usuario</th>
                 <th>Status</th>
                 <th>Acciones</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-processesList>
+        <ng-template pTemplate="body" let-projectsList>
             <tr>
-                <td>{{ processesList.idProcess }}</td>
-                <td>{{ processesList.processName }}</td>
-                <td>{{ processesList.processCreationAt | date: shortDate }}</td>
-                <td>{{ processesList.processUpdaeAt | date: shortDate }}</td>
-                <td>{{ processesList.nameOwner }}</td>
-                <td>{{ processesList.userName }}</td>
-                <td>{{ processesList.uid }}</td>
-                <td>{{ processesList.processStatus | showStatus }}</td>
+                <td>{{ projectsList.idProject }}</td>
+                <td>{{ projectsList.projectName }}</td>
+                <td>{{ projectsList.projectCreationAt | date: shortDate }}</td>
+                <td>{{ projectsList.projecUpdateAt | date: shortDate }}</td>
+                <td>{{ projectsList.clientName }}</td>
+                <td>{{ projectsList.userName }}</td>
+                <td>{{ projectsList.projectStatus | showStatus }}</td>
                 <td>
                     <div class="button-section">
                         <button pButton pRipple
                             type="button"
                             icon="pi pi-pencil"
                             class="p-button-rounded p-button-info p-button-text"
-                            (click)="editProjectPopUp( processesList.idProcess, processesList.processName )"
+                            (click)="editProjectPopUp( projectsList.idProcess, projectsList.processName )"
                         ></button>
-                        <button pButton pRipple *ngIf="processesList.processStatus"
+                        <button pButton pRipple *ngIf="projectsList.projectStatus"
                             type="button"
                             icon="pi pi-trash"
                             class="p-button-rounded p-button-danger p-button-text"
-                            (click)="deleteProject( processesList.idProcess )"
+                            (click)="deleteProject( projectsList.idProcess )"
                         ></button>
                     </div>
                 </td>

@@ -84,7 +84,7 @@ export class ProcessesComponent implements OnInit {
 
   // Muestra el popup para editar la infomcación de un proceso
   public editProcessPopUp( processId: number, processName: string ): void {
-    const dialog = this._dialog.open(PopUpEditProcessComponent, {width: '38%', height: '55%', data: { processId, processName }});
+    const dialog = this._dialog.open(PopUpEditProcessComponent, {width: '38%', height: '50%', data: { processId, processName }});
     dialog.afterClosed().subscribe(
       () => {
         this._fillTable();

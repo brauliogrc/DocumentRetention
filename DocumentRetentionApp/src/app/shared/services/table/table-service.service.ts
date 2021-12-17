@@ -8,8 +8,8 @@ import { SweetAlertsService } from '../alerts/sweet-alerts.service';
 import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encryption-and-decryption.service';
 import { docsTable } from '@shared/interfaces/tablesInterface';
 import { userList } from '@shared/interfaces/userInterfaces';
-import { filterDocs } from '@shared/interfaces/fieldsInterfaces';
 import { processesList } from '@shared/interfaces/processesInterface';
+import  { projectsList } from '@shared/interfaces/projectsIterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,8 @@ export class TableServiceService {
   private _userTable:            string = 'userTable';
   private _adminTable:           string = 'adminTable';
   private _userList:             string = 'getUsersList';
-  private _processList:          string = 'gerProcessesList';
+  private _processList:          string = 'getProcessesList';
+  private _projectsList:         string = 'getProjectList';
 
   private headers = new HttpHeaders({
     'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
@@ -76,5 +77,13 @@ export class TableServiceService {
       )
   }
   
-
+  // Petición a la API para btener el listado de los proyectos
+  public getProjectsList(): Observable<projectsList[]> {
+    return this._http.get<projectsList[]>( `${environment.API}` + this._controllerRoute + this._projectsList, { headers: this.headers } )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError( this._sweedAlert.errorsHandler(err) );
+        })
+      )
+  }
 }

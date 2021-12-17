@@ -37,6 +37,8 @@ export class UserTableFilter {
         }
 
         this._removeDuplicateItems();
-        return this._finalArray;
+        let arrResult: userList[] = [...this._finalArray];
+        this._finalArray = [];
+        return arrResult;
     }
 }

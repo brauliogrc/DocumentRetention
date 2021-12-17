@@ -32,11 +32,13 @@ export class ProcessTableFilter {
         // Foltrado basado en el nombre del usuario
         if ( filterData.processName != null && filterData.processName != undefined ) {
             arrayAux = [...dataProcessTable];
-            arrayAux = dataProcessTable.filter( (value) => value.nameOwner.toUpperCase().includes( filterData.processName.toUpperCase() ) );
+            arrayAux = dataProcessTable.filter( (value) => value.processName.toUpperCase().includes( filterData.processName.toUpperCase() ) );
             this._arrayConcat( arrayAux );
         }
 
         this._removeDuplicateItems();
-        return this._finalArray;
+        let arrResult: processesList[] = [...this._finalArray];
+        this._finalArray = [];
+        return arrResult;
     }
 }

@@ -116,6 +116,8 @@ export class TablesFiltersHelper {
         }   
 
         this._removeDuplicateItems();
-        return this.finalArray;
+        let arrResult: docsTable[] = [...this.finalArray];
+        this.finalArray = [];
+        return arrResult;
     }
 }

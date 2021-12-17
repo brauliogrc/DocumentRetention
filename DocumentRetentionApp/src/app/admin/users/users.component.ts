@@ -87,7 +87,7 @@ export class UsersComponent implements OnInit {
 
   // Método de actualización del usuario
   public editUserPopUp( userId: number, userName: string ): void {
-    const dialog = this._dialog.open( PopUpEditUserComponent, {width: '38%', height: '60%', data: { userId, userName }} );
+    const dialog = this._dialog.open( PopUpEditUserComponent, {width: '38%', height: '50%', data: { userId, userName }} );
     dialog.afterClosed().subscribe(
       () => {
         this._fillTable();

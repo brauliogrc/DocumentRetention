@@ -19,6 +19,7 @@ import { PopUpCreateUserComponent } from './pop-ups/users/pop-up-create-user/pop
 // Importación de servicios
 import { UsersHandlerService } from '@shared/services/usershandler/users-handler.service';
 import { ProcessesHandlerService } from '@shared/services/processeshandler/processes-handler.service';
+import { ProjectsHandlerService } from '@shared/services/pojectshandler/projects-handler.service';
 
 // Importación de modulos del proyecto
 import { FirstViewModule } from '@first-view/first-view.module'
@@ -39,6 +40,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ShowCommentsComponent } from '../shared/popups/show-comments/show-comments.component';
 import { PopUpCreateProcessComponent } from './pop-ups/processes/pop-up-create-process/pop-up-create-process.component';
 import { PopUpEditProcessComponent } from './pop-ups/processes/pop-up-edit-process/pop-up-edit-process.component';
+import { PopUpCreateProjectComponent } from './pop-ups/projects/pop-up-create-project/pop-up-create-project.component';
 
 
 @NgModule({
@@ -57,6 +59,7 @@ import { PopUpEditProcessComponent } from './pop-ups/processes/pop-up-edit-proce
     ShowCommentsComponent,
     PopUpCreateProcessComponent,
     PopUpEditProcessComponent,
+    PopUpCreateProjectComponent,
   ],
   imports: [
     CommonModule,
@@ -78,6 +81,7 @@ import { PopUpEditProcessComponent } from './pop-ups/processes/pop-up-edit-proce
   providers: [
     UsersHandlerService,
     ProcessesHandlerService,
+    ProjectsHandlerService,
   ],
   exports: [
     ToUpperCasePipe
