@@ -23,7 +23,7 @@ export class PopUpEditProcessComponent implements OnInit {
   public selectedOwner:   string;
   public selectedStatus:  string;
 
-  // Bandera para modificar los botones del popUp, cambia de estado cuando el usuario es actualizado
+  // Bandera para modificar los botones del popUp, cambia de estado cuando el proceso es actualizado
   public processUpdated: boolean = false;
 
   constructor(
@@ -54,7 +54,7 @@ export class PopUpEditProcessComponent implements OnInit {
       }
     );
 
-    // Listado de procesos
+    // Listado de status
     this.statusMenu = [
       {
         statusName: 'Habilitado',

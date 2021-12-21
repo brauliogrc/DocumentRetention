@@ -41,6 +41,7 @@ import { ShowCommentsComponent } from '../shared/popups/show-comments/show-comme
 import { PopUpCreateProcessComponent } from './pop-ups/processes/pop-up-create-process/pop-up-create-process.component';
 import { PopUpEditProcessComponent } from './pop-ups/processes/pop-up-edit-process/pop-up-edit-process.component';
 import { PopUpCreateProjectComponent } from './pop-ups/projects/pop-up-create-project/pop-up-create-project.component';
+import { PopUpEditProjectComponent } from './pop-ups/projects/pop-up-edit-project/pop-up-edit-project.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { PopUpCreateProjectComponent } from './pop-ups/projects/pop-up-create-pr
     PopUpCreateProcessComponent,
     PopUpEditProcessComponent,
     PopUpCreateProjectComponent,
+    PopUpEditProjectComponent,
   ],
   imports: [
     CommonModule,

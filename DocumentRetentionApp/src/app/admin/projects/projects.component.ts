@@ -5,6 +5,7 @@ import { ProjectTableFilter } from '@shared/helpers/projectTableFilter';
 import { MatDialog } from '@angular/material/dialog';
 
 import { PopUpCreateProjectComponent } from '@admin/pop-ups/projects/pop-up-create-project/pop-up-create-project.component';
+import { PopUpEditProjectComponent } from '@admin/pop-ups/projects/pop-up-edit-project/pop-up-edit-project.component';
 
 @Component({
   selector: 'app-projects',
@@ -23,9 +24,9 @@ export class ProjectsComponent implements OnInit {
 
   // 1. llenado de la tabla          - COMPLETE
   // 2. filtrado                     - COMPLETE
-  // 3. reseteo del filtrado         - INCOMPLETE
-  // 4. registro de nuevo elemento   - INCOMPLETE
-  // 5. modificación de un elemento  - INCOMPLETE
+  // 3. reseteo del filtrado         - COMPLETE
+  // 4. registro de nuevo elemento   - COMPLETE
+  // 5. modificación de un elemento  - COMPLETE
   // 6. eliminación de un elemento   - INCOMPLETE
 
   private _projectFilterTable = new ProjectTableFilter();
@@ -70,9 +71,9 @@ export class ProjectsComponent implements OnInit {
     this.projectsList = [...this.back];
   }
   
-  // TODO: Muestra popup para registar un uevo proyecto
+  // Muestra popup para registar un uevo proyecto
   public projectRegisterPopUp(): void {
-    const dialog = this._dialog.open( PopUpCreateProjectComponent );
+    const dialog = this._dialog.open( PopUpCreateProjectComponent, { width: '38%', height: '40%' } );
     dialog.afterClosed().subscribe(
       () => {
         this._fillTable();
@@ -80,9 +81,14 @@ export class ProjectsComponent implements OnInit {
     )
   }
   
-  // TODO: Muestra popup para editar un proyecto
+  // Muestra popup para editar un proyecto
   public editProjectPopUp( projectId: number, projectName: string ): void {
-
+    const dialog = this._dialog.open( PopUpEditProjectComponent, { width: '38%', height: '40%', data: { projectId, projectName } } );
+    dialog.afterClosed().subscribe(
+      () => {
+        this._fillTable()
+      }
+    );
   }
 
   // TODO: Método de eliminación de un proyecto

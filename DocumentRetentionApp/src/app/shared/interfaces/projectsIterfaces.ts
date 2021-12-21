@@ -15,6 +15,17 @@ export interface filterProjects {
 
 export interface dataNewProject {
     name:               string;
-    client:           number;
+    client:             number;
     creationUser:       number;
+}
+
+export interface editedProjectInfo {
+    projectId:          number;
+    newName:            string;
+    newStatus:          number;
+}
+
+export interface projectData {
+    projectId:          number;
+    projectName:        string;
 }

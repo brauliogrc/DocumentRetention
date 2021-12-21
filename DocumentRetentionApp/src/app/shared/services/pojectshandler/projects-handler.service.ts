@@ -4,7 +4,7 @@ import { SweetAlertsService } from '../alerts/sweet-alerts.service';
 import { Observable, throwError } from 'rxjs';
 import { successMessages } from '@shared/interfaces/interfaces';
 import { environment } from '@env/environment';
-import { dataNewProject } from '@shared/interfaces/projectsIterfaces';
+import { dataNewProject, editedProjectInfo } from '@shared/interfaces/projectsIterfaces';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -42,5 +42,14 @@ export class ProjectsHandlerService {
   }
 
   // Petición a la API para la actualización de un projecto
-  
+  public updateProject( newDataProject: editedProjectInfo ): Observable<successMessages> {
+    return this._http.patch<successMessages>( `${environment.API}` + this._controllerRoute + this._updateProject, newDataProject, { headers: this._headers } )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError( this._sweetAlert.errorsHandler( err ) )
+        })
+      );
+  }
+
+  // Petición a la API para la eliminación lógica de un proceso
 }

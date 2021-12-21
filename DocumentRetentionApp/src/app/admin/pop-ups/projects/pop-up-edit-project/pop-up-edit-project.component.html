@@ -1,17 +1,17 @@
 
 <div class="poup-body">
     <mat-dialog-content class="form">
-        <h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Editando proceso {{ processName }}</h1>        
+        <h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Editando proyecto {{ projectName }}</h1>
         <div class="form-items">
-            <p class="field-title">Nombre del proceso</p>
+            <p class="field-title">Nombre del proyecto</p>
             <input pInputText
                 class="fields"
                 type="text"
                 [(ngModel)]="newName"
-                placeholder="Nombre del proceso"
+                placeholder="Nombre del proyecto"
             >
         </div>
-        <div class="form-items">
+        <!-- <div class="form-items">
             <p class="field-title">Propietario del proceso</p>
             <input pInputText
                 class="fields"
@@ -22,9 +22,9 @@
             <datalist id="ownerList">
                 <option *ngFor="let owner of ownerList" value="{{ owner.employeeNumber }}">{{ owner.employeeName }}</option>
             </datalist>
-        </div>
+        </div> -->
         <div class="form-items">
-            <p class="field-title">Status del proceso</p>
+            <p class="field-title">Status del proyecto</p>
             <input pInputText
                 class="fields"
                 type="text"
@@ -37,7 +37,7 @@
         </div>
     </mat-dialog-content>
     <mat-dialog-actions class="buttons" >
-        <ng-container *ngIf="!processUpdated; else elseTemplate">
+        <ng-container *ngIf="!projectUpdated; else elseTemplate">
             <button pButton pRipple
                 type="button"
                 label="Cancelar"
