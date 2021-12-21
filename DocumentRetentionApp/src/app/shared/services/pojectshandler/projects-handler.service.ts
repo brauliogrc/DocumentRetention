@@ -52,4 +52,12 @@ export class ProjectsHandlerService {
   }
 
   // Petición a la API para la eliminación lógica de un proceso
+  public deleteProject( projetId: number ): Observable<successMessages> {
+    return this._http.delete<successMessages>( `${environment.API}` + this._controllerRoute + this._deleteProyect + projetId, { headers: this._headers } )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError( this._sweetAlert.errorsHandler( err ) )
+        })
+      );
+  }
 }

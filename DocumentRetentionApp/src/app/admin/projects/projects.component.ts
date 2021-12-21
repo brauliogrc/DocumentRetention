@@ -3,9 +3,11 @@ import { TableServiceService } from '@shared/services/table/table-service.servic
 import { projectsList, filterProjects } from '@shared/interfaces/projectsIterfaces';
 import { ProjectTableFilter } from '@shared/helpers/projectTableFilter';
 import { MatDialog } from '@angular/material/dialog';
+import { ProjectsHandlerService } from '@shared/services/pojectshandler/projects-handler.service';
 
 import { PopUpCreateProjectComponent } from '@admin/pop-ups/projects/pop-up-create-project/pop-up-create-project.component';
 import { PopUpEditProjectComponent } from '@admin/pop-ups/projects/pop-up-edit-project/pop-up-edit-project.component';
+import { SweetAlertsService } from '@shared/services/alerts/sweet-alerts.service';
 
 @Component({
   selector: 'app-projects',
@@ -18,8 +20,10 @@ export class ProjectsComponent implements OnInit {
   public projectsList:  projectsList[];
 
   constructor(
+    private _dialog: MatDialog,
+    private _sweetAlert: SweetAlertsService,
     private _tableService: TableServiceService,
-    private _dialog: MatDialog
+    private _projectHandler: ProjectsHandlerService,
   ) { }
 
   // 1. llenado de la tabla          - COMPLETE
@@ -93,7 +97,12 @@ export class ProjectsComponent implements OnInit {
 
   // TODO: Método de eliminación de un proyecto
   public deleteProject( projectId: number ): void {
-
+    this._projectHandler.deleteProject( projectId ).subscribe(
+      (data) => {
+        this._sweetAlert.successfulDeletion( data.message );
+        this._fillTable();
+      }
+    )
   }
 
 }

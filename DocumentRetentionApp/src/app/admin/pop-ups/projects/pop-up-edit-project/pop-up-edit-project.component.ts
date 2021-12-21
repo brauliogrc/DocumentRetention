@@ -70,7 +70,7 @@ export class PopUpEditProjectComponent implements OnInit {
   private _saveChanges(): void {
     this._projectHandler.updateProject( this._editedProjectInfo ).subscribe(
       (data) => {
-        this._sweetAlert.successfulRegistration( data.message );
+        this._sweetAlert.successfulUpdate( data.message );
         this.newName = '';
         this.selectedStatus = '';
         this.projectUpdated = true;
