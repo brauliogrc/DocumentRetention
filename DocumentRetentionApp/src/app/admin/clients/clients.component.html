@@ -1,1 +1,80 @@
-<p>clients works!</p>
+
+<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Clientes</h1>
+
+<div class="createUser">
+    <button pButton
+        class="p-button-info"
+        icon="pi pi-plus"
+        iconPos="left"
+        label="Crear nuevo cliente"
+    ></button>
+    <!-- (click)="projectRegisterPopUp()" -->
+    <div class="p-grid p-fluid search-panel">
+        <div class="p-col-12 p-md-4">
+            <div class="grupo">
+                <button pButton
+                    type="button"
+                    icon="pi pi-search"
+                    iconPos="left"
+                ></button>
+                <!-- (click)="filterProjectTable()" -->
+                <p-inputNumber
+                    class="fields"
+                    inputId="integeronly"
+                    placeholder="Ingrese ID del cliente"
+                ></p-inputNumber>
+                <!-- [(ngModel)]="projectId" -->
+                <input pInputText
+                    class="fields"
+                    placeholder="Nombre de cliente"
+                >
+                <!-- [(ngModel)]="projectName" -->
+            </div>
+        </div>
+    </div>
+
+    <!-- <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()" icon="pi pi-replay" iconPos="left"></p-button>
+    <p-table [value]="projectsList" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Creación</th>
+                <th>Modificación</th>
+                <th>Cliente</th>
+                <th>Usuario de creación</th>
+                <th>Status</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-projectsList>
+            <tr>
+                <td>{{ projectsList.idProject }}</td>
+                <td>{{ projectsList.projectName }}</td>
+                <td>{{ projectsList.projectCreationAt | date: shortDate }}</td>
+                <td>{{ projectsList.projecUpdateAt | date: shortDate }}</td>
+                <td>{{ projectsList.clientName }}</td>
+                <td>{{ projectsList.userName }}</td>
+                <td>{{ projectsList.projectStatus | showStatus }}</td>
+                <td>
+                    <div class="button-section">
+                        <button pButton pRipple
+                            type="button"
+                            icon="pi pi-pencil"
+                            class="p-button-rounded p-button-info p-button-text"
+                            (click)="editProjectPopUp( projectsList.idProject, projectsList.projectName )"
+                        ></button>
+                        <button pButton pRipple *ngIf="projectsList.projectStatus"
+                            type="button"
+                            icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger p-button-text"
+                            (click)="deleteProject( projectsList.idProject )"
+                        ></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+        
+        
+    </p-table> -->
+</div>

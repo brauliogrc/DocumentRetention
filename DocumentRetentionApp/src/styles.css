@@ -4,7 +4,8 @@
 /* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
 
 * {
-  font-family: typo-grotesk-rounded, Arial, sans-serif;
+  /* font-family: typo-grotesk-rounded, Arial, sans-serif; */
+  font-family: Raleway, Arial, sans-serif;
 }
 
 .not-visible {
@@ -28,12 +29,19 @@ body {
 
 @font-face {
   font-family: Ormont-light;
-  src: url("./assets/fonts/ormont-light/Ormont_Light.ttf") format("opentype");
+  src: url("./assets/fonts/ormont-light/Ormont_Light.ttf")
+    format("opentype");
 }
 
 @font-face {
   font-family: typo-grotesk-rounded;
   src: url("./assets/fonts/typo-grotesk-rounded/TypoGroteskRoundedLightDemo.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: Raleway;
+  src: url('./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf')
     format("opentype");
 }
 
@@ -52,7 +60,7 @@ body::-webkit-scrollbar-thumb:hover {
 /* body::-webkit-scrollbar-thumb:active {
   background-color: #f2d063;
 } */
-body::-webkit-scrollbar-track{
+body::-webkit-scrollbar-track {
   background: black;
   border-radius: 4px;
 }

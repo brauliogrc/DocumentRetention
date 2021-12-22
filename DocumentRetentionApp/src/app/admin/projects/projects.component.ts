@@ -31,7 +31,7 @@ export class ProjectsComponent implements OnInit {
   // 3. reseteo del filtrado         - COMPLETE
   // 4. registro de nuevo elemento   - COMPLETE
   // 5. modificación de un elemento  - COMPLETE
-  // 6. eliminación de un elemento   - INCOMPLETE
+  // 6. eliminación de un elemento   - COMPLETE
 
   private _projectFilterTable = new ProjectTableFilter();
 
@@ -95,7 +95,7 @@ export class ProjectsComponent implements OnInit {
     );
   }
 
-  // TODO: Método de eliminación de un proyecto
+  // Método de eliminación de un proyecto
   public deleteProject( projectId: number ): void {
     this._projectHandler.deleteProject( projectId ).subscribe(
       (data) => {
