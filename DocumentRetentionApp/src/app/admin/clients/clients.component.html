@@ -7,8 +7,8 @@
         icon="pi pi-plus"
         iconPos="left"
         label="Crear nuevo cliente"
-    ></button>
-    <!-- (click)="projectRegisterPopUp()" -->
+        ></button>
+        <!-- (click)="projectRegisterPopUp()" -->
     <div class="p-grid p-fluid search-panel">
         <div class="p-col-12 p-md-4">
             <div class="grupo">
@@ -16,65 +16,61 @@
                     type="button"
                     icon="pi pi-search"
                     iconPos="left"
+                    (click)="filterClientTable()"
                 ></button>
-                <!-- (click)="filterProjectTable()" -->
                 <p-inputNumber
                     class="fields"
                     inputId="integeronly"
                     placeholder="Ingrese ID del cliente"
+                    [(ngModel)]="clientId"
                 ></p-inputNumber>
-                <!-- [(ngModel)]="projectId" -->
                 <input pInputText
                     class="fields"
                     placeholder="Nombre de cliente"
+                    [(ngModel)]="clientName"
                 >
-                <!-- [(ngModel)]="projectName" -->
             </div>
         </div>
     </div>
 
-    <!-- <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()" icon="pi pi-replay" iconPos="left"></p-button>
-    <p-table [value]="projectsList" responsiveLayout="scroll">
+    <p-button type="button" styleClass="p-button-help" label="Limpiar filtro" (click)="resetTable()" icon="pi pi-replay" iconPos="left"></p-button>
+    <p-table [value]="clientsList" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Creación</th>
                 <th>Modificación</th>
-                <th>Cliente</th>
                 <th>Usuario de creación</th>
-                <th>Status</th>
                 <th>Acciones</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-projectsList>
+        <ng-template pTemplate="body" let-clientList>
             <tr>
-                <td>{{ projectsList.idProject }}</td>
-                <td>{{ projectsList.projectName }}</td>
-                <td>{{ projectsList.projectCreationAt | date: shortDate }}</td>
-                <td>{{ projectsList.projecUpdateAt | date: shortDate }}</td>
-                <td>{{ projectsList.clientName }}</td>
-                <td>{{ projectsList.userName }}</td>
-                <td>{{ projectsList.projectStatus | showStatus }}</td>
+                <td>{{ clientList.idClient }}</td>
+                <td>{{ clientList.clientName }}</td>
+                <td>{{ clientList.clientCreationAt | date: shortDate }}</td>
+                <td>{{ clientList.clientUpdateAt | date: shortDate }}</td>
+                <td>{{ clientList.userName }}</td>
                 <td>
-                    <div class="button-section">
+                    <!-- <div class="button-section"> -->
                         <button pButton pRipple
                             type="button"
                             icon="pi pi-pencil"
                             class="p-button-rounded p-button-info p-button-text"
-                            (click)="editProjectPopUp( projectsList.idProject, projectsList.projectName )"
+                            (click)="editProjectPopUp( clientList.idClient, clientList.clientName )"
                         ></button>
-                        <button pButton pRipple *ngIf="projectsList.projectStatus"
+                        <!-- <button pButton pRipple *ngIf="clientList.projectStatus"
                             type="button"
                             icon="pi pi-trash"
                             class="p-button-rounded p-button-danger p-button-text"
-                            (click)="deleteProject( projectsList.idProject )"
-                        ></button>
-                    </div>
+                            (click)="deleteProject( clientList.idProject )"
+                        ></button> -->
+                    <!-- </div> -->
                 </td>
             </tr>
         </ng-template>
         
         
-    </p-table> -->
+    </p-table>
 </div>

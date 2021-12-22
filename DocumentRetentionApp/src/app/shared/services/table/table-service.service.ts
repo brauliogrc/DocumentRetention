@@ -9,7 +9,8 @@ import { EncryptionAndDecryptionService } from '../encryptionanddecryption/encry
 import { docsTable } from '@shared/interfaces/tablesInterface';
 import { userList } from '@shared/interfaces/userInterfaces';
 import { processesList } from '@shared/interfaces/processesInterface';
-import  { projectsList } from '@shared/interfaces/projectsIterfaces';
+import { projectsList } from '@shared/interfaces/projectsIterfaces';
+import { clientsList } from '@shared/interfaces/clientsInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,8 @@ export class TableServiceService {
   private _userList:             string = 'getUsersList';
   private _processList:          string = 'getProcessesList';
   private _projectsList:         string = 'getProjectList';
+  private _clientList:           string = 'getClientsList';
+
 
   private headers = new HttpHeaders({
     'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
@@ -38,7 +41,7 @@ export class TableServiceService {
   private _userRole: number = this._crypt.userRole;
 
   // Peticion HTTP a la API para obtener el lisado de documentos segun los datos de filtro admin
-  getAdminDocsTable(): Observable<docsTable[]> {
+  public getAdminDocsTable(): Observable<docsTable[]> {
     return this._http.get<docsTable[]>(`${environment.API}` + this._controllerRoute + this._adminTable, {headers: this.headers})
       .pipe(
         catchError((err: HttpErrorResponse) => {
@@ -48,7 +51,7 @@ export class TableServiceService {
   }
 
   // Peticion HTTP a la API para obtener el lisado de documentos segun los datos de filtro usuarios
-  getUserDocsTable(): Observable<docsTable[]> {
+  public getUserDocsTable(): Observable<docsTable[]> {
     return this._http.get<docsTable[]>(`${environment.API}` + this._controllerRoute + this._userTable)
       .pipe(
         catchError((err: HttpErrorResponse) => {
@@ -83,6 +86,16 @@ export class TableServiceService {
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return throwError( this._sweedAlert.errorsHandler(err) );
+        })
+      )
+  }
+
+  // Petición a la API para obtener el listado de los clientes
+  public getClientList(): Observable<clientsList[]> {
+    return this._http.get<clientsList[]>( `${ environment.API }` + this._controllerRoute + this._clientList, { headers: this.headers } )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError( this._sweedAlert.errorsHandler( err ) )
         })
       )
   }

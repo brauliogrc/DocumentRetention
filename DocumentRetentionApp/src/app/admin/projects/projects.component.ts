@@ -16,7 +16,7 @@ import { SweetAlertsService } from '@shared/services/alerts/sweet-alerts.service
 })
 export class ProjectsComponent implements OnInit {
   // Contenedores del listado de poryectos registradso
-  private back:          projectsList[];
+  private back:         projectsList[];
   public projectsList:  projectsList[];
 
   constructor(
@@ -46,7 +46,6 @@ export class ProjectsComponent implements OnInit {
         this.back = [...data];
         this.projectsList = [...data];
         console.log(this.projectsList);
-        
       }
     )
   }
@@ -56,7 +55,7 @@ export class ProjectsComponent implements OnInit {
   public projectName:   string;
   private _filterData:  filterProjects;
 
-  // Filtrado de la tabla de procesos segun lo indiquen los valores del formulario
+  // Filtrado de la tabla de projectos segun lo indiquen los valores del formulario
   public filterProjectTable(): void {
     this._filterData = {
       projectId: this.projectId,
