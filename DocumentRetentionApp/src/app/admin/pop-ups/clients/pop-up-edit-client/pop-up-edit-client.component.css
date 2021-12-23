@@ -1,0 +1,40 @@
+.poup-body {
+    margin: 0%;
+    padding: 0%;
+    width: 100%;
+    height: 100%;
+    /* color: white;
+    background-color: var(--gray-900); */
+    align-items: center;
+    justify-content: center;
+}
+
+.field-title {
+    margin-bottom: 1px;
+    margin-top: 15px;
+}
+
+.form-items {
+    margin: 0%;
+    padding: 0%;
+    align-items: center;
+    justify-content: center;
+}
+
+.fields {
+    width: 60%;
+    background-color: #FFFFFF;
+    color: black;
+    border-radius: 3px;
+    font-family: typo-grotesk-rounded;
+}
+
+.buttons {
+    display: flex;
+}
+
+.search-user {
+    border-color: black;
+    border-radius: 3px;
+    border-width: 3px;
+}

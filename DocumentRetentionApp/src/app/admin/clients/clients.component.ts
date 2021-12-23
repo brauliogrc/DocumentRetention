@@ -73,7 +73,7 @@ export class ClientsComponent implements OnInit {
 
   // TODO: Muestra popup para registar un uevo proyecto
   public clientRegisterPopUp(): void {
-    const dialog = this._dialog.open( PopUpCreateClientComponent, { width: '38%', height: '40%' } );
+    const dialog = this._dialog.open( PopUpCreateClientComponent, { width: '38%', height: '30%' } );
     dialog.afterClosed().subscribe(
       () => {
         this._fillTable();
@@ -83,7 +83,7 @@ export class ClientsComponent implements OnInit {
   
   // TODO: Muestra popup para editar un proyecto
   public editClientPopUp( clientId: number, clientName: string ): void {
-    const dialog = this._dialog.open( PopUpEditClientComponent, { width: '38%', height: '40%', data: { clientId, clientName } } );
+    const dialog = this._dialog.open( PopUpEditClientComponent, { width: '38%', height: '30%', data: { clientId, clientName } } );
     dialog.afterClosed().subscribe(
       () => {
         this._fillTable();
