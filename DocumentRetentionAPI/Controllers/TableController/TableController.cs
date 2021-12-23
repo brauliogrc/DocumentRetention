@@ -28,7 +28,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
         // componente "Doc-Viewer". Visualización del Admin
         [HttpGet]
         [Route("adminTable")]
-        [Authorize(Policy = "Adm")] //[AllowAnonymous]
+        [Authorize(Policy = "Adm")]
         public async Task<ActionResult> adminTable()
         {
             try
@@ -88,7 +88,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
         }
 
         // Obención de los documentos existentes en la base de datos para ser mostrados en la tabla del
-        // componente "Doc-Viewer". Visualización de cualquier usuario
+        // componente "Doc-Viewer". Visualización de cualquier usuario y del usuario con rol de capturista
         [HttpGet]
         [Route("userTable")]
         [AllowAnonymous]
@@ -233,7 +233,7 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
 
         // Obtención de la lista de procesos registrados en la DB
         [HttpGet]
-        [Route("gerProcessesList")]
+        [Route("getProcessesList")]
         [Authorize(Policy = "Adm")]
         public async Task<ActionResult> gerProcessesList()
         {
@@ -264,6 +264,100 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
             catch (Exception ex)
             {
                 return BadRequest(new { message = $"Ha ocurrido un error al obtener la lista de procesos. ERROR: { ex.Message }" });
+            }
+        }
+
+        // Obtención de la lista de projectos registrados
+        [HttpGet]
+        [Route("getProjectList")]
+        [Authorize(Policy = "Adm")]
+        public async Task<ActionResult> getProjectList()
+        {
+            try
+            {
+                var projectList = from project in _context.Projects
+                                  join client in _context.Clients
+                                    on project.IDClient equals client.IDClient
+                                  join user in _context.Users
+                                    on project.CreationUser equals user.IDUser
+                                  select new
+                                  {
+                                      project.IDProject,
+                                      project.ProjectName,
+                                      project.ProjectCreationAt,
+                                      project.ProjecUpdateAt,
+                                      project.ProjectStatus,
+                                      client.ClientName,
+                                      user.UserName
+                                  };
+
+                if ( projectList == null || projectList.Count() == 0 ) return NotFound( new { message = $"No se encuentra ningún proyecto registrado" } );
+
+                return Ok( projectList );
+            }
+            catch ( Exception ex )
+            {
+                return BadRequest( new { message = $"Ha ocurrido un error al obtener la lista de projectos. ERROR: { ex.Message }" } );
+            }
+        }
+
+        // Obtención de la lista de clientes registrados
+        [HttpGet]
+        [Route("getClientsList")]
+        [Authorize(Policy = "Adm")]
+        public async Task<ActionResult> getClientsList()
+        {
+            try
+            {
+                var clientsList = from client in _context.Clients
+                                  join user in _context.Users
+                                    on client.CreationUser equals user.IDUser
+                                  select new
+                                  {
+                                      client.IDClient,
+                                      client.ClientName,
+                                      client.ClientCreationAt,
+                                      client.ClientUpdateAt,
+                                      user.UserName,
+                                  };
+
+                if (clientsList == null || clientsList.Count() == 0) return NotFound( new { message = $"No se ha encotrado ningún cliente registrado" } );
+
+                return Ok( clientsList );
+            }
+            catch ( Exception ex )
+            {
+                return BadRequest( new { message = $"Ha ocurrido un error al obtener la lista de clientes. ERROR: { ex.Message }" } );
+            }
+        }
+
+        // Obtención de la lista de tipos de documentos registrados
+        [HttpGet]
+        [Route("getDTList")]
+        [Authorize(Policy = "Adm")]
+        public async Task<ActionResult> getDTList()
+        {
+            try
+            {
+                var dtList = from dt in _context.DocType
+                             join user in _context.Users
+                                on dt.CreationUser equals user.IDUser
+                             select new
+                             {
+                                 dt.IDDT,
+                                 dt.DTName,
+                                 dt.DTCreationAt,
+                                 dt.DTUpdateAt,
+                                 user.UserName,
+                             };
+
+                if (dtList == null || dtList.Count() == 0) return NotFound( new { message = $"No se ha encontrado ningún tipo de documento registrado" } );
+                             
+                return Ok( dtList );
+            }
+            catch ( Exception ex )
+            {
+                return BadRequest( new { message = $"Ha ocurrido un error al obtener la lista de tipos de documentos. ERROR: { ex.Message }" } );
             }
         }
     }

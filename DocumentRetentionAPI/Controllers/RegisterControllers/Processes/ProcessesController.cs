@@ -109,7 +109,7 @@ namespace DocumentRetentionAPI.Controllers.RegisterControllers.Processes
             {
                 var process = await _context.Processes.FindAsync( idProcess );
 
-                if (process == null) return NotFound( new { message = $"Proceso o encontrado en la base de datos" } );
+                if (process == null) return NotFound( new { message = $"Proceso no encontrado en la base de datos" } );
 
                 process.ProcessStatus = false;
                 process.ProcessUpdaeAt = DateTime.Now;

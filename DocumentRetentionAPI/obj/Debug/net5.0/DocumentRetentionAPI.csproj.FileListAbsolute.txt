@@ -129,3 +129,4 @@ C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\Docu
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Debug\net5.0\DocumentRetentionAPI.genruntimeconfig.cache
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\bin\Debug\net5.0\System.DirectoryServices.dll
 C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.DirectoryServices.dll
+C:\Users\uib44927\Desktop\Retención_de_documentos\DocumentRetentionProject\DocumentRetentionAPI\obj\Debug\net5.0\DocumentRetentionAPI.csproj.CopyComplete
