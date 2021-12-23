@@ -30,9 +30,9 @@ export class PopUpCreateProjectComponent implements OnInit {
   ) { }
 
   // 1. llenado de fields - COMPLETE
-  // 2. validaciones - INCOMPLETE
-  // 3. registro - INCOMPLETE
-  // 4. cerrar opup - COMPLETE
+  // 2. validaciones      - COMPLETE
+  // 3. registro          - COMPLETE
+  // 4. cerrar opup       - COMPLETE
 
   ngOnInit(): void {
     this._fillDropdowns();
@@ -55,7 +55,7 @@ export class PopUpCreateProjectComponent implements OnInit {
     }
   }
 
-  // Dalidación de los datos ingresados
+  // Validación de los datos ingresados
   private _valiData(): boolean {
     if ( this.projectName && this.selectedClient ) return true;
     else {

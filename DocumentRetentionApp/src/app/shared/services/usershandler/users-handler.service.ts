@@ -18,7 +18,7 @@ export class UsersHandlerService {
   // Rutas de los métodos que contiene el controlador de la API
   private _addUser:             string = 'addNewUser';
   private _updateUser:          string = 'updateUser';
-  private _deleteUserRoute:     string = 'deleteUser/';
+  private _deleteUser:          string = 'deleteUser/';
 
   private _headers = new HttpHeaders({
     'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
@@ -33,7 +33,7 @@ export class UsersHandlerService {
   // 2. Metodo update
   // 3. Metodo delete
   
-  // Petición HTTP a la API para registrar un nuevo documento
+  // Petición HTTP a la API para registrar un nuevo usuario
   public addNewuser( userData: dataNewUser ): Observable<successMessages>{
     return this._http.post<successMessages>( `${environment.API}` + this._controllerRoute + this._addUser, userData, { headers: this._headers } )
       .pipe(
@@ -43,7 +43,7 @@ export class UsersHandlerService {
       )
   }
   
-  // Petición HTTP a la API para la actualización dlusuario
+  // Petición HTTP a la API para la actualización del usuario
   public updateUser( editedInfo: editedUserInfo ): Observable<successMessages> {
     return this._http.patch<successMessages>( `${environment.API}` + this._controllerRoute + this._updateUser, editedInfo, {headers: this._headers } )
       .pipe(
@@ -55,7 +55,7 @@ export class UsersHandlerService {
 
   // Petición HTTP a la API para eliminación lógica de un usuario (cambiar su campo "status" a false)
   public deleteUser( idUser: number ): Observable<successMessages> {
-    return this._http.delete<successMessages>( `${environment.API}` + this._controllerRoute + this._deleteUserRoute + idUser, { headers: this._headers } )
+    return this._http.delete<successMessages>( `${environment.API}` + this._controllerRoute + this._deleteUser + idUser, { headers: this._headers } )
       .pipe(
         catchError( (err: HttpErrorResponse) => {
           return throwError( this._sweetAlert.errorsHandler( err ) );

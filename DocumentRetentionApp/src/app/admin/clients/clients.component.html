@@ -7,8 +7,8 @@
         icon="pi pi-plus"
         iconPos="left"
         label="Crear nuevo cliente"
+        (click)="clientRegisterPopUp()"
         ></button>
-        <!-- (click)="projectRegisterPopUp()" -->
     <div class="p-grid p-fluid search-panel">
         <div class="p-col-12 p-md-4">
             <div class="grupo">
@@ -58,7 +58,7 @@
                             type="button"
                             icon="pi pi-pencil"
                             class="p-button-rounded p-button-info p-button-text"
-                            (click)="editProjectPopUp( clientList.idClient, clientList.clientName )"
+                            (click)="editClientPopUp( clientList.idClient, clientList.clientName )"
                         ></button>
                         <!-- <button pButton pRipple *ngIf="clientList.projectStatus"
                             type="button"

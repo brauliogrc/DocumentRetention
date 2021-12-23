@@ -7,6 +7,21 @@ export interface clientsList {
 }
 
 export interface filterClients {
-    clientId:         number;
-    clientName:       string;
+    clientId:           number;
+    clientName:         string;
+}
+
+export interface dataNewClient {
+    name:               string;
+    creationUser:       number;
+}
+
+export interface editedClientInfo {
+    clientId:           number;
+    newName:            string;
+}
+
+export interface clientData {
+    clientId:          number;
+    clientName:        string;
 }

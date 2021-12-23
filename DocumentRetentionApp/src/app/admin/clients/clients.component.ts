@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TableServiceService } from '@shared/services/table/table-service.service';
 import { clientsList, filterClients } from '@shared/interfaces/clientsInterface';
 import { ClientTableFilter } from '@shared/helpers/clientTableFilter';
+import { MatDialog } from '@angular/material/dialog';
+
+import { PopUpCreateClientComponent } from '@admin/pop-ups/clients/pop-up-create-client/pop-up-create-client.component';
+import { PopUpEditClientComponent } from '@admin/pop-ups/clients/pop-up-edit-client/pop-up-edit-client.component';
+
 
 @Component({
   selector: 'app-clients',
@@ -13,9 +18,8 @@ export class ClientsComponent implements OnInit {
   private back:       clientsList[];
   public clientsList: clientsList[];
 
-
-
   constructor(
+    private _dialog: MatDialog,
     private _tableService: TableServiceService,
   ) { }
 
@@ -68,12 +72,22 @@ export class ClientsComponent implements OnInit {
   }
 
   // TODO: Muestra popup para registar un uevo proyecto
-  public projectRegisterPopUp(): void {
-    
+  public clientRegisterPopUp(): void {
+    const dialog = this._dialog.open( PopUpCreateClientComponent, { width: '38%', height: '40%' } );
+    dialog.afterClosed().subscribe(
+      () => {
+        this._fillTable();
+      }
+    )
   }
   
   // TODO: Muestra popup para editar un proyecto
-  public editProjectPopUp( projectId: number, projectName: string ): void {
-    
+  public editClientPopUp( clientId: number, clientName: string ): void {
+    const dialog = this._dialog.open( PopUpEditClientComponent, { width: '38%', height: '40%', data: { clientId, clientName } } );
+    dialog.afterClosed().subscribe(
+      () => {
+        this._fillTable();
+      }
+    )
   }
 }

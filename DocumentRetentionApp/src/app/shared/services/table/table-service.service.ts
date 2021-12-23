@@ -40,7 +40,7 @@ export class TableServiceService {
 
   private _userRole: number = this._crypt.userRole;
 
-  // Peticion HTTP a la API para obtener el lisado de documentos segun los datos de filtro admin
+  // Peticion HTTP a la API para obtener el lisado de documentos disponibles para el Admin
   public getAdminDocsTable(): Observable<docsTable[]> {
     return this._http.get<docsTable[]>(`${environment.API}` + this._controllerRoute + this._adminTable, {headers: this.headers})
       .pipe(
@@ -50,7 +50,7 @@ export class TableServiceService {
       )
   }
 
-  // Peticion HTTP a la API para obtener el lisado de documentos segun los datos de filtro usuarios
+  // Peticion HTTP a la API para obtener el lisado de documentos disponibles para el capturista y cualquier usuario
   public getUserDocsTable(): Observable<docsTable[]> {
     return this._http.get<docsTable[]>(`${environment.API}` + this._controllerRoute + this._userTable)
       .pipe(
