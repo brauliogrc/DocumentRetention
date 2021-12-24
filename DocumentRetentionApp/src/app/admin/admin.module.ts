@@ -44,6 +44,8 @@ import { PopUpCreateProjectComponent } from './pop-ups/projects/pop-up-create-pr
 import { PopUpEditProjectComponent } from './pop-ups/projects/pop-up-edit-project/pop-up-edit-project.component';
 import { PopUpCreateClientComponent } from './pop-ups/clients/pop-up-create-client/pop-up-create-client.component';
 import { PopUpEditClientComponent } from './pop-ups/clients/pop-up-edit-client/pop-up-edit-client.component';
+import { PopUpCreateDocTypeComponent } from './pop-ups/doc-types/pop-up-create-doc-type/pop-up-create-doc-type.component';
+import { PopUpEditDocTypeComponent } from './pop-ups/doc-types/pop-up-edit-doc-type/pop-up-edit-doc-type.component';
 
 
 @NgModule({
@@ -66,6 +68,8 @@ import { PopUpEditClientComponent } from './pop-ups/clients/pop-up-edit-client/p
     PopUpEditProjectComponent,
     PopUpCreateClientComponent,
     PopUpEditClientComponent,
+    PopUpCreateDocTypeComponent,
+    PopUpEditDocTypeComponent,
   ],
   imports: [
     CommonModule,

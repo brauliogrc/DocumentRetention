@@ -11,6 +11,7 @@ import { userList } from '@shared/interfaces/userInterfaces';
 import { processesList } from '@shared/interfaces/processesInterface';
 import { projectsList } from '@shared/interfaces/projectsIterfaces';
 import { clientsList } from '@shared/interfaces/clientsInterface';
+import { docTypeList } from '@shared/interfaces/doctypesInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class TableServiceService {
   private _processList:          string = 'getProcessesList';
   private _projectsList:         string = 'getProjectList';
   private _clientList:           string = 'getClientsList';
+  private _docTypeList:          string = 'getDTList';
 
 
   private headers = new HttpHeaders({
@@ -96,6 +98,16 @@ export class TableServiceService {
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return throwError( this._sweedAlert.errorsHandler( err ) )
+        })
+      )
+  }
+
+  // Petición a la API para obtener el listado de los tipos de documentos
+  public getDocTypeLst(): Observable<docTypeList[]> {
+    return this._http.get<docTypeList[]>( `${ environment.API }` + this._controllerRoute + this._docTypeList, { headers: this.headers } )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError( this._sweedAlert.errorsHandler( err ) );
         })
       )
   }

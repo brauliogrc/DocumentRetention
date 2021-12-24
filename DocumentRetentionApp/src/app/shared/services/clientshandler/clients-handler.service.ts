@@ -30,7 +30,7 @@ export class ClientsHandlerService {
   // 2. Metodo update
   // 3. Metodo delete (NA)
 
-  // TODO: Petición HTTP a la API para registrar un nuevo cliente
+  // Petición HTTP a la API para registrar un nuevo cliente
   public addNewClient( clientData: dataNewClient ): Observable<successMessages> {
     return this._http.post<successMessages>( `${ environment.API }` + this._controllerRoute + this._addClient, clientData, { headers: this._headers } )
       .pipe(
@@ -40,7 +40,7 @@ export class ClientsHandlerService {
       )
   }
 
-  // TODO: Petición HTTP a la API para la actualización del cliente
+  // Petición HTTP a la API para la actualización del cliente
   public updateClient( editedInfo: editedClientInfo ): Observable<successMessages> {
     return this._http.patch<successMessages>( `${ environment.API }` +this._controllerRoute + this._updateClient, editedInfo, { headers: this._headers } )
       .pipe(

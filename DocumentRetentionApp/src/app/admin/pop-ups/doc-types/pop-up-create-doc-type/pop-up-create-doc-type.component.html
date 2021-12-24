@@ -1,0 +1,52 @@
+
+<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Registro de nuevo tipo de documento</h1>
+
+<mat-dialog-content class="form">
+    <div class="formularioReg">
+        <p class="field-title">Nombre del tipo de documento</p>
+        <div class="form-items">
+            <input pInputText
+                class="fields"
+                type="text"
+                [(ngModel)]="docTypeName"
+            >
+            <!-- <p class="field-title"-dropdown
+                name="poject"
+                [options]="ownersList"
+                [ngModelOptions]="{standalone: true}"
+                optionLabel="employeeName"
+                optionValue="employeeNumber"
+                placeholder="Seleccione"
+                [filter]="true"
+                filterBy="employeeName"
+                [showClear]="true"
+                [style]="{'width':'60%', 'background-color':'#c9c7c9', 'text-color':'black', 'color':'black'}"
+            ></p-dropdown> -->
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="buttons">
+    <ng-container >
+        <button pButton pRipple
+            type="button"
+            label="Cancelar"
+            class="p-button-danger"
+            (click)="clickCancel()"
+        ></button>
+        <button pButton pRipple
+            type="button"
+            label="Registrar"
+            icon="pi pi-send"
+            iconPos="left"
+            class="p-button-success"
+            (click)="eventHandler()"
+        ></button>
+    </ng-container>
+    <!-- <ng-template #elseTemplate>
+        <button pButton pRipple type="button" label="Cerrar" class="p-button-danger" (click)="clickCancel()"></button>
+    </ng-template> -->
+    
+</mat-dialog-actions>
+
+<!-- [mat-dialog-close]="true -->

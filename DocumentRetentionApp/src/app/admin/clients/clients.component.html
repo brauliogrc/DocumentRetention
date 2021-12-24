@@ -53,24 +53,14 @@
                 <td>{{ clientList.clientUpdateAt | date: shortDate }}</td>
                 <td>{{ clientList.userName }}</td>
                 <td>
-                    <!-- <div class="button-section"> -->
-                        <button pButton pRipple
-                            type="button"
-                            icon="pi pi-pencil"
-                            class="p-button-rounded p-button-info p-button-text"
-                            (click)="editClientPopUp( clientList.idClient, clientList.clientName )"
-                        ></button>
-                        <!-- <button pButton pRipple *ngIf="clientList.projectStatus"
-                            type="button"
-                            icon="pi pi-trash"
-                            class="p-button-rounded p-button-danger p-button-text"
-                            (click)="deleteProject( clientList.idProject )"
-                        ></button> -->
-                    <!-- </div> -->
+                    <button pButton pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="p-button-rounded p-button-info p-button-text"
+                        (click)="editClientPopUp( clientList.idClient, clientList.clientName )"
+                    ></button>
                 </td>
             </tr>
         </ng-template>
-        
-        
     </p-table>
 </div>

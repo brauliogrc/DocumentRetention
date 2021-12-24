@@ -1,0 +1,49 @@
+/* .formularioReg {
+    background-color: red;
+    width: 40%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.formularioReg p {
+    position: relative;
+    top: 20px;
+}
+
+.fields {
+    margin-top: 10px; */
+    /* border: 1px thin solid cyan; */
+    /* width: 39%;
+    background: black;
+    border-radius: 3px;
+}
+
+.input-file {
+    width: 60%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    border-radius: 3px;
+}
+
+.file-upload {
+    margin-left: 10px;
+} */
+
+.fields {
+    width: 60%;
+    background-color: #FFFFFF;
+    color: black;
+    border-radius: 3px;
+    font-family: typo-grotesk-rounded;
+}
+
+.field-title {
+    margin-bottom: 1px;
+    margin-top: 15px;
+}

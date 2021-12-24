@@ -1,1 +1,66 @@
-<p>doc-types works!</p>
+
+<h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Tipos de documentos</h1>
+
+<div class="createUser">
+    <button pButton
+        class="p-button-info"
+        icon="pi pi-plus"
+        iconPos="left"
+        label="Crear nuevo tipo de documento"
+        (click)="docTypeRegisterPopUp()"
+        ></button>
+    <div class="p-grid p-fluid search-panel">
+        <div class="p-col-12 p-md-4">
+            <div class="grupo">
+                <button pButton
+                    type="button"
+                    icon="pi pi-search"
+                    iconPos="left"
+                    (click)="filterDocTypeTable()"
+                ></button>
+                <p-inputNumber
+                    class="fields"
+                    inputId="integeronly"
+                    placeholder="Ingrese ID del tipo de documento"
+                    [(ngModel)]="docTypeId"
+                ></p-inputNumber>
+                <input pInputText
+                    class="fields"
+                    placeholder="Nombre de tipo de documento"
+                    [(ngModel)]="docTypeName"
+                >
+            </div>
+        </div>
+    </div>
+
+    <p-button type="button" styleClass="p-button-help" label="Limpiar   filtro" (click)="resetTable()" icon="pi pi-replay" iconPos="left"></p-button>
+    <p-table [value]="docTypeList" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Creación</th>
+                <th>Modificación</th>
+                <th>Usuario de creación</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dtList>
+            <tr>
+                <td>{{ dtList.iddt }}</td>
+                <td>{{ dtList.dtName }}</td>
+                <td>{{ dtList.dtCreationAt | date: shortDate }}</td>
+                <td>{{ dtList.dtUpdateAt | date: shortDate }}</td>
+                <td>{{ dtList.userName }}</td>
+                <td>
+                    <button pButton pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="p-button-rounded p-button-info p-button-text"
+                        (click)="editClientPopUp( dtList.iddt, dtList.dtName )"
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

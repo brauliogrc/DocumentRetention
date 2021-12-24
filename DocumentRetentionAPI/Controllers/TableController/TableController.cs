@@ -334,7 +334,8 @@ namespace DocumentRetentionAPI.Controllers.FieldsControler
         // Obtención de la lista de tipos de documentos registrados
         [HttpGet]
         [Route("getDTList")]
-        [Authorize(Policy = "Adm")]
+        [AllowAnonymous]
+        //[Authorize(Policy = "Adm")]
         public async Task<ActionResult> getDTList()
         {
             try
