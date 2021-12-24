@@ -30,4 +30,8 @@ export class HeaderBarComponent implements OnInit {
     return value;
   }
 
+  public logOut(): void {
+    this._auth.logout();
+  }
+
 }

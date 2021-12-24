@@ -11,5 +11,11 @@
         label="Sing In"
         (click)="viewLogin = true; showSingin = true"
         [ngClass]="(isLogged || showSingin) ? 'not-visible' : ''"></button>
+
+        <button pButton
+            label="Log Out"
+            (click)="logOut()"
+            [ngClass]="( isLogged ) ? '' : 'not-visible'"
+        ></button>
     </div>
 </header>

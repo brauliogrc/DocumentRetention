@@ -17,6 +17,8 @@ import { catchError } from 'rxjs/operators';
 // Importación de servicios
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SweetAlertsService } from '@app/shared/services/alerts/sweet-alerts.service';
+import { Router } from '@angular/router'; // FIXME
+
 
 const helper = new JwtHelperService();
 
@@ -31,6 +33,9 @@ export class AuthSericeService {
 
 
   constructor(
+    private _rote: Router, // FIXME
+    
+
     private _http: HttpClient,
     private _sweetAlert: SweetAlertsService,
   ) { this.checkToken(); }
@@ -71,6 +76,7 @@ export class AuthSericeService {
     sessionStorage.clear();
     console.clear();
     this.loggedIn.next(false);
+    this._rote.navigate(['home']);
   }
 
   // Método para comprobar si el token ha expirado
