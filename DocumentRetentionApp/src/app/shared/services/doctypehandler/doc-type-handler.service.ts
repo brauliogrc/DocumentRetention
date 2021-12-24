@@ -40,7 +40,7 @@ export class DocTypeHandlerService {
       )
   }
 
-  // TODO: Petición HTTP a la API para la actualización del tipo de documento
+  // Petición HTTP a la API para la actualización del tipo de documento
   public updteDocType( editedInfo: editedDocTypeInfo ): Observable<successMessages> {
     return this._http.patch<successMessages>( `${ environment.API }` + this._controllerRoute + this._updateDoctType, editedInfo, { headers: this._headers } )
       .pipe(

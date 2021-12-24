@@ -17,6 +17,11 @@ export interface dataNewDocType {
 }
 
 export interface editedDocTypeInfo {
-    newName:        number;
+    newName:        string;
     docTypeId:      number;
+}
+
+export interface docTypeData {
+    docTypeId:      number;
+    docTypeName:    string;
 }

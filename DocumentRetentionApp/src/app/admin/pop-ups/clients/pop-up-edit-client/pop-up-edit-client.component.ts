@@ -27,7 +27,7 @@ export class PopUpEditClientComponent implements OnInit {
 
   // Nombre del cliente a editar para mostrarlo en el popup
   public clientName = this._arrData.clientName;
-  // Varible con el fomrato de datos para la actualización del proceso
+  // Varible con el fomrato de datos para la actualización del cliente
   private _editedClientInfo:   editedClientInfo;
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class PopUpEditClientComponent implements OnInit {
     this._saveChanges();
   }
 
-  // Ejecuta el método para editar la información del proceso
+  // Ejecuta el método para editar la información del cliente
   public _saveChanges(): void {
     this._clientHandler.updateClient( this._editedClientInfo ).subscribe(
       (data) => {

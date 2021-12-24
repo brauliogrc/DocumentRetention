@@ -1,1 +1,39 @@
-<p>pop-up-edit-doc-type works!</p>
+
+<div class="poup-body">
+    <mat-dialog-content class="form">
+        <h1 style="font-family: typo-grotesk-rounded; font-weight: bold;">Editando tipo de documento {{ docTypeName }}</h1>
+        <div class="form-items">
+            <p class="field-title">Nombre del tipo de documento</p>
+            <input pInputText
+                class="fields"
+                type="text"
+                [(ngModel)]="newName"
+                placeholder="Nombre del cliente"
+            >
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons" >
+        <ng-container *ngIf="!docTypeUpdated; else elseTemplate">
+            <button pButton pRipple
+                type="button"
+                label="Cancelar"
+                class="p-button-danger"
+                (click)="clickCancel()"
+            ></button>
+            <button pButton pRipple
+                type="button"
+                label="Guardar"
+                class="p-button-success"
+                (click)="eventHandler()"
+            ></button>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <button pButton pRipple
+                type="button"
+                label="Cerrar"
+                class="p-button-danger"
+                (click)="clickCancel()"
+            ></button>
+        </ng-template>
+    </mat-dialog-actions>
+</div>

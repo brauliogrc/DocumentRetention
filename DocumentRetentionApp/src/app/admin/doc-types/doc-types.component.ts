@@ -77,9 +77,9 @@ export class DocTypesComponent implements OnInit {
     )
   }
 
-  // TODO: Muestra popup para editar un cliente
+  // Muestra popup para editar un cliente
   public editClientPopUp( docTypeId: number, docTypeName: string ): void {
-    const dialog = this._dialog.open( PopUpEditDocTypeComponent );
+    const dialog = this._dialog.open( PopUpEditDocTypeComponent, { width: '38%', height: '30%', data: { docTypeId, docTypeName } } );
     dialog.afterClosed().subscribe(
       () => {
         this._fillTable();
