@@ -6,6 +6,7 @@ import { DocTypeTableFilter } from '@shared/helpers/doctypeTableFilter';
 
 import { PopUpCreateDocTypeComponent } from '@app/admin/pop-ups/doc-types/pop-up-create-doc-type/pop-up-create-doc-type.component';
 import { PopUpEditDocTypeComponent } from '@app/admin/pop-ups/doc-types/pop-up-edit-doc-type/pop-up-edit-doc-type.component';
+import { AuthSericeService } from '@auth/autServices/auth-serice.service';
 
 @Component({
   selector: 'app-doc-types',
@@ -19,6 +20,7 @@ export class DocTypesComponent implements OnInit {
 
   constructor(
     private _dialog: MatDialog,
+    private _auth: AuthSericeService,
     private _tableService: TableServiceService,
   ) { }
 

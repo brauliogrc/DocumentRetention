@@ -8,6 +8,7 @@ import { ProcessesHandlerService } from '@shared/services/processeshandler/proce
 
 import { PopUpCreateProcessComponent } from '../pop-ups/processes/pop-up-create-process/pop-up-create-process.component';
 import { PopUpEditProcessComponent } from '../pop-ups/processes/pop-up-edit-process/pop-up-edit-process.component';
+import { AuthSericeService } from '@auth/autServices/auth-serice.service';
 
 @Component({
   selector: 'app-processes',
@@ -21,6 +22,7 @@ export class ProcessesComponent implements OnInit {
 
   constructor(
     private _dialog: MatDialog,
+    private _auth: AuthSericeService,
     private _sweetAlert: SweetAlertsService,
     private _tableService: TableServiceService,
     private _processesHandler: ProcessesHandlerService,

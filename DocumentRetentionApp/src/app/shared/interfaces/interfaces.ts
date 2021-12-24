@@ -10,3 +10,8 @@ export interface bearer {
 export interface successMessages {
     message: string;
 }
+
+export interface permision {
+    isLoged:        boolean;
+    role:           number;
+}

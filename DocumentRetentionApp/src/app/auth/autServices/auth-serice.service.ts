@@ -5,8 +5,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 // Importaciones de interfaces
 import {
   loginData,
-  bearer
+  bearer,
+  permision // TEST
 } from '@shared/interfaces/interfaces';
+// TEST
+import { EncryptionAndDecryptionService } from '@shared/services/encryptionanddecryption/encryption-and-decryption.service';
 
 // Importación de elementos para la Request
 import { environment } from '@env/environment';
@@ -17,8 +20,7 @@ import { catchError } from 'rxjs/operators';
 // Importación de servicios
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SweetAlertsService } from '@app/shared/services/alerts/sweet-alerts.service';
-import { Router } from '@angular/router'; // FIXME
-
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -33,9 +35,9 @@ export class AuthSericeService {
 
 
   constructor(
-    private _rote: Router, // FIXME
-    
+    private _crypt: EncryptionAndDecryptionService,
 
+    private _router: Router,
     private _http: HttpClient,
     private _sweetAlert: SweetAlertsService,
   ) { this.checkToken(); }
@@ -76,7 +78,7 @@ export class AuthSericeService {
     sessionStorage.clear();
     console.clear();
     this.loggedIn.next(false);
-    this._rote.navigate(['home']);
+    this._router.navigate(['home']);  // Redireccinamiento a la pagina principal
   }
 
   // Método para comprobar si el token ha expirado
@@ -96,5 +98,28 @@ export class AuthSericeService {
     )
     console.log('Valor de loggueo: ', value);
     
+  }
+
+  // Retorna el stado del logueo y el rol del usuario
+  public permision(): permision {
+    let loged:  boolean;
+    let role:   number;
+    let permision: permision;
+
+    this.isLogged.subscribe(
+      (value) => {
+        loged = value;
+      }
+    );
+    
+    if ( loged ) {
+      role = this._crypt.userRole;
+      permision = {
+        isLoged:  loged,
+        role:     role,
+      };
+    }
+    
+    return permision;
   }
 }

@@ -8,6 +8,7 @@ import { ProjectsHandlerService } from '@shared/services/pojectshandler/projects
 import { PopUpCreateProjectComponent } from '@admin/pop-ups/projects/pop-up-create-project/pop-up-create-project.component';
 import { PopUpEditProjectComponent } from '@admin/pop-ups/projects/pop-up-edit-project/pop-up-edit-project.component';
 import { SweetAlertsService } from '@shared/services/alerts/sweet-alerts.service';
+import { AuthSericeService } from '@auth/autServices/auth-serice.service';
 
 @Component({
   selector: 'app-projects',
@@ -21,6 +22,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private _dialog: MatDialog,
+    private _auth: AuthSericeService,
     private _sweetAlert: SweetAlertsService,
     private _tableService: TableServiceService,
     private _projectHandler: ProjectsHandlerService,

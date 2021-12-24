@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { PopUpCreateClientComponent } from '@admin/pop-ups/clients/pop-up-create-client/pop-up-create-client.component';
 import { PopUpEditClientComponent } from '@admin/pop-ups/clients/pop-up-edit-client/pop-up-edit-client.component';
+import { AuthSericeService } from '@auth/autServices/auth-serice.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class ClientsComponent implements OnInit {
 
   constructor(
     private _dialog: MatDialog,
+    private _auth: AuthSericeService,
     private _tableService: TableServiceService,
   ) { }
 

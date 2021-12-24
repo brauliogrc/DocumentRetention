@@ -13,8 +13,8 @@ import { DocsViewerComponent } from '@first-view/docs-viewer/docs-viewer.compone
 export class DocsCreationComponent implements OnInit {
   @ViewChild(DocsViewerComponent) docViewer: DocsViewerComponent;
 
-  public  isLogger: boolean = false;
-  public userRole:  number
+  public isLogger: boolean = false;
+  public userRole:  number;
 
   constructor(
     private _dialog: MatDialog,
@@ -25,13 +25,17 @@ export class DocsCreationComponent implements OnInit {
   ngOnInit(): void {
 
     // TODO: 001-Agrupar la validación de logue o rol en un método del service Auth
-    this._auth.isLogged.subscribe(
-      (Logged) => {
-        this.isLogger = Logged;
-      }
-    );
+    // this._auth.isLogged.subscribe(
+    //   (Logged) => {
+    //     this.isLogger = Logged;
+    //   }
+    // );
 
-    this.userRole = this._crypt.userRole;
+    // this.userRole = this._crypt.userRole;
+
+    let { isLoged, role } = this._auth.permision();
+    this.userRole = role;
+    this.isLogger = isLoged;
   }
 
   // Método quemuestra el PopUp para la creación de un nuevo documento

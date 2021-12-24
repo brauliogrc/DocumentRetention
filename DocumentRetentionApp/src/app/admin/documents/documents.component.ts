@@ -7,6 +7,7 @@ import { PopUpEditDocComponent } from '../pop-ups/documents/pop-up-edit-doc/pop-
 import { DocumentsHandlerService } from '@shared/services/documentshandler/documents-handler.service';
 import { SweetAlertsService } from '../../shared/services/alerts/sweet-alerts.service';
 import { ShowCommentsComponent } from '@shared/popups/show-comments/show-comments.component';
+import { AuthSericeService } from '@auth/autServices/auth-serice.service';
 
 @Component({
   selector: 'app-documents',
@@ -18,6 +19,7 @@ export class DocumentsComponent implements OnInit {
 
   constructor(
     private _dialog: MatDialog,
+    private _auth: AuthSericeService,
     private _sweetAlert: SweetAlertsService,
     private _tableService: TableServiceService,
     private _documentsHandler: DocumentsHandlerService,
