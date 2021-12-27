@@ -15,7 +15,11 @@ import { AuthSericeService } from '@auth/autServices/auth-serice.service';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
+  // Variables que contiene ek listado de los documentos registrados
   public docsList:  docsTable[];
+
+  private userRole: number;
+  private isLogged: boolean;
 
   constructor(
     private _dialog: MatDialog,
@@ -26,6 +30,14 @@ export class DocumentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    // FIXME: Método sijeto a pruebas aún
+    // Validación del rol para el acceso a esta sección
+    let { isLoged, role } = this._auth.permision();
+    this.userRole = role;
+    this.isLogged = isLoged;
+    if ( this.userRole != 1 ) this._auth.redirectToHome();
+    else this._fillTable();
     this._fillTable();
   }
 

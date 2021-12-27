@@ -13,7 +13,7 @@ import { DocsViewerComponent } from '@first-view/docs-viewer/docs-viewer.compone
 export class DocsCreationComponent implements OnInit {
   @ViewChild(DocsViewerComponent) docViewer: DocsViewerComponent;
 
-  public isLogger: boolean = false;
+  public isLogged: boolean = false;
   public userRole:  number;
 
   constructor(
@@ -23,19 +23,20 @@ export class DocsCreationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    // TODO: 001-Agrupar la validación de logue o rol en un método del service Auth
     // this._auth.isLogged.subscribe(
     //   (Logged) => {
-    //     this.isLogger = Logged;
+    //     this.isLogged = Logged;
     //   }
     // );
 
     // this.userRole = this._crypt.userRole;
 
+    // FIXME: Método sijeto a pruebas aún
+    // Validación del rol para el acceso a esta sección
     let { isLoged, role } = this._auth.permision();
     this.userRole = role;
-    this.isLogger = isLoged;
+    this.isLogged = isLoged;
+    if ( this.userRole != 1 && this.userRole != 2 ) this._auth.redirectToHome();
   }
 
   // Método quemuestra el PopUp para la creación de un nuevo documento

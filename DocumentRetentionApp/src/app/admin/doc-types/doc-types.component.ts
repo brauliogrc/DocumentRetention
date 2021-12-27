@@ -18,6 +18,9 @@ export class DocTypesComponent implements OnInit {
   private back:       docTypeList[];
   public docTypeList: docTypeList[];
 
+  private userRole: number;
+  private isLogged: boolean;
+
   constructor(
     private _dialog: MatDialog,
     private _auth: AuthSericeService,
@@ -27,14 +30,21 @@ export class DocTypesComponent implements OnInit {
   // 1. llenado de la tabla          - COMPLETE
   // 2. filtrado                     - COMPLETE
   // 3. reseteo del filtrado         - COMPLETE
-  // 4. registro de nuevo elemento   - INCOMPLETE
-  // 5. modificación de un elemento  - INCOMPLETE
+  // 4. registro de nuevo elemento   - COMPLETE
+  // 5. modificación de un elemento  - COMPLETE
   // 6. eliminación de un elemento   - INCOMPLETE (NA)
 
   private _docTypeFilterTable = new DocTypeTableFilter();
 
   ngOnInit(): void {
-    this._fillTable();
+
+    // FIXME: Método sijeto a pruebas aún
+    // Validación del rol para el acceso a esta sección
+    let { isLoged, role } = this._auth.permision();
+    this.userRole = role;
+    this.isLogged = isLoged;
+    if ( this.userRole != 1 ) this._auth.redirectToHome();
+    else this._fillTable();
   }
 
   // Llenado de la tabla con los datos retornados de la API

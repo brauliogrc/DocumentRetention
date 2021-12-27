@@ -121,4 +121,13 @@ export class SweetAlertsService {
       text: message
     })
   }
+
+  // Mensaje se acceso denegado a la sección
+  public deniedAccess = (): void => {
+    Swal.fire({
+      title: 'Acceso denegado a esta sección',
+      icon: 'warning',
+      text: 'No cuenta con el rol requerido para esta sección o no ha iniciado sesión.'
+    })
+  }
 }

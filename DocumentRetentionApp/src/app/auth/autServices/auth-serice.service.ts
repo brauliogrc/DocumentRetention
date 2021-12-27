@@ -112,14 +112,27 @@ export class AuthSericeService {
       }
     );
     
-    if ( loged ) {
+    if ( loged ) {  //Combreuba si el usuario se encuentra logeado
       role = this._crypt.userRole;
+      console.log(`My role: ${ role }`);
+      
       permision = {
         isLoged:  loged,
         role:     role,
       };
+      console.log( permision );
+      
+      return permision;
     }
-    
-    return permision;
+    else {
+      this._router.navigate(['home']);
+      return null;
+    }
+  }
+  
+  // Redirige al home cuando un usuario no tiene el rol necesario para una sección
+  public redirectToHome(): void {
+    this._router.navigate(['home']);
+    // this._sweetAlert.deniedAccess();
   }
 }

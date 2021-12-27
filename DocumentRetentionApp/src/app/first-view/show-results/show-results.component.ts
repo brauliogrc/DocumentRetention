@@ -39,27 +39,31 @@ export class ShowResultsComponent implements OnInit {
   public isLogged:  boolean;
 
   ngOnInit(): void {
-    this.fillTable();
-
     // Obtención de valores necesarios para hacer visibles campos de creación del documento
     // Esto se valida en los dos bloques "ng-template" dentro de las sentiencias "*ngIf"
-    // TODO: 001-Aplicar modificación 001
-    this._auth.isLogged.subscribe(
-      (Logged) => {
-        this.isLogged = Logged;
-      }
-    );
-    this.userRole = this._crypt.userRole;
-    console.log('Rol: ', this.userRole , ' is logged: ', this.isLogged);
+    // this._auth.isLogged.subscribe(
+    //   (Logged) => {
+    //     this.isLogged = Logged;
+    //   }
+    // );
+    // this.userRole = this._crypt.userRole;
+    // console.log('Rol: ', this.userRole , ' is logged: ', this.isLogged);
+
+    this._fillTable();
+    // FIXME: Método sijeto a pruebas aún
+    // Validación del rol para el acceso a esta sección
+    let { isLoged, role } = this._auth.permision();
+    this.userRole = role;
+    this.isLogged = isLoged;
   }
 
   // Método llamado desde "doc-viewer.component.ts" depues de cerrar el pop up "pop-up-create-doc.component-ts"
   public refillTable(): void {
-    this.fillTable();
+    this._fillTable();
   }
 
   // Llenado de a tabla con los datos de la DB retornados por la API
-  private fillTable = (): void => {
+  private _fillTable = (): void => {
 
     if (this._userRole === 1) {
       // Ejecución del metodo de obtención de la lista de documentos admin

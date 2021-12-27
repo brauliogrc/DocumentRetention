@@ -37,17 +37,21 @@ export class PdfViewerComponent implements OnInit {
     // Concatenamos el nombre completo del archivo con la ruta en la carpeta "assets"
     this.archivo = this._path + this._fullName;
 
-    // TODO: 001-Aplicar modificación 001
     // Obtención de valores necesarios para hacer visible el botón de descarga del documento
     // Esto se valida en el *ngIf del botón "download"
-    this._auth.isLogged.subscribe(
-      (logged) => {
-        this.isLogged = logged;
-      }
-    );
-    this.userRole = this._crypt.userRole;
-    console.log('valor en al visor pdf', this.isLogged);
-    
+    // this._auth.isLogged.subscribe(
+    //   (logged) => {
+    //     this.isLogged = logged;
+    //   }
+    // );
+    // this.userRole = this._crypt.userRole;
+    // console.log('valor en al visor pdf', this.isLogged);
+
+    // FIXME: Método sijeto a pruebas aún
+    // Validación del rol para el acceso a esta sección
+    let { isLoged, role } = this._auth.permision();
+    this.userRole = role;
+    this.isLogged = isLoged;
   }
 
   // Regreso a la página anterior
